@@ -14,9 +14,9 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/CSS/**" location="/CSS/" />
-	<resources mapping="/JS/**" location="/JS/" />
-	<resources mapping="/IMG/**" location="/IMG/" />
+	<resources mapping="/assets/**" location="/assets/" />
+	<resources mapping="/Doc/**" location="/Doc/" />
+
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -26,13 +26,7 @@
 	
 	<context:component-scan base-package="com.miracle.fts" /> 
 	
-	<beans:bean name="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-		<beans:property name="username" value="miracle7"/>	
-		<beans:property name="password" value="miracle1234"/>	
-	</beans:bean>
+
 	
 	<!-- MyBatis 설정 -->	
 	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
