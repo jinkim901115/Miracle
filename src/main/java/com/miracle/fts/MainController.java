@@ -26,17 +26,17 @@ public class MainController {
 	
 	@RequestMapping("/notice")
 	public String notice(Model model) {
-		return "/community/notice";
+		return "/notice/notice";
 	}
 	
 	@RequestMapping("/faq")
 	public String faq(Model model) {
-		return "/community/faq";
+		return "/faq/faq";
 	}
 	
 	@RequestMapping("/qna")
 	public String qna(Model model) {
-		return "/community/qna";
+		return "/qna/qna";
 	}
 	
 	@RequestMapping("/favorite")
@@ -48,6 +48,9 @@ public class MainController {
 	public String login(Model model) {
 		return "/login/login";
 	}
+
+
+	
 	
 	
 }

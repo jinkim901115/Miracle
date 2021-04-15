@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,7 +10,6 @@
 <title>Login</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
 <!-- CSS here -->
@@ -40,52 +41,62 @@
  </div>
 <!-- Preloader Start -->
 <header>
-    <!-- Header Start -->
-   <div class="header-area header-transparent">
-        <div class="main-header">
-           <div class="header-bottom  header-sticky">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <!-- Logo -->
-                        <div class="col-xl-2 col-lg-2 col-md-1">
-                            <div class="logo">
-                              <a href="./index"><img src="assets/img/logo/logo.jpg" width=132px height=37px alt=""></a>
+        <!-- Header Start -->
+       <div class="header-area header-transparent">
+            <div class="main-header">
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2 col-md-1">
+                                <div class="logo">
+                                  <a href="./index"><img src="assets/img/logo/logo.jpg" width=132px height=37px alt=""></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-10 col-lg-10 col-md-8">
-                            <!-- Main-menu -->
-                            <div class="main-menu f-right d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">                                                                                                                                     
-                                        <li><a href="./index">Home</a></li>
-                                        <li><a href="./about">About</a></li>
-                                        <li><a href="./listmain">List</a></li>
-                                        <li><a href="./notice">Community</a>
-                                        	<ul class="submenu">
-                                        		<li><a href="./notice">공지사항</a></li>
-                                        		<li><a href="./faq">자주하는 질문</a></li>
-                                        		<li><a href="./qna">질문과 답변</a></li>
-                                        	</ul>
-                                        </li>
-                                        <li class="add-list"><a href="./favorite"><i class="ti-plus"></i> 즐겨찾기</a></li>
-                                        <li class="login"><a href="./login">
-                                            <i class="ti-user"></i> Sign In </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                            <div class="col-xl-10 col-lg-10 col-md-8">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">                                                                                                                                     
+                                            <li><a href="./index">Home</a></li>
+                                            <li><a href="./about">About</a></li>
+                                            <li><a href="./listmain">List</a></li>
+                                            <li><a href="./notice">Community</a>
+                                            	<ul class="submenu">
+                                            		<li><a href="./notice">공지사항</a></li>
+                                            		<li><a href="./faq">자주하는 질문</a></li>
+                                            		<li><a href="./qna">질문과 답변</a></li>
+                                            	</ul>
+                                            </li>
+                                            <li class="add-list"><a href="./favorite"><i class="ti-plus"></i> 즐겨찾기</a></li>
+                                            <li class="login">
+                                            	<sec:authorize access="isAnonymous()">
+	                                            	<a href="./login"> Sign In </a>
+                                                </sec:authorize>
+                                                <sec:authorize access="isAuthenticated()">
+                                                	<a href="#"><i class="ti-user"></i><sec:authentication property="principal.username"/></a>
+                                                </sec:authorize>
+                                            </li>
+                                            <li class="login">
+                                            	<sec:authorize access="isAuthenticated()">
+                                            		<a href=${pageContext.request.contextPath }/logout>로그아웃</a>
+                                           		</sec:authorize>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-           </div>
-        </div>
-   </div>
-    <!-- Header End -->
-</header>
+               </div>
+            </div>
+       </div>
+        <!-- Header End -->
+    </header>
 
 <main>
 
@@ -103,9 +114,18 @@
  </div>
  <!--Hero End -->
 
+<br><br><br><br><br>
+<div class="loginform" style="text-align: center">
+<h1>Login</h1>
 
-TODO MAIN 입니다
-
+<form method="POST" action="${pageContext.request.contextPath }/login">
+	<input type="text" name="username"><br>
+	<input type="password" name="password"><br>
+	<input type="submit" value="로그인"><br>
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+</form>
+</div>
+<br><br><br><br><br>
 
 
 </main>

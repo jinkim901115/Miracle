@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>QnA</title>
+<title>Notice</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
 <!-- CSS here -->
@@ -40,52 +40,62 @@
  </div>
 <!-- Preloader Start -->
 <header>
-    <!-- Header Start -->
-   <div class="header-area header-transparent">
-        <div class="main-header">
-           <div class="header-bottom  header-sticky">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <!-- Logo -->
-                        <div class="col-xl-2 col-lg-2 col-md-1">
-                            <div class="logo">
-                              <a href="./index"><img src="assets/img/logo/logo.jpg" width=132px height=37px alt=""></a>
+        <!-- Header Start -->
+       <div class="header-area header-transparent">
+            <div class="main-header">
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2 col-md-1">
+                                <div class="logo">
+                                  <a href="./index"><img src="assets/img/logo/logo.jpg" width=132px height=37px alt=""></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-10 col-lg-10 col-md-8">
-                            <!-- Main-menu -->
-                            <div class="main-menu f-right d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">                                                                                                                                     
-                                        <li><a href="./index">Home</a></li>
-                                        <li><a href="./about">About</a></li>
-                                        <li><a href="./listmain">List</a></li>
-                                        <li><a href="./notice">Community</a>
-                                        	<ul class="submenu">
-                                        		<li><a href="./notice">공지사항</a></li>
-                                        		<li><a href="./faq">자주하는 질문</a></li>
-                                        		<li><a href="./qna">질문과 답변</a></li>
-                                        	</ul>
-                                        </li>
-                                        <li class="add-list"><a href="./favorite"><i class="ti-plus"></i> 즐겨찾기</a></li>
-                                        <li class="login"><a href="./login">
-                                            <i class="ti-user"></i> Sign In </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                            <div class="col-xl-10 col-lg-10 col-md-8">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">                                                                                                                                     
+                                            <li><a href="./index">Home</a></li>
+                                            <li><a href="./about">About</a></li>
+                                            <li><a href="./listmain">List</a></li>
+                                            <li><a href="./notice">Community</a>
+                                            	<ul class="submenu">
+                                            		<li><a href="./notice">공지사항</a></li>
+                                            		<li><a href="./faq">자주하는 질문</a></li>
+                                            		<li><a href="./qna">질문과 답변</a></li>
+                                            	</ul>
+                                            </li>
+                                            <li class="add-list"><a href="./favorite"><i class="ti-plus"></i> 즐겨찾기</a></li>
+                                            <li class="login">
+                                            	<sec:authorize access="isAnonymous()">
+	                                            	<a href="./login"> Sign In </a>
+                                                </sec:authorize>
+                                                <sec:authorize access="isAuthenticated()">
+                                                	<a href="#"><i class="ti-user"></i><sec:authentication property="principal.username"/></a>
+                                                </sec:authorize>
+                                            </li>
+                                            <li class="login">
+                                            	<sec:authorize access="isAuthenticated()">
+                                            		<a href=${pageContext.request.contextPath }/logout>로그아웃</a>
+                                           		</sec:authorize>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-           </div>
-        </div>
-   </div>
-    <!-- Header End -->
-</header>
+               </div>
+            </div>
+       </div>
+        <!-- Header End -->
+    </header>
 
 <main>
 
@@ -95,7 +105,7 @@
          <div class="row">
              <div class="col-xl-12">
                  <div class="hero-cap text-center pt-50">
-                     <h2>QnA 질문과 답변</h2>
+                     <h2>공지사항</h2>
                  </div>
              </div>
          </div>

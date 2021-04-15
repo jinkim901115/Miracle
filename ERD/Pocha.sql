@@ -1,26 +1,26 @@
-﻿DROP TABLE t_user;
-DROP TABLE t_store;
-DROP TABLE t_comment;
-DROP TABLE t_report;
-DROP TABLE t_qna;
-DROP TABLE t_answer;
-DROP TABLE t_favorite;
-DROP TABLE t_notice;
-DROP TABLE t_auth;
-DROP TABLE t_faq;
-DROP TABLE t_menu;
+﻿DROP TABLE t_user CASCADE CONSTRAINT;
+DROP TABLE t_store CASCADE CONSTRAINT;
+DROP TABLE t_comment CASCADE CONSTRAINT;
+DROP TABLE t_report CASCADE CONSTRAINT;
+DROP TABLE t_qna CASCADE CONSTRAINT;
+DROP TABLE t_answer CASCADE CONSTRAINT;
+DROP TABLE t_favorite CASCADE CONSTRAINT;
+DROP TABLE t_notice CASCADE CONSTRAINT;
+DROP TABLE t_auth CASCADE CONSTRAINT;
+DROP TABLE t_faq CASCADE CONSTRAINT;
+DROP TABLE t_menu CASCADE CONSTRAINT;
 
 
 
 CREATE TABLE t_user (
 	u_id	varchar2(20)		NOT NULL,
-	u_pw	varchar2(12)		NULL,
+	u_pw	varchar2(200)		NULL,
 	u_name	varchar2(10)		NULL,
 	u_pn	varchar2(13)		NULL,
 	u_email	varchar2(30)		NULL,
 	u_addr	varchar2(200)		NULL,
-	u_div	number		NULL,
-	u_regdate	date		NULL
+	enabled char(1) DEFAULT '1',
+	u_regdate	DATE DEFAULT SYSDATE	NULL
 );
 
 CREATE TABLE t_store (
@@ -252,8 +252,7 @@ REFERENCES t_store (
 
 
 
-
-
+SELECT u.u_id, u.u_pw, u.u_name, au.au_auth  FROM t_user u, t_auth au WHERE u.u_id = au.u_id ORDER BY u.u_id ASC;
 
 
 

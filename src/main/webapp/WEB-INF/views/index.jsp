@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,7 +14,6 @@
 
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
 <!-- CSS here -->
@@ -74,8 +74,18 @@
                                             	</ul>
                                             </li>
                                             <li class="add-list"><a href="./favorite"><i class="ti-plus"></i> 즐겨찾기</a></li>
-                                            <li class="login"><a href="./login">
-                                                <i class="ti-user"></i> Sign In </a>
+                                            <li class="login">
+                                            	<sec:authorize access="isAnonymous()">
+	                                            	<a href="./login"> Sign In </a>
+                                                </sec:authorize>
+                                                <sec:authorize access="isAuthenticated()">
+                                                	<a href="#"><i class="ti-user"></i><sec:authentication property="principal.username"/></a>
+                                                </sec:authorize>
+                                            </li>
+                                            <li class="login">
+                                            	<sec:authorize access="isAuthenticated()">
+                                            		<a href=${pageContext.request.contextPath }/logout>로그아웃</a>
+                                           		</sec:authorize>
                                             </li>
                                         </ul>
                                     </nav>
