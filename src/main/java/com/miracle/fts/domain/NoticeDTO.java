@@ -1,5 +1,5 @@
 package com.miracle.fts.domain;
 
-public class sample {
+public class NoticeDTO {
 
 }

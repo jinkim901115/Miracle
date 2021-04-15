@@ -1,5 +1,5 @@
 package com.miracle.fts.service;
 
-public class sample {
+public class FaqService {
 
 }
