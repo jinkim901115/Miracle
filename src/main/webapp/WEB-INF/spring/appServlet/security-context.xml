@@ -8,6 +8,7 @@
 
 	<bean id="customAccessDenied" class="com.miracle.fts.security.CustomAccessDeniedHandler"/>
 	<bean id="customLoginSuccess" class="com.miracle.fts.security.CustomLoginSuccessHandler"/>
+	<bean id="customLogoutSuccess" class="com.miracle.fts.security.CustomLogoutSuccessHandler"/>
 	<!-- 
 	<bean id="customPasswordEncoder" class="com.lec.sts18_security.security.CustomNoOpPasswordEncoder"/>
 	 -->
@@ -33,7 +34,7 @@
 		<!-- <security:access-denied-handler error-page="/accessError"/> -->
 		<security:access-denied-handler ref="customAccessDenied"/>
 		
-		<security:logout logout-url="/logout" invalidate-session="true"/>
+		<security:logout logout-url="/logout" success-handler-ref="customLogoutSuccess" invalidate-session="true"/>
 		
 		
 	</security:http>

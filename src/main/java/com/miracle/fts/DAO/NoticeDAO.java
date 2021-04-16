@@ -1,4 +1,4 @@
-package com.miracle.fts.domain;
+package com.miracle.fts.DAO;
 
 public interface NoticeDAO {
 

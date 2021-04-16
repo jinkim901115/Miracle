@@ -254,7 +254,7 @@ REFERENCES t_store (
 
 SELECT u.u_id, u.u_pw, u.u_name, au.au_auth  FROM t_user u, t_auth au WHERE u.u_id = au.u_id ORDER BY u.u_id ASC;
 
-
+SELECT * FROM t_user;
 
 
 

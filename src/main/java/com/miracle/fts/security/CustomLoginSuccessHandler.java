@@ -48,6 +48,10 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			uri = prevPage;
 		}
 		
+//		if(roleNames.contains("ROLE_ADMIN")) {
+//			uri = request.getContextPath() + "/admin";
+//		}
+		
 		response.sendRedirect(uri);
 		
 		
