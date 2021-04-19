@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>About Miracle 7</title>
+<title>FAQ</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -39,11 +42,9 @@
      </div>
  </div>
 <!-- Preloader Start -->
-
 <!-- header Start -->
-<%@include file="./nav/nav.jsp"  %>
+<%@include file="../nav/nav.jsp"  %>
 <!-- header End -->
-
 
 <main>
 
@@ -53,7 +54,7 @@
          <div class="row">
              <div class="col-xl-12">
                  <div class="hero-cap text-center pt-50">
-                     <h2>About Miracle7</h2>
+                     <h2>공지사항</h2>
                  </div>
              </div>
          </div>
@@ -62,13 +63,42 @@
  <!--Hero End -->
 
 
-TODO MAIN 입니다
+	<table>
+		<tr>
+			<th>UID</th>
+			<th>ID</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>조회수</th>
+			<th>등록일시</th>
+		</tr>
+		
+		<c:choose>
+		<c:when test="${empty list || fn:length(list) == 0 }">
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="dto" items="${list}">
+				<tr>
+					<td>${dto.uid }</td>	<%--dto.getUid() --%>
+					<td>${dto.id }</td>
+					<td><a href="n_view?uid=${dto.uid }">${dto.subject }</a></td>
+					<td>${dto.content }</td>	<%-- dto.getName() --%>
+					<td>${dto.viewcnt }</td>
+					<td>${dto.regDateTime }</td>
+				</tr>
+			</c:forEach>
+		</c:otherwise>
+		</c:choose>
+		
+	</table>
+	<br>
+	<button onclick="location.href='n_write'">등록</button>
 
 
 
 </main>
 <!-- footer Start -->
-<%@include file="./nav/footer.jsp" %>
+<%@include file="../nav/footer.jsp" %>
 <!-- footer End -->
 <!-- Scroll Up -->
 <div id="back-top" >

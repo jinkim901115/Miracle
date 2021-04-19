@@ -9,8 +9,13 @@ DROP TABLE t_notice CASCADE CONSTRAINT;
 DROP TABLE t_auth CASCADE CONSTRAINT;
 DROP TABLE t_faq CASCADE CONSTRAINT;
 DROP TABLE t_menu CASCADE CONSTRAINT;
-
-
+DROP SEQUENCE t_store_seq;
+DROP SEQUENCE t_comment_seq;
+DROP SEQUENCE t_qna_seq;
+DROP SEQUENCE t_answer_seq;
+DROP SEQUENCE t_notice_seq;
+DROP SEQUENCE t_faq_seq;
+DROP SEQUENCE t_menu_seq;
 
 CREATE TABLE t_user (
 	u_id	varchar2(20)		NOT NULL,
@@ -36,6 +41,8 @@ CREATE TABLE t_store (
 	s_thn	varchar2(20)		NULL,
 	u_id	varchar2(20)		NOT NULL
 );
+CREATE SEQUENCE t_store_seq;
+
 
 CREATE TABLE t_comment (
 	c_uid	number		NOT NULL,
@@ -45,6 +52,8 @@ CREATE TABLE t_comment (
 	u_id	varchar2(20)		NOT NULL,
 	s_uid	number		NOT NULL
 );
+CREATE SEQUENCE t_comment_seq;
+
 
 CREATE TABLE t_report (
 	u_id	varchar2(20)		NOT NULL,
@@ -60,9 +69,12 @@ CREATE TABLE t_qna (
 	q_category	varchar2(30)		NULL,
 	q_viewcnt	number		DEFAULT 0
 );
+CREATE SEQUENCE t_qna_seq;
+
 
 INSERT INTO t_qna (q_uid, u_id, q_subject, q_content, q_category) VALUES (t_qna_seq.nextval, 'admin1', '제목', '내용', '이용문의');
-SELECT * FROM t_qna;
+
+
 
 CREATE TABLE t_answer (
 	a_uid	number		NOT NULL,
@@ -71,6 +83,9 @@ CREATE TABLE t_answer (
 	q_uid	number		NOT NULL,
 	u_id	varchar2(20)		NOT NULL
 );
+
+CREATE SEQUENCE t_answer_seq;
+
 
 CREATE TABLE t_favorite (
 	s_uid	number		NOT NULL,
@@ -86,6 +101,9 @@ CREATE TABLE t_notice (
 	u_id	varchar2(20)		NOT NULL
 );
 
+CREATE SEQUENCE t_notice_seq;
+
+
 CREATE TABLE t_auth (
 	au_auth	varchar2(20)		NULL,
 	u_id	varchar2(20)		NOT NULL
@@ -98,6 +116,8 @@ CREATE TABLE t_faq (
 	f_viewcnt	number		NULL,
 	u_id	varchar2(20)		NOT NULL
 );
+CREATE SEQUENCE t_faq_seq;
+
 
 CREATE TABLE t_menu (
 	m_uid	number		NOT NULL,
@@ -106,6 +126,8 @@ CREATE TABLE t_menu (
 	m_pics	varchar2(30)		NULL,
 	m_best	number		NULL
 );
+CREATE SEQUENCE t_menu_seq;
+
 
 ALTER TABLE t_user ADD CONSTRAINT PK_T_USER PRIMARY KEY (
 	u_id

@@ -39,63 +39,9 @@
      </div>
  </div>
 <!-- Preloader Start -->
-<header>
-        <!-- Header Start -->
-       <div class="header-area header-transparent">
-            <div class="main-header">
-               <div class="header-bottom  header-sticky">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <!-- Logo -->
-                            <div class="col-xl-2 col-lg-2 col-md-1">
-                                <div class="logo">
-                                  <a href="./index"><img src="assets/img/logo/logo.jpg" width=132px height=37px alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-xl-10 col-lg-10 col-md-8">
-                                <!-- Main-menu -->
-                                <div class="main-menu f-right d-none d-lg-block">
-                                    <nav>
-                                        <ul id="navigation">                                                                                                                                     
-                                            <li><a href="./index">Home</a></li>
-                                            <li><a href="./about">About</a></li>
-                                            <li><a href="./listmain">List</a></li>
-                                            <li><a href="./notice">Community</a>
-                                            	<ul class="submenu">
-                                            		<li><a href="./notice">공지사항</a></li>
-                                            		<li><a href="./faq">자주하는 질문</a></li>
-                                            		<li><a href="./qna">질문과 답변</a></li>
-                                            	</ul>
-                                            </li>
-                                            <li class="add-list"><a href="./favorite"><i class="ti-plus"></i> 즐겨찾기</a></li>
-                                            <li class="login">
-                                            	<sec:authorize access="isAnonymous()">
-	                                            	<a href="./login"> Sign In </a>
-                                                </sec:authorize>
-                                                <sec:authorize access="isAuthenticated()">
-                                                	<a href="#"><i class="ti-user"></i><sec:authentication property="principal.username"/></a>
-                                                </sec:authorize>
-                                            </li>
-                                            <li class="login">
-                                            	<sec:authorize access="isAuthenticated()">
-                                            		<a href=${pageContext.request.contextPath }/logout>로그아웃</a>
-                                           		</sec:authorize>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <!-- Mobile Menu -->
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-            </div>
-       </div>
-        <!-- Header End -->
-    </header>
+<!-- header Start -->
+<%@include file="../nav/nav.jsp"  %>
+<!-- header End -->
 
 <main>
 
@@ -119,80 +65,9 @@ TODO MAIN 입니다
 
 
 </main>
-<footer>
-      <!-- Footer Start-->
-      <div class="footer-area">
-          <div class="container">
-             <div class="footer-top footer-padding">
-                  <div class="row justify-content-between">
-                      <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                          <div class="single-footer-caption mb-50">
-                              <div class="single-footer-caption mb-30">
-                                  <!-- logo -->
-                                  <div class="footer-logo">
-                                      <a href="./index"><img src="assets/img/logo/logo.jpg" width=132px height=37px alt=""></a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-                          <div class="single-footer-caption mb-50">
-                              <div class="footer-tittle">
-                                  <h4>Quick Link</h4>
-                                  <ul>
-                                      <li><a href="./index">Home</a></li>
-                                      <li><a href="./listmain">리스트</a></li>
-                                      <li><a href="./favorite">즐겨찾기</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                          <div class="single-footer-caption mb-50">
-                              <div class="footer-tittle">
-                                  <h4>이용관련</h4>
-                                  <ul>
-                                      <li><a href="#">이용약관</a></li>
-                                      <li><a href="#">개인정보책임</a></li>
-                                      <li><a href="#">찾아오시는길</a></li> 
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                          <div class="single-footer-caption mb-50">
-                              <div class="footer-tittle">
-                                  <h4>Download App</h4>
-                                  <ul>
-                                      <li class="app-log"><a href="#"><img src="assets/img/gallery/app-logo.png" alt=""></a></li>
-                                      <li><a href="#"><img src="assets/img/gallery/app-logo2.png" alt=""></a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-             </div>
-              <div class="footer-bottom">
-                  <div class="row d-flex justify-content-between align-items-center">
-                      <div class="col-xl-9 col-lg-8">
-                          <div class="footer-copy-right">
-                              <p>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | We are Miracle 7 <i class="fa fa-heart" aria-hidden="true"></i> 
-							 </p>
-                          </div>
-                      </div>
-                      <div class="col-xl-3 col-lg-4">
-                          <!-- Footer Social -->
-                          <div class="footer-social f-right">
-                              <a href="#"><i class="fab fa-instagram"></i></a>
-                          </div>
-                      </div>
-                  </div>
-             </div>
-          </div>
-      </div>
-<!-- Footer End-->
-</footer>
+<!-- footer Start -->
+<%@include file="../nav/footer.jsp" %>
+<!-- footer End -->
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>

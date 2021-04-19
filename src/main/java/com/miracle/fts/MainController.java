@@ -24,20 +24,20 @@ public class MainController {
 		return "/list/listmain";
 	}
 	
-	@RequestMapping("/notice")
-	public String notice(Model model) {
-		return "/notice/notice";
-	}
-	
-	@RequestMapping("/faq")
-	public String faq(Model model) {
-		return "/faq/faq";
-	}
-	
-	@RequestMapping("/qna")
-	public String qna(Model model) {
-		return "/qna/qna";
-	}
+//	@RequestMapping("/notice")
+//	public String notice(Model model) {
+//		return "/notice/notice";
+//	}
+//	
+//	@RequestMapping("/faq")
+//	public String faq(Model model) {
+//		return "/faq/faq";
+//	}
+//	
+//	@RequestMapping("/qna")
+//	public String qna(Model model) {
+//		return "/qna/qna";
+//	}
 	
 	@RequestMapping("/favorite")
 	public String favorite(Model model) {

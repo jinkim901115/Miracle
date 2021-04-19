@@ -7,8 +7,9 @@
 <title>Logout</title>
 </head>
 
+
 <body>
-<h1> Logout Page</h1>
+<h1> 정말 로그아웃 하시겠습니까? </h1>
 <form action="${pageContext.request.contextPath}/logout" method='post'>
 <input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
 <button>로그아웃</button>

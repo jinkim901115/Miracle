@@ -1,12 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<c:choose>
+	<c:when test="${empty list || fn:length(list) == 0 }">
+		<script>
+			alert("해당정보가 삭제되거나 없습니다.");
+			history.back();
+		</script>
+	</c:when>
+	
+	<c:otherwise>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>About Miracle 7</title>
+<title>FAQ</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -24,6 +37,20 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
+<script>
+function chkSubmit(){
+	frm = document.forms["frm"];
+	
+	var subject = frm["subject"].value.trim();
+	
+	if (subject == "") {
+		alert("제목은 반드시 작성해야 합니다.");
+		frm["subject"].focus();
+		return false;
+	}
+	return true;
+}	//	end chkSubmit()
+</script>
 
 </head>
 <body>
@@ -39,11 +66,9 @@
      </div>
  </div>
 <!-- Preloader Start -->
-
 <!-- header Start -->
-<%@include file="./nav/nav.jsp"  %>
+<%@include file="../nav/nav.jsp"  %>
 <!-- header End -->
-
 
 <main>
 
@@ -53,7 +78,7 @@
          <div class="row">
              <div class="col-xl-12">
                  <div class="hero-cap text-center pt-50">
-                     <h2>About Miracle7</h2>
+                     <h2>공지사항</h2>
                  </div>
              </div>
          </div>
@@ -62,13 +87,26 @@
  <!--Hero End -->
 
 
-TODO MAIN 입니다
+<form name="frm" action="n_updateOk" method="post" onsubmit="return chkSubmit()">
+<input type="hidden" name="uid" value="${list[0].uid }"/>
+id:
+<input type="text" name="id" value="${list[0].id }"/><br>
+제목:
+<input type="text" name="subject" value="${list[0].subject }"/><br>
+내용:<br>
+<textarea name="content">${list[0].content }</textarea>
+<br><br>
+<input type="submit" value="수정"/>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+</form>
+<button onclick="history.back();">이전으로</button>
+<button onclick="location.href='n_list'">목록보기</button>
 
 
 
 </main>
 <!-- footer Start -->
-<%@include file="./nav/footer.jsp" %>
+<%@include file="../nav/footer.jsp" %>
 <!-- footer End -->
 <!-- Scroll Up -->
 <div id="back-top" >
@@ -112,3 +150,5 @@ TODO MAIN 입니다
 <script src="${pageContext.request.contextPath }/assets/js/main.js"></script>
 </body>
 </html>
+	</c:otherwise>
+</c:choose>

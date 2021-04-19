@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>About Miracle 7</title>
+<title>FAQ</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -26,6 +26,26 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
 </head>
+<script>
+function chkSubmit(){
+	frm = document.forms['frm'];
+	
+	var name = frm['name'].value.trim();
+	var subject = frm['subject'].value.trim();
+	
+	if(name == ""){
+		alert("작성자명은 반드시 입력하셔야 합니다.");
+		frm['name'].focus();
+		return false;
+	}
+	if(subject == ""){
+		alert("제목은 반드시 작성하셔야 합니다.");
+		frm["subject"].focus();
+		return false;
+	}
+	return true;
+}
+</script>
 <body>
 <!-- Preloader Start -->
  <div id="preloader-active">
@@ -39,11 +59,9 @@
      </div>
  </div>
 <!-- Preloader Start -->
-
 <!-- header Start -->
-<%@include file="./nav/nav.jsp"  %>
+<%@include file="../nav/nav.jsp"  %>
 <!-- header End -->
-
 
 <main>
 
@@ -53,7 +71,7 @@
          <div class="row">
              <div class="col-xl-12">
                  <div class="hero-cap text-center pt-50">
-                     <h2>About Miracle7</h2>
+                     <h2>공지사항</h2>
                  </div>
              </div>
          </div>
@@ -62,13 +80,25 @@
  <!--Hero End -->
 
 
-TODO MAIN 입니다
+<form name="frm" action="n_writeOk" method="post" onsubmit="return chkSubmit()">
+ID: 
+<input type="text" name="id"/><br>
+제목:
+<input type="text" name="subject"/><br>
+내용: <br>
+<textarea name="content"></textarea>
+<br><br>
+<input type="submit" value="등록"/>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+</form>
+<br>
+<button type="button" onclick="location.href = 'n_list'">목록으로</button>
 
 
 
 </main>
 <!-- footer Start -->
-<%@include file="./nav/footer.jsp" %>
+<%@include file="../nav/footer.jsp" %>
 <!-- footer End -->
 <!-- Scroll Up -->
 <div id="back-top" >
