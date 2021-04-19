@@ -12,8 +12,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- CSS here -->
@@ -40,7 +39,7 @@
 				return false;
 			}
 			alert ("등록완료!");
-			formObj.attr("action", "write");
+			formObj.attr("action", "q_write");
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
@@ -157,12 +156,12 @@
 	<hr />
 	 
 	<div>
-		<%@include file="q_nav.jsp" %>
+		<%@include file="nav.jsp" %>
 	</div>
 	<hr />
 	
 	<section id="container">
-		<form name="writeForm" method="post" action="write">
+		<form name="writeForm" method="post" action="q_write">
 			    <div class="form-group">
 					<label for="q_category" class="col-sm-2 control-label">카테고리</label>
 					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="이용문의" >이용문의
@@ -181,10 +180,10 @@
 					<textarea id="q_content" name="q_content" class="chk form-control" title="내용을 입력하세요" ></textarea>
 				</div>
 				<div class="form-group"> 
-					<label for="q_writer" class="col-sm-2 control-label">작성자</label>
-					<input type="text" id="q_writer" name="q_writer" class="chk form-control" title="작성자를 입력하세요"/>
+					<label for="u_id" class="col-sm-2 control-label">작성자</label>
+					<input type="text" id="u_id" name="u_id" class="chk form-control" title="작성자를 입력하세요"/>
 				</div>						
-				
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 				<button class="write_btn btn btn-success" type="button">작성</button>
 		</form>
 	</section>

@@ -7,7 +7,7 @@ public class AnswerVO {
 	private int q_uid;
 	private int a_uid;
 	private String a_content;
-	private String a_writer;
+	private String u_id;
 	private Date a_regdate;
 	
 
@@ -37,12 +37,12 @@ public class AnswerVO {
 		this.a_content = a_content;
 	}
 	
-	public String getA_writer() {
-		return a_writer;
+	public String getu_id() {
+		return u_id;
 	}
 	
-	public void setA_writer(String a_writer) {
-		this.a_writer = a_writer;
+	public void setu_id(String u_id) {
+		this.u_id = u_id;
 	}
 	
 	public Date getA_regdate() {
@@ -55,7 +55,7 @@ public class AnswerVO {
 	
 	@Override
 	public String toString() {
-		return "AnswerVO [q_uid=" + q_uid + ", a_uid=" + a_uid + ", a_content=" + a_content + ", a_writer=" + a_writer + ", a_regdate="
+		return "AnswerVO [q_uid=" + q_uid + ", a_uid=" + a_uid + ", a_content=" + a_content + ", u_id=" + u_id + ", a_regdate="
 						+ a_regdate + "]";
 	}
 	

@@ -30,20 +30,22 @@ public class QnaController {
 	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/q_writeView", method = RequestMethod.GET)
-	public void writeView() throws Exception{
+	public String writeView() throws Exception{
+		return "qna/writeView";
 	}
 	
 	// 게시판 글 작성
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	@RequestMapping(value = "/q_write", method = RequestMethod.POST)
 	public String write(QnaVO qnaVO) throws Exception{
 		
 		service.write(qnaVO);
 		
-		return "redirect:q_list";
+		return "redirect:qna";
 	}
 	
+	
 
-	// 게시판 목록 조회
+	// qna 게시판 목록 조회
 
 	
 	@RequestMapping(value = "/qna", method = RequestMethod.GET)
@@ -57,7 +59,7 @@ public class QnaController {
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "qna/q_list";
+		return "qna/list";
 		
 	}
 	
@@ -73,7 +75,7 @@ public class QnaController {
 		
 		List<AnswerVO> answerList = answerService.readAnswer(qnaVO.getQ_uid());
 		model.addAttribute("answerList", answerList);
-		return "qna/q_readView";
+		return "qna/readView";
 	}
 	
 	// 게시판 수정뷰
@@ -85,13 +87,13 @@ public class QnaController {
 			model.addAttribute("update", service.read(qnaVO.getQ_uid()));
 			model.addAttribute("scri", scri);
 			
-			return "qna/q_updateView";
+			return "qna/updateView";
 		}
 	
 	// 게시판 수정
 
 	
-		@RequestMapping(value = "/update", method = RequestMethod.POST)
+		@RequestMapping(value = "/q_update", method = RequestMethod.POST)
 		public String update(QnaVO qnaVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 
 			service.update(qnaVO);
@@ -108,7 +110,7 @@ public class QnaController {
 
 	// 게시판 삭제
 
-		@RequestMapping(value = "/delete", method = RequestMethod.POST)
+		@RequestMapping(value = "/q_delete", method = RequestMethod.POST)
 		public String delete(QnaVO qnaVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 	
 			service.delete(qnaVO.getQ_uid());
@@ -118,11 +120,11 @@ public class QnaController {
 			rttr.addAttribute("searchType", scri.getSearchType());
 			rttr.addAttribute("keyword", scri.getKeyword());
 			
-			return "redirect:q_list";
+			return "redirect:qna";
 		}
 		
 		//댓글 작성
-		@RequestMapping(value="/answerWrite", method = RequestMethod.POST)
+		@RequestMapping(value="/q_answerWrite", method = RequestMethod.POST)
 		public String answerWrite(AnswerVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		
 			answerService.writeAnswer(vo);
@@ -150,7 +152,7 @@ public class QnaController {
 		}
 		
 		//댓글 수정 POST
-		@RequestMapping(value="/answerUpdate", method = RequestMethod.POST)
+		@RequestMapping(value="/q_answerUpdate", method = RequestMethod.POST)
 		public String answerUpdate(AnswerVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			
 			answerService.updateAnswer(vo);
@@ -176,7 +178,7 @@ public class QnaController {
 //		}
 		
 		//댓글 삭제 post
-		@RequestMapping(value="/deleteAnswer", method = RequestMethod.POST)
+		@RequestMapping(value="/q_deleteAnswer", method = RequestMethod.POST)
 		public String deleteAnswer(AnswerVO vo, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			
 			answerService.deleteAnswer(vo.getA_uid());

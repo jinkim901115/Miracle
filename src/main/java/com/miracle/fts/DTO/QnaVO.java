@@ -8,7 +8,7 @@ public class QnaVO {
 	private String q_category;
 	private String q_subject;
 	private String q_content;
-	private String q_writer;
+	private String u_id;
 	private Date q_regdate;
 	private int q_viewcnt;
 	public int getQ_uid() {
@@ -35,11 +35,11 @@ public class QnaVO {
 	public void setQ_content(String q_content) {
 		this.q_content = q_content;
 	}
-	public String getQ_writer() {
-		return q_writer;
+	public String getu_id() {
+		return u_id;
 	}
-	public void setQ_writer(String q_writer) {
-		this.q_writer = q_writer;
+	public void setu_id(String u_id) {
+		this.u_id = u_id;
 	}
 	public Date getQ_regdate() {
 		return q_regdate;

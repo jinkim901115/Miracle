@@ -12,8 +12,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- CSS here -->
@@ -38,13 +37,37 @@
 		var formObj = $("form[name='updateForm']");
 		
 		$(".cancel_btn").on("click", function(){
-			location.href = "q_readView?q_uid=${answerUpdate.q_uid}"
+			event.preventDefault();
+			location.href = "q_readView?q_uid=${update.q_uid}"
 				   + "&page=${scri.page}"
 				   + "&perPageNum=${scri.perPageNum}"
 				   + "&searchType=${scri.searchType}"
 				   + "&keyword=${scri.keyword}";
-		});
-	});
+		})
+		
+		$(".update_btn").on("click", function(){
+			if(fn_valiChk()){
+				return false;
+			}
+			formObj.attr("action", "q_update");
+			formObj.attr("method", "post");
+			formObj.submit();
+		})
+	})
+		
+	function fn_valiChk(){
+		var updateForm = $("form[name='updateForm'] .chk").length;
+		for(var i = 0; i<updateForm; i++){
+			if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
+				alert($(".chk").eq(i).attr("title"));
+				return true;
+			}
+			
+		
+		}
+	}
+	
+	
 </script>
 <body>
 <!-- Preloader Start -->
@@ -136,78 +159,57 @@
 
 
 <br><br>
+
+<div class="container">
+	<div>
+		<%@include file="nav.jsp" %>
+	</div>
+	<hr />
 	
-<div id="root">
-<hr />
- 
-<div>
-	<%@include file="q_nav.jsp" %>
-</div>
-<hr />
-<section id="container">
-<form name="readForm" role="form" method="post">
-	<input type="hidden" id="q_uid" name="q_uid" value="${read.q_uid}" /> 
-	<input type="hidden" id="page" name="page" value="${scri.page}"/> 
-	<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"/> 
-	<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"/>
-	<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"/>
-</form>
-	<div class="form-group">
-		<label for="q_category" class="col-sm-2 control-label">카테고리</label>
-		<input type="text" id="q_category" name="q_category" class="form-control" value="${read.q_category}" readonly="readonly" />
-	</div>
-	
-	<div class="form-group">
-		<label for="q_subject" class="col-sm-2 control-label">제목</label>
-		<input type="text" id="q_subject" name="q_subject" class="form-control" value="${read.q_subject}" readonly="readonly" />
-	</div>
-	<div class="form-group">
-		<label for="q_content" class="col-sm-2 control-label">내용</label>
-		<textarea id="q_content" name="q_content" class="form-control" readonly="readonly"><c:out value="${read.q_content}" /></textarea>
-	</div>
-	<div class="form-group">
-		<label for="q_writer" class="col-sm-2 control-label">작성자</label>
-		<input type="text" id="q_writer" name="q_writer" class="form-control" value="${read.q_writer}"  readonly="readonly"/>
-	</div>
-	<div class="form-group">
-		<label for="q_regdate" class="col-sm-2 control-label">작성날짜</label>
-		<fmt:formatDate value="${read.q_regdate}" pattern="yyyy-MM-dd" />	
-	</div>
-
-
-	<form name="answerForm" method="post" class="form-horizontal">
-
-	</form>
-</section>
-<hr />
-<section id="container">
-	<form name="updateForm" role="form" method="post" action="answerUpdate">
-		<input type="hidden" name="q_uid" value="${answerUpdate.q_uid}" readonly="readonly"/>
-		<input type="hidden" id="a_uid" name="a_uid" value="${answerUpdate.a_uid}" />
-		<input type="hidden" id="page" name="page" value="${scri.page}"> 
-		<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-		<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-		<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-		<table>
-			<tbody>
-				<tr>
-					<td>
-						<label for="a_content">댓글 내용</label><input type="text" id="a_content" name="a_content" value="${answerUpdate.a_content}"/>
-					</td>
-				</tr>	
+	<section id="container">
+		<form name="updateForm" role="form" method="post" action="q_update">
+			<input type="hidden" name="q_uid" value="${update.q_uid}" readonly="readonly"/>
+		
+			<div class="form-group">
+				<label for="q_category" class="col-sm-2 control-label">카테고리</label>
 				
-			</tbody>			
-		</table>
-		<div>
-			<button type="submit" class="update_btn">저장</button>
-			<button type="button" class="cancel_btn">취소</button>
-		</div>
-	</form>
-</section>
+					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="이용문의"  ${update.q_category eq '이용문의' ? 'checked':''} >이용문의
+					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="기타문의" ${update.q_category eq '기타문의' ? 'checked':''} >기타문의
+					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="파트너문의" ${update.q_category eq '파트너문의' ? 'checked':''}>파트너문의
+					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="업체신고" ${update.q_category eq '업체신고' ? 'checked':''}>업체신고
+			</div>
+			
+			<div class="form-group">
+				<label for="q_subject" class="col-sm-2 control-label">제목</label>
+				<input type="text" id="q_subject" name="q_subject" value="${update.q_subject}" class="chk form-control" title="제목을 입력하세요.." />
+				</div>
+			<div class="form-group">
+				<label for="q_content" class="col-sm-2 control-label">내용</label>
+				<textarea id="q_content" name="q_content" class="chk form-control" title="내용을 입력하세요.." >
+				<c:out value="${update.q_content}"/> </textarea>
+			</div>
+			<div class="form-group">
+				<label for="u_id" class="col-sm-2 control-label">작성자</label>
+				<input type="text" id="u_id" name="u_id form-control" value="${update.u_id}" readonly="readonly"/>
+                  </div>
+               
+                  <div class="form-group">     
+				<label for="q_regdate" class="col-sm-2 control-label">작성날짜</label>
+				<fmt:formatDate value="${update.q_regdate}" pattern="yyyy-MM-dd"/>					
+			</div>
+			<div>
+				<button type="button" class="update_btn btn btn-success">저장</button>
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+				<button type="button" class="cancel_btn btn btn-danger">취소</button>
+			</div>
+		</form>		
+	</section>
 	<hr />
 </div>
 
 <br><br>
+
+
 
 </main>
 <!-- end main -->

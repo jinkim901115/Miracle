@@ -5,7 +5,7 @@
 <!-- 댓글 조회 -->
 	<select id="readAnswer" resultType="com.miracle.fts.DTO.AnswerVO">
     	SELECT
-    		  A_UID, A_CONTENT, A_WRITER, A_REGDATE
+    		  A_UID, A_CONTENT, U_ID, A_REGDATE
     	 FROM T_ANSWER
     	WHERE Q_UID = #{q_uid}
 	</select>
@@ -15,12 +15,12 @@
 		Q_UID
 		, A_UID
 		, A_CONTENT
-		, A_WRITER
+		, U_ID
 	)
 	VALUES(    #{q_uid}
 		, T_ANSWER_SEQ.NEXTVAL
 		, #{a_content}
-		, #{a_writer}	)
+		, #{U_ID}	)
 	</insert>
 
 	<!-- 댓글 수정 -->
@@ -41,7 +41,7 @@
 				Q_UID
 			  , A_UID
 			  , A_CONTENT
-			  , A_WRITER
+			  , U_ID
 			  , A_REGDATE
 		  FROM T_ANSWER
 		 WHERE A_UID = #{a_uid}

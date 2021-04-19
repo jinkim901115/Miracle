@@ -34,10 +34,10 @@ public class MainController {
 		return "/faq/faq";
 	}
 	
-//	@RequestMapping("/qna")
-//	public String qna(Model model) {
-//		return "/qna/qna";
-//	}
+	@RequestMapping("/qna")
+	public String qna(Model model) {
+		return "/qna/qna";
+	}
 	
 	@RequestMapping("/favorite")
 	public String favorite(Model model) {

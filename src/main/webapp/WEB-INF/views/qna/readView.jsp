@@ -12,8 +12,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- CSS here -->
@@ -30,20 +29,110 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
-<script>
-  $(function(){
-    $('#searchBtn').click(function() {
-      self.location = "q_list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() +
-      "&keyword=" + encodeURIComponent($('#keywordInput').val());
-    });
-  });   
+</head>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    var formObj = $("form[name='readForm']");
+    // 수정 
+
+    $(".update_btn").on("click", function(){
+
+        formObj.attr("action", "q_updateView");
+
+        formObj.attr("method", "get");
+
+        formObj.submit();                
+
+    })  
+
+    // 삭제
+
+    $(".delete_btn").on("click", function(){
+
+        var deleteYN = confirm("삭제하시겠습니까?");
+
+        if(deleteYN == true){          
+
+        formObj.attr("action", "q_delete");
+
+        formObj.attr("method", "post");
+
+        formObj.submit();            
+
+        }
+
+    })
+
+    // 목록
+
+    $(".list_btn").on("click", function(){
+
+        location.href = "qna?page=${scri.page}"
+
+        +"&perPageNum=${scri.perPageNum}"
+
+        +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
+
+    })
+
+    // 댓글 작성
+	$(document).ready(function(){
+	
+	    var formObj = $("form[name='answerForm']");
+	    $(".answerWriteBtn").on("click", function(){
+			
+	        if(fn_valiChk()){
+				return false;
+			}
+	        alert ("댓글등록완료!");
+	        formObj.attr("action", "q_answerWrite");
+	        formObj.attr("method", "post");
+	        formObj.submit();
+	
+	    	});
+		})
+		function fn_valiChk(){
+				var regForm = $("form[name='answerForm'] .chk").length;
+				for(var i = 0; i<regForm; i++){
+					if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
+						alert($(".chk").eq(i).attr("title"));
+						return true;
+					}
+				}	
+		    }	
+	 	 //댓글 수정 View
+		$(".answerUpdateBtn").on("click", function(){
+			location.href = "q_answerUpdateView?q_uid=${read.q_uid}"
+							+ "&page=${scri.page}"
+							+ "&perPageNum=${scri.perPageNum}"
+							+ "&searchType=${scri.searchType}"
+							+ "&keyword=${scri.keyword}"
+							+ "&a_uid="+$(this).attr("data-a_uid");
+		});
+			
+	//댓글 삭제 ok?
+
+		$(".answerDeleteBtn").on("click", function(){
+			var formObj = $("form[name=deleteForm]");
+			var msg = confirm("댓글을 삭제합니다.");
+			if(msg == true) {
+				// this 의 data-a_uid 값을 읽어와서
+				// formObj 의 a_uid value 로 세팅한뒤 submit 하기
+			 var val = $(this).attr("data-a_uid");
+				 formObj.find("[name='a_uid']").val(val);
+				 formObj.attr("action", "q_deleteAnswer");
+			     formObj.attr("method", "post");
+			     formObj.submit(); 
+			}
+	});
+	
+
+    
+
+});
 </script>
 
-<style type="text/css">
-	li {list-style: none; float: left; padding: 6px;}
-</style>
-
-</head>
 <body>
 <!-- Preloader Start -->
  <div id="preloader-active">
@@ -134,81 +223,116 @@
 
 
 <br><br>
-	
-<div id="root">          
+
+<div class="container">
 	<div>
-	    <%@include file="q_nav.jsp" %>
+		<%@include file="nav.jsp"%>
 	</div>
-            <hr />
-    <section id="container">
-        <form role="form" method="get">
-            <table class="table table-hover">
-                <tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>조회수</th><th>등록일</th></tr>
-              
-              <!-- qnaController에서 이름을 list로 정한 service.list()를 가져온것 -->
-                <c:forEach items="${list}" var = "list">
-                    <tr>
-                        <td><c:out value="${list.q_uid}" /></td>
-                          <td><c:out value="${list.q_category}" /></td>
-                        <td>
-                            <a href="q_readView?q_uid=${list.q_uid}&
-                            page=${scri.page}&
-                            perPageNum=${scri.perPageNum}&
-                            searchType=${scri.searchType}&
-                            keyword=${scri.keyword}">
-                            <c:out value="${list.q_subject}" /></a></td>
-                        <td><c:out value="${list.q_writer}" /></td>
-                          <td><c:out value="${list.q_viewcnt}" /></td>
-                        <td><fmt:formatDate value="${list.q_regdate}" pattern="yyyy-MM-dd"/></td>
-                    </tr>
-                </c:forEach>
-              </table>
-     <div class="search row">
-         <div class="col-xs-2 col-sm-2">
-		    <select name="searchType" class="form-control">
-		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
-		      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-		      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-		      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-		      <option value="g"<c:out value="${scri.searchType eq 'g' ? 'selected' : ''}"/>>카테고리</option>
-		    </select>
-		</div>
+	<hr />
+
+	<section id="container">
+		<form name="readForm" role="form" method="post">
+			 <input type="hidden" id="q_uid" name="q_uid" value="${read.q_uid}" />
+			 <input type="hidden" id="page" name="page" value="${scri.page}"> 
+			 <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+			 <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
+			 <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
+			 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+		</form>
+			<div class="form-group">
+				<label for="q_category" class="col-sm-2 control-label">카테고리</label>
+				<input type="text" id="q_category" name="q_category" class="form-control" value="${read.q_category}" readonly="readonly" />
+			</div>
 			
-		<div class="col-xs-10 col-sm-10">
-		<div class="input-group">
-	    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
-		<span class="input-group-btn">
-	    <button id="searchBtn" type="button" class="btn btn-default">검색</button>
-		</span>
-		</div>
- 		    </div>
-  	</div>
-  	<!-- 페이징 with 검색 --> 
-                    <div  class="col-md-offset-3">
-                      <ul class="pagination">
-                        <c:if test="${pageMaker.prev }">
-                        <li>
-                            <a href='<c:url value="q_list${pageMaker.makeSearch(pageMaker.startPage-1) }"/>'>이전</a>
-                        </li>
-                        </c:if>
-                        
-                        <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-                        <li>
-                            <a href='<c:url value="q_list${pageMaker.makeSearch(idx) }"/>'>${idx }</a>
-                        </li>
-                        </c:forEach>
-                        
-                        <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-                        <li <c:out value="${pageMaker.cri.page == pageNum ? 'class=info' : ''}" />>
-                            <a href='<c:url value="q_list${pageMaker.makeSearch(pageMaker.endPage+1) }"/>'>다음</a>
-                        </li>
-                       </c:if>
-                      </ul>
-                    </div> 
-                </form>
-            </section>
-            <hr />
-        </div>
+			<div class="form-group">
+				<label for="q_subject" class="col-sm-2 control-label">제목</label>
+				<input type="text" id="q_subject" name="q_subject" class="form-control" value="${read.q_subject}" readonly="readonly" />
+			</div>
+			<div class="form-group">
+				<label for="q_content" class="col-sm-2 control-label">내용</label>
+				<textarea id="q_content" name="q_content" class="form-control" readonly="readonly"><c:out value="${read.q_content}" /></textarea>
+			</div>
+			<div class="form-group">
+				<label for="u_id" class="col-sm-2 control-label">작성자</label>
+				<input type="text" id="u_id" name="u_id" class="form-control" value="${read.u_id}"  readonly="readonly"/>
+			</div>
+			<div class="form-group">
+				<label for="q_regdate" class="col-sm-2 control-label">작성날짜</label>
+				<fmt:formatDate value="${read.q_regdate}" pattern="yyyy-MM-dd hh:mm:ss" />	
+			</div>
+		
+							
+			<div>
+				<button type="button" class="update_btn btn btn-warning">수정</button>
+				
+				<button type="button" class="delete_btn btn btn-danger">삭제</button>
+			</div>
+			
+			<!-- 댓글 -->
+			<div id="answer">
+				<ol class="answerList">
+					<c:forEach items="${answerList}" var="answerList">
+						<li>
+							<p>
+							작성자 : ${answerList.u_id}<br />
+							작성 날짜 :  <fmt:formatDate value="${answerList.a_regdate}" pattern="yyyy-MM-dd hh:mm:ss" />
+							</p>
+							  
+							<p>${answerList.a_content}</p>
+							<div>
+								<button type="button" class="answerUpdateBtn btn btn-warning" data-a_uid="${answerList.a_uid}">수정</button>
+								<button type="submit" class="answerDeleteBtn btn btn-danger" data-a_uid="${answerList.a_uid}">삭제</button>
+							</div>
+						</li>
+					</c:forEach>   
+				</ol>
+			</div>
+					
+			<form name="answerForm" method="post" class="form-horizontal">
+				<input type="hidden" id="q_uid" name="q_uid" value="${read.q_uid}" />
+				<input type="hidden" id="page" name="page" value="${scri.page}"> 
+				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+			
+		
+				<div class="form-group">
+					<label for="u_id" class="col-sm-2 control-label">댓글 작성자</label>
+					<div class="col-sm-10">
+						<input type="text" id="u_id" name="u_id" class="chk form-control" title="작성자를 입력하세요" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="a_content" class="col-sm-2 control-label">댓글 내용</label>
+					<div class="col-sm-10">
+						<input type="text" id="a_content" name="a_content" class="chk form-control" title="내용을 입력하세요"/>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+						<button type="button" class="answerWriteBtn btn btn-success">작성</button>
+					</div>
+				</div>
+			</form>
+			
+			<form name="deleteForm" role="form" method="post" action="q_deleteAnswer">
+				<input type="hidden" name="q_uid" value="${read.q_uid}" readonly="readonly"/>
+				<input type="hidden" id="a_uid" name="a_uid" value="${deleteAnswer.a_uid}" />
+				<input type="hidden" id="page" name="page" value="${scri.page}"> 
+				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+					
+			</form>
+		</section>
+		
+	
+		<hr />
+	</div>	
 
 <br><br>
 

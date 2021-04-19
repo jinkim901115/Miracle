@@ -8,12 +8,12 @@
 	   						  , Q_CATEGORY
 	   					      , Q_SUBJECT 
 	   					      , Q_CONTENT 
-	   					      , Q_WRITER  )
+	   					      , U_ID  )
 	                 VALUES(    T_QNA_SEQ.NEXTVAL
 	                 		  , #{q_category} 
 	                 		  , #{q_subject}
 	                 		  , #{q_content}
-	                 		  , #{q_writer}  )
+	                 		  , #{u_id}  )
    
    </insert>
 
@@ -64,7 +64,7 @@
 			<if test="searchType == 't'.toString()">AND Q_SUBJECT LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'c'.toString()">AND Q_CONTENT LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'tc'.toString()">AND (Q_SUBJECT LIKE '%' || #{keyword} || '%') or (Q_CONTENT LIKE '%' || #{keyword} || '%')</if>
-			<if test="searchType == 'w'.toString()">AND Q_WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND U_ID LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'g'.toString()">AND Q_CATEGORY LIKE '%' || #{keyword} || '%'</if>
 		</if>
 	</sql>
@@ -74,7 +74,7 @@
 			  , Q_CATEGORY
 			  , Q_SUBJECT
 			  , Q_CONTENT
-			  , Q_WRITER
+			  , U_ID
 			  , Q_REGDATE
 		 FROM T_QNA
 		 WHERE Q_UID = #{q_uid}

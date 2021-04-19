@@ -54,12 +54,15 @@ CREATE TABLE t_report (
 CREATE TABLE t_qna (
 	q_uid	number		NOT NULL,
 	u_id	varchar2(20)		NOT NULL,
-	q_subject	varchar2(50)		NULL,
+	q_subject	varchar2(100)		NULL,
 	q_content	clob		NULL,
 	q_regdate	date		NULL,
-	q_category	varchar2(10)		NULL,
+	q_category	varchar2(30)		NULL,
 	q_viewcnt	number		NULL
 );
+
+INSERT INTO t_qna (q_uid, u_id, q_subject, q_content, q_category) VALUES (t_qna_seq.nextval, 'admin1', '제목', '내용', '이용문의');
+SELECT * FROM t_qna;
 
 CREATE TABLE t_answer (
 	a_uid	number		NOT NULL,
@@ -255,8 +258,9 @@ REFERENCES t_store (
 SELECT u.u_id, u.u_pw, u.u_name, au.au_auth  FROM t_user u, t_auth au WHERE u.u_id = au.u_id ORDER BY u.u_id ASC;
 
 SELECT * FROM t_user;
+SELECT * FROM t_auth;
 
-
+CREATE SEQUENCE t_qna_seq;
 
 
 

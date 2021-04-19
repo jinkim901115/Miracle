@@ -4,6 +4,6 @@
 	li {list-style: none; display:inline; padding: 6px;}
 </style>
 <ul>
-	<li><a href="q_list">목록</a></li>
+	<li><a href="qna">목록</a></li>
 	<li><a href="q_writeView">글 작성</a></li>
 </ul>
