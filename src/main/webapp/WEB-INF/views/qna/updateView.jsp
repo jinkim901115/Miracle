@@ -185,8 +185,7 @@
 				</div>
 			<div class="form-group">
 				<label for="q_content" class="col-sm-2 control-label">내용</label>
-				<textarea id="q_content" name="q_content" class="chk form-control" title="내용을 입력하세요.." >
-				<c:out value="${update.q_content}"/> </textarea>
+				<textarea id="q_content" name="q_content" class="chk form-control" title="내용을 입력하세요.." ><c:out value="${update.q_content}"/></textarea>
 			</div>
 			<div class="form-group">
 				<label for="u_id" class="col-sm-2 control-label">작성자</label>
