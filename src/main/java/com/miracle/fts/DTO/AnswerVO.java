@@ -37,11 +37,11 @@ public class AnswerVO {
 		this.a_content = a_content;
 	}
 	
-	public String getu_id() {
+	public String getU_id() {
 		return u_id;
 	}
 	
-	public void setu_id(String u_id) {
+	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
 	

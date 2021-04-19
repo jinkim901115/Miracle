@@ -135,7 +135,7 @@ public class QnaController {
 			rttr.addAttribute("searchType", scri.getSearchType());
 			rttr.addAttribute("keyword", scri.getKeyword());
 			
-			return "redirect:/qna/q_readView";
+			return "redirect:q_readView";
 		}
 		
 		//댓글 수정 GET
@@ -148,7 +148,7 @@ public class QnaController {
 			List<AnswerVO> answerList = answerService.readAnswer(qnaVO.getQ_uid());
 			model.addAttribute("answerList", answerList);
 			
-			return "/qna/q_answerUpdateView";
+			return "/qna/answerUpdateView";
 		}
 		
 		//댓글 수정 POST
@@ -163,7 +163,7 @@ public class QnaController {
 			rttr.addAttribute("searchType", scri.getSearchType());
 			rttr.addAttribute("keyword", scri.getKeyword());
 			
-			return "redirect:/qna/q_readView";
+			return "redirect:q_readView";
 		}
 		
 		//댓글 삭제 GET

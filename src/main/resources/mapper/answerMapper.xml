@@ -20,7 +20,7 @@
 	VALUES(    #{q_uid}
 		, T_ANSWER_SEQ.NEXTVAL
 		, #{a_content}
-		, #{U_ID}	)
+		, #{u_id}	)
 	</insert>
 
 	<!-- 댓글 수정 -->

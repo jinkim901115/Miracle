@@ -11,6 +11,8 @@ public class QnaVO {
 	private String u_id;
 	private Date q_regdate;
 	private int q_viewcnt;
+	
+	
 	public int getQ_uid() {
 		return q_uid;
 	}
@@ -35,10 +37,10 @@ public class QnaVO {
 	public void setQ_content(String q_content) {
 		this.q_content = q_content;
 	}
-	public String getu_id() {
+	public String getU_id() {
 		return u_id;
 	}
-	public void setu_id(String u_id) {
+	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
 	public Date getQ_regdate() {

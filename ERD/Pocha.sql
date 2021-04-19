@@ -56,9 +56,9 @@ CREATE TABLE t_qna (
 	u_id	varchar2(20)		NOT NULL,
 	q_subject	varchar2(100)		NULL,
 	q_content	clob		NULL,
-	q_regdate	date		NULL,
+	q_regdate	date		DEFAULT SYSDATE,
 	q_category	varchar2(30)		NULL,
-	q_viewcnt	number		NULL
+	q_viewcnt	number		DEFAULT 0
 );
 
 INSERT INTO t_qna (q_uid, u_id, q_subject, q_content, q_category) VALUES (t_qna_seq.nextval, 'admin1', '제목', '내용', '이용문의');
@@ -67,7 +67,7 @@ SELECT * FROM t_qna;
 CREATE TABLE t_answer (
 	a_uid	number		NOT NULL,
 	a_content	clob		NULL,
-	a_regdate	date		NULL,
+	a_regdate	date		DEFAULT SYSDATE,
 	q_uid	number		NOT NULL,
 	u_id	varchar2(20)		NOT NULL
 );
@@ -260,7 +260,6 @@ SELECT u.u_id, u.u_pw, u.u_name, au.au_auth  FROM t_user u, t_auth au WHERE u.u_
 SELECT * FROM t_user;
 SELECT * FROM t_auth;
 
-CREATE SEQUENCE t_qna_seq;
 
 
 

@@ -150,6 +150,7 @@
 	<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"/> 
 	<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"/>
 	<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"/>
+	
 </form>
 	<div class="form-group">
 		<label for="q_category" class="col-sm-2 control-label">카테고리</label>
@@ -180,13 +181,14 @@
 </section>
 <hr />
 <section id="container">
-	<form name="updateForm" role="form" method="post" action="answerUpdate">
+	<form name="updateForm" role="form" method="post" action="q_answerUpdate">
 		<input type="hidden" name="q_uid" value="${answerUpdate.q_uid}" readonly="readonly"/>
 		<input type="hidden" id="a_uid" name="a_uid" value="${answerUpdate.a_uid}" />
 		<input type="hidden" id="page" name="page" value="${scri.page}"> 
 		<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 		<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-		<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+		<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/> 
 		<table>
 			<tbody>
 				<tr>
@@ -199,7 +201,6 @@
 		</table>
 		<div>
 			<button type="submit" class="update_btn">저장</button>
-			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 			<button type="button" class="cancel_btn">취소</button>
 		</div>
 	</form>

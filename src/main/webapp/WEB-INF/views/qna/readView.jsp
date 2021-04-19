@@ -313,7 +313,6 @@ $(document).ready(function(){
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 						<button type="button" class="answerWriteBtn btn btn-success">작성</button>
 					</div>
 				</div>
@@ -326,6 +325,7 @@ $(document).ready(function(){
 				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 					
 			</form>
 		</section>
