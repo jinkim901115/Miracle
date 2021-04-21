@@ -1,4 +1,4 @@
-﻿DROP TABLE t_user CASCADE CONSTRAINT;
+﻿﻿DROP TABLE t_user CASCADE CONSTRAINT;
 DROP TABLE t_store CASCADE CONSTRAINT;
 DROP TABLE t_comment CASCADE CONSTRAINT;
 DROP TABLE t_report CASCADE CONSTRAINT;
@@ -52,7 +52,7 @@ CREATE SEQUENCE t_store_seq;
 CREATE TABLE t_comment (
 	c_uid	number		NOT NULL,
 	c_content	clob		NULL,
-	c_regdate	date		NULL,
+	c_regdate	date	default	SYSDATE,
 	c_point	number		NULL,
 	u_id	varchar2(20)		NOT NULL,
 	s_uid	number		NOT NULL
