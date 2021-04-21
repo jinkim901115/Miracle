@@ -10,13 +10,12 @@
 			s.s_addr saddr,
 			s.s_comt scomt,
 			s.s_opinfo sopinfo,
-			s.u_id "uuid",
 			m.m_uid muid,
 			m.m_name mname
 		FROM
 			t_store s, t_menu m
 		WHERE
-			s.s_uid = m.s_uid AND m.m_name LIKE '%' || #{search} || '%'
+			s.s_uid = m.s_uid
 	</select>
 	
 	

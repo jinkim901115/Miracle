@@ -30,9 +30,9 @@ public class ListService {
 		return dao.select();
 	}
 	
-//	public int listCnt(ListDTO dto) {
-//		dao = sqlSession.getMapper(ListDAO.class);
-//		return dao.selectCnt(dto);
-//	}
+	public List<ListDTO> listCnt() {
+		dao = sqlSession.getMapper(ListDAO.class);
+		return dao.selectCnt();
+	}
 	
 }

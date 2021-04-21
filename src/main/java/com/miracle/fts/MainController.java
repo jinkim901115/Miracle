@@ -35,8 +35,7 @@ public class MainController {
 	@RequestMapping("/listmain")
 	public String list(ListDTO dto, Model model) {
 		model.addAttribute("list", listService.list());
-		System.out.println(dto.getSearch());
-//		model.addAttribute("result", listService.listCnt(dto));
+		model.addAttribute("result", listService.listCnt());
 		return "/list/listmain";
 	}
 	

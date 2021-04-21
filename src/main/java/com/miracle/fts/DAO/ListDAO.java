@@ -7,5 +7,5 @@ import com.miracle.fts.DTO.ListDTO;
 public interface ListDAO {
 	List<ListDTO> select();
 	
-//	int selectCnt(ListDTO dto);
+	List<ListDTO> selectCnt();
 }

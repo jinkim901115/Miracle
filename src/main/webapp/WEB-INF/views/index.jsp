@@ -114,7 +114,7 @@
                                 <img src="assets/img/gallery/rak.png" alt="">
                             </div>
                             <div class="location-details">	
-                                <a href="./listmain?search=rak" class="location-btn">롹</a>
+                                <a href="./listmain?search=rak" class="location-btn">락</a>
                             </div>
                         </div>
                     </div>

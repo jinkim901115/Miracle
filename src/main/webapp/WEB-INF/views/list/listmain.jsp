@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="count mb-35">
-                            <span>00 개의 리스트가 있어요!</span>
+                            <span>${result[0].cnt } 개의 리스트가 있어요!</span>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                                         <!-- <span>Open</span> -->
                                     </div>
                                     <div class="list-caption">
-                                        <span>Open</span>
+                                        <span>영업중</span>
                                         <h3><a href="#">${dto.sname }</a></h3>
                                         <p>${dto.saddr }</p>
                                         <div class="list-footer">

@@ -15,11 +15,12 @@ public class ListDTO {
 	private double slng;
 	private String spic;
 	private String sthn;
-	private int uuid;
+	private int uid;
 	private int muid;
 	private String mname;
 	private String mpics;
 	private int mbest;
+	private String cnt;
 	private String search = "";
 	
 	public ListDTO() {
@@ -27,7 +28,8 @@ public class ListDTO {
 	}
 
 	public ListDTO(int suid, String sname, String saddr, String scomt, String sopinfo, double slat, double slng,
-			String spic, String sthn, int uuid, int muid, String mname, String mpics, int mbest, String search) {
+			String spic, String sthn, int uid, int muid, String mname, String mpics, int mbest, String cnt,
+			String search) {
 		super();
 		this.suid = suid;
 		this.sname = sname;
@@ -38,14 +40,17 @@ public class ListDTO {
 		this.slng = slng;
 		this.spic = spic;
 		this.sthn = sthn;
-		this.uuid = uuid;
+		this.uid = uid;
 		this.muid = muid;
 		this.mname = mname;
 		this.mpics = mpics;
 		this.mbest = mbest;
+		this.cnt = cnt;
 		this.search = search;
 	}
 
+
+	
 	
 
 	

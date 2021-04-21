@@ -326,5 +326,17 @@ SELECT * FROM t_file;
 
 SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid
 
-
+		SELECT
+			s.s_uid suid,
+			s.s_name sname,
+			s.s_biznum sbiznum,
+			s.s_addr saddr,
+			s.s_comt scomt,
+			s.s_opinfo sopinfo,
+			m.m_uid muid,
+			m.m_name mname
+		FROM
+			t_store s, t_menu m
+		WHERE
+			s.s_uid = m.s_uid;
 
