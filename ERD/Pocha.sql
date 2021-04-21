@@ -1,4 +1,4 @@
-﻿DROP TABLE t_user CASCADE CONSTRAINT;
+﻿﻿DROP TABLE t_user CASCADE CONSTRAINT;
 DROP TABLE t_store CASCADE CONSTRAINT;
 DROP TABLE t_comment CASCADE CONSTRAINT;
 DROP TABLE t_report CASCADE CONSTRAINT;
@@ -9,6 +9,7 @@ DROP TABLE t_notice CASCADE CONSTRAINT;
 DROP TABLE t_auth CASCADE CONSTRAINT;
 DROP TABLE t_faq CASCADE CONSTRAINT;
 DROP TABLE t_menu CASCADE CONSTRAINT;
+DROP TABLE t_file CASCADE CONSTRAINT;
 DROP SEQUENCE t_store_seq;
 DROP SEQUENCE t_comment_seq;
 DROP SEQUENCE t_qna_seq;
@@ -16,11 +17,12 @@ DROP SEQUENCE t_answer_seq;
 DROP SEQUENCE t_notice_seq;
 DROP SEQUENCE t_faq_seq;
 DROP SEQUENCE t_menu_seq;
+DROP SEQUENCE t_file_seq;
 
 CREATE TABLE t_user (
 	u_id	varchar2(20)		NOT NULL,
 	u_pw	varchar2(200)		NULL,
-	u_name	varchar2(10)		NULL,
+	u_name	varchar2(100)		NULL,
 	u_pn	varchar2(13)		NULL,
 	u_pn2	varchar2(13)		NULL,
 	u_pn3	varchar2(13)		NULL,
@@ -28,6 +30,7 @@ CREATE TABLE t_user (
 	u_email2	varchar2(30)		NULL,
 	u_addr	varchar2(200)		NULL,
 	u_addr2	varchar2(100)		NULL,
+	u_addr3	varchar2(100)		NULL,
 	enabled char(1) DEFAULT '1',
 	u_regdate	DATE DEFAULT SYSDATE	NULL
 );
@@ -127,6 +130,17 @@ CREATE TABLE t_menu (
 );
 CREATE SEQUENCE t_menu_seq;
 
+CREATE TABLE t_file (
+	f_uid	NUMBER	NOT NULL,
+	f_name	varchar2(500)	NULL,
+	f_sname	varchar2(500)	NULL,
+	f_url	varchar2(500)	NULL,
+	f_thurl	varchar2(500)	NULL,
+	f_regdate	DATE	DEFAULT SYSDATE,
+	s_uid	NUMBER NOT NULL
+);
+CREATE SEQUENCE t_file_seq;
+
 
 ALTER TABLE t_user ADD CONSTRAINT PK_T_USER PRIMARY KEY (
 	u_id
@@ -173,6 +187,11 @@ ALTER TABLE t_faq ADD CONSTRAINT PK_T_FAQ PRIMARY KEY (
 
 ALTER TABLE t_menu ADD CONSTRAINT PK_T_MENU PRIMARY KEY (
 	m_uid,
+	s_uid
+);
+
+ALTER TABLE t_file ADD CONSTRAINT PK_T_FILE PRIMARY KEY (
+	f_uid,
 	s_uid
 );
 
@@ -274,11 +293,18 @@ REFERENCES t_store (
 	s_uid
 ) ON DELETE CASCADE;
 
+ALTER TABLE t_file ADD CONSTRAINT FK_t_store_TO_t_file_1 FOREIGN KEY (
+	s_uid
+)
+REFERENCES t_store (
+	s_uid
+) ON DELETE CASCADE;
 
 
-INSERT INTO t_qna (q_uid, u_id, q_subject, q_content, q_category) VALUES (t_qna_seq.nextval, 'admin1', '제목', '내용', '이용문의');
-INSERT INTO t_store (s_uid, s_name, s_biznum, s_addr, s_comt, s_opinfo, u_id) VALUES (t_store_seq.nextval, '업체1', '123-12-12345', '주소', '한마디', '내맘', 'admin7'); 
+INSERT INTO t_qna (q_uid, u_id, q_subject, q_content, q_category) VALUES (t_qna_seq.nextval, 'admin1', '제목', '내용', '이용문의'); 
 INSERT INTO t_menu (m_uid, s_uid, m_name) VALUES (t_menu_seq.nextval, 2, '떡볶이');
+INSERT INTO t_store (s_uid, s_name, s_biznum, s_addr, s_comt, s_opinfo, u_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+
 
 SELECT u.u_id, u.u_pw, u.u_name, au.au_auth  FROM t_user u, t_auth au WHERE u.u_id = au.u_id AND u.u_id LIKE '%t%' ORDER BY u.u_id ASC;
 SELECT *  FROM t_user u, t_auth au WHERE u.u_id = au.u_id ORDER BY u.u_id ASC;
@@ -287,10 +313,30 @@ SELECT * FROM t_auth;
 SELECT * FROM t_notice;
 SELECT * FROM T_STORE s, t_user u WHERE s.U_ID = u.U_ID ;
 SELECT * FROM t_store s, t_menu m, t_user u WHERE s.s_uid = m.s_uid AND s.u_id = u.u_id;
+SELECT count(s.s_uid) FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid AND m.m_name LIKE '%%';
+SELECT s.s_uid, m.m_name FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid AND m.m_name LIKE '%9%';
+SELECT * FROM t_menu WHERE m_name LIKE '%%';
+SELECT * FROM t_store;
+SELECT * FROM t_file;
+
+ AND m.m_name LIKE '%'||##{search}#||'%'
 
 
 
 
+SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid
 
-
+		SELECT
+			s.s_uid suid,
+			s.s_name sname,
+			s.s_biznum sbiznum,
+			s.s_addr saddr,
+			s.s_comt scomt,
+			s.s_opinfo sopinfo,
+			m.m_uid muid,
+			m.m_name mname
+		FROM
+			t_store s, t_menu m
+		WHERE
+			s.s_uid = m.s_uid;
 

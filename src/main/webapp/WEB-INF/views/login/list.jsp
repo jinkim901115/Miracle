@@ -40,8 +40,7 @@ table, th, td {
 					<td><a href="view.do?id=${dto.id }">${dto.id }</a></td>  <%-- dto.getUid() --%>
 					<td>${dto.pw }</td>
 					<td>${dto.name }</td>
-					<td>${dto.addr }</td> 
-					<td>${dto.addr2 }</td> 
+					<td>${dto.addr } - ${dto.addr2 }, ${dto.addr3 }</td> 
 					<td>${dto.phone } - ${dto.phone2 } - ${dto.phone3 }</td>
 					<td>${dto.email }@${dto.email2 }</td> 
 				</tr>			

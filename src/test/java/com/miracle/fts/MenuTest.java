@@ -39,7 +39,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
   "file:src/main/webapp/WEB-INF/spring/appServlet/security-context.xml"
   })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)  // JUnit 의 실행 순서를 메소드 이름 순으로 
-public class addAdmin {
+public class MenuTest {
 
 	// 자동 주입 받을 PasswordEncoder 와 DataSource 객체
 	private PasswordEncoder pwencoder;
@@ -55,50 +55,50 @@ public class addAdmin {
 
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	final String SQL_INSERT_ADMIN = "INSERT INTO t_user (u_id, u_pw, u_name) VALUES (?,?,?)";
-	final String SQL_INSERT_au_auth = "INSERT INTO t_auth (u_id, au_auth) VALUES (?,?)";
- 
+	final String SQL_INSERT_STORE = "INSERT INTO t_store (s_uid, s_name, s_biznum, s_addr, s_comt, s_opinfo, u_id) VALUES (t_store_seq.nextval, ?, ?, ?, ?, ?, ?)";
+	final String SQL_INSERT_MENU = "INSERT INTO t_menu (m_uid, s_uid, m_name) VALUES (t_menu_seq.nextval, ?, ?)";
+
 	@Before // org.junit.Before
 	public void initialize() {
-		System.out.println("AdminTests 시작");
+		System.out.println("StoreTests 시작");
 		try {
-			conn = ds.getConnection();   // DataSource 에서 Connection 받아옴.
+			conn = ds.getConnection();  
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
 	} // end initialize()
   
+	
 	@Test
-	public void testA_InsertMember() {
-		System.out.println("testA_InsertAdmin() 실행");
+	public void testA_InsertMenu() {
+		System.out.println("test_InsertMenu() 실행");
 		
-if(conn == null) return;
+		if(conn == null) return;
 		
 		int cnt = 0;
 		
-		String u_id = "", u_pw = "", u_name = "";
+		int s_uid;
+		String m_name = "";
 	
 		try {
-			pstmt = conn.prepareStatement(SQL_INSERT_ADMIN);
-			for(int i = 1; i < 8; i++) {
-				u_id = "admin" + i;
-				u_pw = "pw" + i;  
-				u_name = "관리자" + i;
-
+			pstmt = conn.prepareStatement(SQL_INSERT_MENU);
+			for(int i = 1; i <= 10; i++) {
+				s_uid = i;
+				m_name = "메뉴" + i;
+				
 				cnt = 0;
 				try {
-					pstmt.setString(1, u_id);
-					pstmt.setString(2, pwencoder.encode(u_pw));  // 패스워드 인코딩 
-					pstmt.setString(3, u_name);
+					pstmt.setInt(1, s_uid);
+					pstmt.setString(2, m_name);
 					cnt = pstmt.executeUpdate();
 				} catch(Exception e) {
 					System.out.println(e.getMessage());
 				}
 				
 				if(cnt > 0) {
-					System.out.println("INSERT_ADMIN 성공]" + u_id + ":" + u_pw + ":" + u_name);
+					System.out.println("INSERT_Menu 성공]" + s_uid + ":" + m_name);
 				} else {
-					System.out.println("INSERT_ADMIN 실패]" + u_id + ":" + u_pw + ":" + u_name);
+					System.out.println("INSERT_Menu 실패]" + s_uid + ":" + m_name);
 				}
 				
 			} // end for
@@ -115,88 +115,12 @@ if(conn == null) return;
 			}
 		}
     
-  } // end testInsertMember()
-  
-  @Test
-  public void testB_Insertau_auth() {
-    System.out.println("testB_Insert_auth() 실행");
-    
-    if(conn == null) return;
-	
-	int cnt = 0;
-	String u_id = "", au_auth = "";
-	
-	try {
-		pstmt = conn.prepareStatement(SQL_INSERT_au_auth);
-
-		for(int i = 1; i < 8; i++) {
-				u_id = "admin" + i;
-				au_auth = "ROLE_ADMIN";
-			cnt = 0;
-			
-			try {
-				pstmt.setString(1, u_id);
-				pstmt.setString(2, au_auth);
-				cnt = pstmt.executeUpdate();	
-				
-				if(cnt > 0) {
-					System.out.println("INSERT_au_auth 성공] " + u_id + ":" + au_auth);
-				} else {
-					System.out.println("INSERT_au_auth 실패] " + u_id + ":" + au_auth);
-				}
-				
-				// admin 의 경우 ROLE_MEMBER 도 추가
-				if(u_id.startsWith("admin")) {
-					au_auth = "ROLE_MEMBER"; 
-					pstmt.setString(1, u_id);
-					pstmt.setString(2, au_auth);
-					cnt = pstmt.executeUpdate();
-					
-					if(cnt > 0) {
-						System.out.println("INSERT_au_auth 성공] " + u_id + ":" + au_auth);
-					} else {
-						System.out.println("INSERT_au_auth 실패] " + u_id + ":" + au_auth);
-					}
-				}
-				
-				// admin 의 경우 ROLE_CEO 도 추가
-				if(u_id.startsWith("admin")) {
-					au_auth = "ROLE_CEO"; 
-					pstmt.setString(1, u_id);
-					pstmt.setString(2, au_auth);
-					cnt = pstmt.executeUpdate();
-					
-					if(cnt > 0) {
-						System.out.println("INSERT_au_auth 성공] " + u_id + ":" + au_auth);
-					} else {
-						System.out.println("INSERT_au_auth 실패] " + u_id + ":" + au_auth);
-					}
-				}
-				
-			} catch(Exception e) {
-				System.out.println(e.getMessage());
-			}
-		}
-
-		
-		
-	} catch(Exception e) {
-		e.printStackTrace();
-	} finally {
-		try {
-			if(pstmt != null) {
-				pstmt.close();
-				pstmt = null;
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-  } // end testInsertau_auth()
+  } // end testInsertStore()
+ 
   
   @After  //org.junit.After;
   public void finalize() {
-	  System.out.println("AdminTests 종료");
+	  System.out.println("StoreTest 종료");
 		try {
 			if(conn != null) {
 				conn.close();

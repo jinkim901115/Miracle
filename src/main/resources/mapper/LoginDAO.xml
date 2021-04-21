@@ -4,9 +4,9 @@
 
 	<insert id="insert" flushCache="true">
 		INSERT INTO t_user
-			(u_id, u_pw, u_name, u_addr, u_addr2, u_pn, u_pn2, u_pn3, u_email, u_email2)
+			(u_id, u_pw, u_name, u_addr, u_addr2, u_addr3, u_pn, u_pn2, u_pn3, u_email, u_email2)
 		VALUES
-			(#{id}, #{pw}, #{name}, #{addr}, #{addr2}, #{phone}, #{phone2}, #{phone3}, #{email}, #{email2})
+			(#{id}, #{pw}, #{name}, #{addr}, #{addr2}, #{addr3}, #{phone}, #{phone2}, #{phone3}, #{email}, #{email2})
 	</insert>
 	
 	<insert id="authInsert" flushCache="true">
@@ -21,6 +21,7 @@
 			u_name name, 
 			u_addr addr,
 			u_addr2 addr2, 
+			u_addr3 addr3, 
 			u_email email,
 			u_email2 email2,
 			u_phone phone,
@@ -34,7 +35,7 @@
 	<select id="selectById" resultType="com.miracle.fts.DTO.LoginDTO">
 		SELECT 
 			u_id id, u_pw pw, u_name name, 
-			u_addr addr, u_addr2 addr2, u_phone phone, u_email email, u_email2 email2, u_phone2 phone2, u_phone3 phone3 
+			u_addr addr, u_addr2 addr2, u_addr3 addr3, u_phone phone, u_email email, u_email2 email2, u_phone2 phone2, u_phone3 phone3 
 		FROM t_user 
 		WHERE u_id=#{id}
 	</select>
@@ -58,7 +59,7 @@
 	<update id="update" flushCache="true" 
 		parameterType="com.miracle.fts.DTO.LoginDTO">
 		UPDATE t_user 
-		SET u_pw = #{pw}, u_addr = #{addr}, u_addr2 = #{addr2}, u_phone = #{phone}, u_email = #{email}, u_email2 = #{email2}, u_phone2 = #{phone2}, u_phone3 = #{phone3}  
+		SET u_pw = #{pw}, u_addr = #{addr}, u_addr2 = #{addr2}, u_addr3 = #{addr3}, u_phone = #{phone}, u_email = #{email}, u_email2 = #{email2}, u_phone2 = #{phone2}, u_phone3 = #{phone3}  
 		WHERE u_id=#{id}
 	</update>
 	

@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>수정-${list[0].id}</title>
 </head>
+<!-- 도로명 주소 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="/resources/js/addressapi.js"></script>
+
+<!--  유효성 검사! -->
 <script>
 function chkSubmit() {
 	join = document.forms['join'];
@@ -52,16 +57,23 @@ function chkSubmit() {
          // return false;
      // }
      
-	if(document.join.addr.value == ''){
-		alert("주소는 반드시 입력해주세요");
+  	if(document.join.addr.value == ''){
+		alert("우편번호는 반드시 입력해주세요");
 		document.join.addr.focus();
 		return false;
 	}
 	if(document.join.addr2.value == ''){
-		alert("상세주소를 입력시켜주세요");
+		alert("도로명주소를 입력시켜주세요");
 		document.join.addr2.focus();
 		return false;
 	}
+	if(document.join.addr3.value == ''){
+		alert("상세주소를 입력시켜주세요");
+		document.join.addr3.focus();
+		return false;
+	}
+	 
+	 
 	//if(phone == ''){
 		//alert("핸드폰 번호를 확인해주세요");
 		//join['phone'].focus();
@@ -127,6 +139,53 @@ function email_change(){
 
 </script>
 
+
+<script> 
+function execPostCode() {
+         new daum.Postcode({
+             oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+ 
+                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+ 
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                if(fullRoadAddr !== ''){
+                    fullRoadAddr += extraRoadAddr;
+                }
+ 
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                console.log(data.zonecode);
+                console.log(fullRoadAddr);
+                
+                
+                $("[name=addr]").val(data.zonecode);
+                $("[name=addr2]").val(fullRoadAddr);
+                
+                /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+                document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+            }
+         }).open();
+     }
+</script>
+
+
 <h2>수정</h2>
 <form name="join" action="updateOk.do" method="post" onsubmit="return chkSubmit()">
 <input type="hidden" name="id" value="${list[0].id }"/>
@@ -135,10 +194,13 @@ ID : ${list[0].id }<br> <%-- 작성자 이름은 변경 불가 --%>
 <input type="text" name="pw" id="pw" value="${list[0].pw }"/> (아이디와 중복 안됨, 4 ~ 12자 사이 입력해주세요)<br>
 <input type="text" name="pw2" id="pw2"/> 비밀번호 확인<br>
 이름 : ${list[0].name} <br>
-주소 : 
-<input type="text" name="addr" id="addr" value="${list[0].addr }"/><br>
-상세주소 : 
-<input type="text" name="addr2" id="addr2" value="${list[0].addr2 }"/><br>
+
+주소:<br>
+<input class="form-control" style="width: 10%; display: inline;" placeholder="우편번호" name="addr" id="addr" type="text" readonly="readonly" />
+    <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>  <br>                             
+<input class="form-control" style="top: 5px; width: 20%;"   placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" /> <br>
+<input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
+<br>
 
 <tr>
 	<th><em class="point">휴대폰번호:</em></th> <br>
