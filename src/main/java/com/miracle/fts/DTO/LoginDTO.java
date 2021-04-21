@@ -6,7 +6,7 @@ public class LoginDTO {
 	private String name; // m_name
 	private String addr; // m_addr
 	private String addr2; // m_addr
-	
+	private String addr3; // u_addr3
 	private String phone; // m_phone
 	private String email; // m_email
 	private String email2; // m_email
@@ -28,6 +28,7 @@ public class LoginDTO {
 		this.name = name;
 		this.addr = addr;
 		this.addr2 = addr2;
+		this.addr3 = addr3;
 		this.phone = phone;
 		this.email = email;
 		this.email2 = email2;
@@ -129,6 +130,14 @@ public class LoginDTO {
 
 	public void setEmail2(String email2) {
 		this.email2 = email2;
+	}
+
+	public String getAddr3() {
+		return addr3;
+	}
+
+	public void setAddr3(String addr3) {
+		this.addr3 = addr3;
 	}
 
 	@Override

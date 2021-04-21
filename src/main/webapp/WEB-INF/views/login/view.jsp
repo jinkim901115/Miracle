@@ -38,8 +38,7 @@ function chkDelete(uid){
 		id : ${list[0].id }<br>
 		비밀번호 : ${list[0].pw }<br>
 		이름 : ${list[0].name }<br> 
-		주소 : ${list[0].addr }<br>
-		상세주소 : ${list[0].addr2 }<br>
+		주소 : ${list[0].addr }-${list[0].addr2 },${list[0].addr3 }<br>
 		핸드폰 번호 : ${list[0].phone } - ${list[0].phone2 } - ${list[0].phone3 }<br>
 		email:      ${list[0].email }@${list[0].email2 } <br>
 		<hr>
