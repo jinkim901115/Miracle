@@ -52,7 +52,7 @@ CREATE SEQUENCE t_store_seq;
 CREATE TABLE t_comment (
 	c_uid	number		NOT NULL,
 	c_content	clob		NULL,
-	c_regdate	date		NULL,
+	c_regdate	DATE 	DEFAULT Sysdate,
 	c_point	number		NULL,
 	u_id	varchar2(20)		NOT NULL,
 	s_uid	number		NOT NULL
