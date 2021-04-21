@@ -21,7 +21,7 @@
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="./index">Home</a></li>
                                             <li><a href="./about">About</a></li>
-                                            <li><a href="./listmain">List</a></li>
+                                            <li><a href="./listmain?search=메뉴">List</a></li>
                                             <li><a href="./n_list">Community</a>
                                             	<ul class="submenu">
                                             		<li><a href="./n_list">공지사항</a></li>

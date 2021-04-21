@@ -62,7 +62,7 @@
                             <!--Hero form -->
                             <form action="./listmain" class="search-box">
                                 <div class="input-form">
-                                    <input type="text" name="search" placeholder="오늘은 무얼 먹을까?">
+                                    <input type="text" name="search" placeholder="오늘은 무얼 먹을까?" value="${keyword!=null?keyword:''}"/>
                                 </div>
                                 <div class="search-form">
                                     <input type="submit" value="찾기"/>

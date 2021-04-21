@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miracle.fts.DAO.ListDAO">
+
+	<select id="select" resultType="com.miracle.fts.DTO.ListDTO" >
+		SELECT
+			s.s_uid suid,
+			s.s_name sname,
+			s.s_biznum sbiznum,
+			s.s_addr saddr,
+			s.s_comt scomt,
+			s.s_opinfo sopinfo,
+			s.u_id "uuid",
+			m.m_uid muid,
+			m.m_name mname
+		FROM
+			t_store s, t_menu m
+		WHERE
+			s.s_uid = m.s_uid AND m.m_name LIKE '%' || #{search} || '%'
+	</select>
+	
+	
+	<select id="selectCnt" resultType="com.miracle.fts.DTO.ListDTO">
+		SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid
+	</select>
+	
+
+</mapper>
