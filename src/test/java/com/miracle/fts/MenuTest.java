@@ -55,56 +55,50 @@ public class MenuTest {
 
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	final String SQL_INSERT_STORE = "INSERT INTO t_menu (m_uid, s_uid, m_name) VALUES (t_menu_seq.nextval, ?, ?)";
+	final String SQL_INSERT_STORE = "INSERT INTO t_store (s_uid, s_name, s_biznum, s_addr, s_comt, s_opinfo, u_id) VALUES (t_store_seq.nextval, ?, ?, ?, ?, ?, ?)";
+	final String SQL_INSERT_MENU = "INSERT INTO t_menu (m_uid, s_uid, m_name) VALUES (t_menu_seq.nextval, ?, ?)";
 
 	@Before // org.junit.Before
 	public void initialize() {
-		System.out.println("MenuTests 시작");
+		System.out.println("StoreTests 시작");
 		try {
-			conn = ds.getConnection();   // DataSource 에서 Connection 받아옴.
+			conn = ds.getConnection();  
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
 	} // end initialize()
   
+	
 	@Test
-	public void testA_InsertMember() {
-		System.out.println("test_InsertStore() 실행");
+	public void testA_InsertMenu() {
+		System.out.println("test_InsertMenu() 실행");
 		
-if(conn == null) return;
+		if(conn == null) return;
 		
 		int cnt = 0;
 		
-		String s_name = "", s_biznum = "", s_addr = "", s_comt = "", s_opinfo = "", u_id = "";
+		int s_uid;
+		String m_name = "";
 	
 		try {
-			pstmt = conn.prepareStatement(SQL_INSERT_STORE);
-			for(int i = 21; i <= 30; i++) {
-				s_name = "업체" + i;
-				s_biznum = "123-12-111" + i;
-				s_addr = "서울" + i;
-				s_comt = "안녕하세요~! 사장님" + i + " 입니다";
-				s_opinfo = "오전 8:00 ~ 오후 10:00";
-				u_id = "ceo" + i;
-
-
+			pstmt = conn.prepareStatement(SQL_INSERT_MENU);
+			for(int i = 1; i <= 10; i++) {
+				s_uid = i;
+				m_name = "메뉴" + i;
+				
 				cnt = 0;
 				try {
-					pstmt.setString(1, s_name);
-					pstmt.setString(2, s_biznum);
-					pstmt.setString(3, s_addr);
-					pstmt.setString(4, s_comt);
-					pstmt.setString(5, s_opinfo);
-					pstmt.setString(6, u_id);
+					pstmt.setInt(1, s_uid);
+					pstmt.setString(2, m_name);
 					cnt = pstmt.executeUpdate();
 				} catch(Exception e) {
 					System.out.println(e.getMessage());
 				}
 				
 				if(cnt > 0) {
-					System.out.println("INSERT_ADMIN 성공]" + s_name + ":" + s_biznum + ":" + s_addr + ":" + s_comt + ":" + s_opinfo + ":" + u_id);
+					System.out.println("INSERT_Menu 성공]" + s_uid + ":" + m_name);
 				} else {
-					System.out.println("INSERT_ADMIN 실패]" + s_name + ":" + s_biznum + ":" + s_addr + ":" + s_comt + ":" + s_opinfo + ":" + u_id);
+					System.out.println("INSERT_Menu 실패]" + s_uid + ":" + m_name);
 				}
 				
 			} // end for
@@ -121,7 +115,7 @@ if(conn == null) return;
 			}
 		}
     
-  } // end testInsertMember()
+  } // end testInsertStore()
  
   
   @After  //org.junit.After;
