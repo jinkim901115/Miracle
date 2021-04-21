@@ -28,6 +28,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/qnaCss.css">
 
 </head>
 <script type="text/javascript">
@@ -228,7 +229,7 @@ $(document).ready(function(){
 	<div>
 		<%@include file="nav.jsp"%>
 	</div>
-	<hr />
+	<hr class="hr1"/>
 
 	<section id="container">
 		<form name="readForm" role="form" method="post">
@@ -239,30 +240,36 @@ $(document).ready(function(){
 			 <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
 			 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 		</form>
-			<div class="form-group">
-				<label for="q_category" class="col-sm-2 control-label">카테고리</label>
-				<input type="text" id="q_category" name="q_category" class="form-control" value="${read.q_category}" readonly="readonly" />
-			</div>
-			
-			<div class="form-group">
-				<label for="q_subject" class="col-sm-2 control-label">제목</label>
-				<input type="text" id="q_subject" name="q_subject" class="form-control" value="${read.q_subject}" readonly="readonly" />
-			</div>
+		<div class="table_layout">
+		<table class="r_table">
+			<tbody>
+				<tr>
+					
+						<th class="read_th">제목</th>
+						<td class="read_td_1"> <input type="hidden" id="q_subject" name="q_subject" value="${read.q_subject}" readonly="readonly" />${read.q_subject}</td> 
+
+						<th class="read_th">카테고리 </th>
+						<td class="read_td"> <input type="hidden" id="q_category" name="q_category" class="form-control" value="${read.q_category}" readonly="readonly" />${read.q_category} </td>
+				
+				</tr>
+				<tr>
+						<th class="read_th">작성자 </th>
+						<td class="read_td_1"> <input type="hidden" id="u_id" name="u_id" value="${read.u_id}"  readonly="readonly"/>${read.u_id} </td>
+						<th class="read_th">작성날짜 </th>
+						<td class="read_td"><fmt:formatDate value="${read.q_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>	
+					
+				</tr>	
+			</tbody>
+		</table>
+		</div>
+			<hr class="hr2">
 			<div class="form-group">
 				<label for="q_content" class="col-sm-2 control-label">내용</label>
-				<textarea id="q_content" name="q_content" class="form-control" readonly="readonly"><c:out value="${read.q_content}" /></textarea>
-			</div>
-			<div class="form-group">
-				<label for="u_id" class="col-sm-2 control-label">작성자</label>
-				<input type="text" id="u_id" name="u_id" class="form-control" value="${read.u_id}"  readonly="readonly"/>
-			</div>
-			<div class="form-group">
-				<label for="q_regdate" class="col-sm-2 control-label">작성날짜</label>
-				<fmt:formatDate value="${read.q_regdate}" pattern="yyyy-MM-dd hh:mm:ss" />	
+				<textarea id="q_content" name="q_content" class="form-control-2" readonly="readonly"><c:out value="${read.q_content}" /></textarea>
 			</div>
 		
 							
-			<div>
+			<div class="read_btn">
 				<button type="button" class="update_btn btn btn-warning">수정</button>
 				
 				<button type="button" class="delete_btn btn btn-danger">삭제</button>
@@ -298,14 +305,14 @@ $(document).ready(function(){
 			
 		
 				<div class="form-group">
-					<label for="u_id" class="col-sm-2 control-label">댓글 작성자</label>
+					<label for="u_id" class="col-sm-2 control-label">답변 작성자</label>
 					<div class="col-sm-10">
 						<input type="text" id="u_id" name="u_id" class="chk form-control" title="작성자를 입력하세요" />
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label for="a_content" class="col-sm-2 control-label">댓글 내용</label>
+					<label for="a_content" class="col-sm-2 control-label">답변 내용</label>
 					<div class="col-sm-10">
 						<input type="text" id="a_content" name="a_content" class="chk form-control" title="내용을 입력하세요"/>
 					</div>

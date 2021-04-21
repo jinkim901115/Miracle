@@ -28,6 +28,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/qnaCss.css">
 
 <script>
   $(function(){
@@ -142,7 +143,7 @@
     <section id="container">
         <form role="form" method="get">
             <table class="table table-hover">
-                <tr><th>번호</th><th>카테고리</th><th>제목</th><th>작성자</th><th>조회수</th><th>등록일</th></tr>
+                <tr><th class="jb-th-2">번호</th><th class="jb-th-2">카테고리</th><th class="jb-th-1">제목</th><th class="jb-th-2">작성자</th><th class="jb-th-3">조회수</th><th class="jb-th-2">등록일</th></tr>
               
               <!-- qnaController에서 이름을 list로 정한 service.list()를 가져온것 -->
                 <c:forEach items="${list}" var = "list">
@@ -162,7 +163,7 @@
                     </tr>
                 </c:forEach>
               </table>
-     <div class="search row">
+     <div class="search row" id="srow">
          <div class="col-xs-2 col-sm-2">
 		    <select name="searchType" class="form-control">
 		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
@@ -172,34 +173,34 @@
 		      <option value="g"<c:out value="${scri.searchType eq 'g' ? 'selected' : ''}"/>>카테고리</option>
 		    </select>
 		</div>
-			
+		
 		<div class="col-xs-10 col-sm-10">
-		<div class="input-group">
-	    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
-		<span class="input-group-btn">
-	    <button id="searchBtn" type="button" class="btn btn-default">검색</button>
-		</span>
-		</div>
- 		    </div>
+			<div class="input-group">
+		    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
+			<span class="input-group-btn">
+		    <button id="searchBtn" type="button" class="btn btn-default">검색</button>
+			</span>
+			</div>
+ 		</div>
   	</div>
   	<!-- 페이징 with 검색 --> 
-                    <div  class="col-md-offset-3">
+                    <div  class="col-md-offset-3" id=paging>
                       <ul class="pagination">
                         <c:if test="${pageMaker.prev }">
                         <li>
-                            <a href='<c:url value="list${pageMaker.makeSearch(pageMaker.startPage-1) }"/>'>이전</a>
+                            <a href='<c:url value="qna${pageMaker.makeSearch(pageMaker.startPage-1) }"/>'>이전</a>
                         </li>
                         </c:if>
                         
                         <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
                         <li>
-                            <a href='<c:url value="list${pageMaker.makeSearch(idx) }"/>'>${idx }</a>
+                            <a href='<c:url value="qna${pageMaker.makeSearch(idx) }"/>'>${idx }</a>
                         </li>
                         </c:forEach>
                         
                         <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
                         <li <c:out value="${pageMaker.cri.page == pageNum ? 'class=info' : ''}" />>
-                            <a href='<c:url value="list${pageMaker.makeSearch(pageMaker.endPage+1) }"/>'>다음</a>
+                            <a href='<c:url value="qna${pageMaker.makeSearch(pageMaker.endPage+1) }"/>'>다음</a>
                         </li>
                        </c:if>
                       </ul>
