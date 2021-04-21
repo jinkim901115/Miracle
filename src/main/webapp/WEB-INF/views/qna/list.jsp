@@ -39,7 +39,7 @@
 </script>
 
 <style type="text/css">
-	li {list-style: none; float: left; padding: 6px;}
+	li {list-style: none; padding: 6px;}
 </style>
 
 </head>

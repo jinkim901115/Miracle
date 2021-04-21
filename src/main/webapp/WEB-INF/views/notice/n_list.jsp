@@ -29,6 +29,18 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
 </head>
+<style>
+table {width: 100%; text-align: center;}
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+.noticeTable {
+width: 80%;
+margin: auto;
+}
+
+</style>
 <body>
 <!-- Preloader Start -->
  <div id="preloader-active">
@@ -62,7 +74,7 @@
  </div>
  <!--Hero End -->
 
-
+<div class="noticeTable">
 	<table>
 		<tr>
 			<th>UID</th>
@@ -91,8 +103,10 @@
 		</c:choose>
 		
 	</table>
-	<br>
+		<br>
 	<button onclick="location.href='n_write'">등록</button>
+</div>
+
 
 
 

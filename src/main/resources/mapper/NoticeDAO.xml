@@ -8,7 +8,8 @@
 			n_subject subject,
 			n_content content,
 			n_viewcnt viewcnt,
-			n_regdate regdate
+			n_regdate regdate,
+			u_id "id" 
 		FROM
 			t_Notice
 		ORDER BY

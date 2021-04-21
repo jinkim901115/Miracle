@@ -29,7 +29,7 @@ public class NoticeService {
 	//	테스트 출력
 	public NoticeService() {
 		super();
-		System.out.println("BoardService() 생성");
+//		System.out.println("BoardService() 생성");
 	}
 	
 	public List<NoticeDTO> list(){

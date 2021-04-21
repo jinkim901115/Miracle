@@ -25,7 +25,7 @@
                                             <li><a href="./n_list">Community</a>
                                             	<ul class="submenu">
                                             		<li><a href="./n_list">공지사항</a></li>
-                                            		<li><a href="./faq">자주하는 질문</a></li>
+                                            		<li><a href="./f_list">자주하는 질문</a></li>
                                             		<li><a href="./qna">질문과 답변</a></li>
                                             	</ul>
                                             </li>
