@@ -70,7 +70,7 @@
                 <!-- Section Tittle -->
                 <div class="section-tittle text-center mb-80">
                     <span>Miracle 7</span>
-                    <h2>비전공자 일곱명의 프로젝트!</h2>
+                    <h2>비전공자 일곱명의 첫 프로젝트!</h2>
                 </div> 
             </div>
         </div>
@@ -82,16 +82,16 @@
                         <!-- Testimonial Content -->
                         <div class="testimonial-caption ">
                             <div class="testimonial-top-cap">
-                                <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis por incididunt ut labore et dolore mas. </p>
+                                <p> 나중에 업데이트 할게 </p>
                             </div>
                             <!-- founder -->
                             <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
                                 <div class="founder-img">
-                                    <img src="assets/img/testmonial/Homepage_testi.png" alt="">
+                                    <img src="assets/img/testmonial/suzi1.png" alt="">
                                 </div>
                                 <div class="founder-text">
-                                    <span>Oliva jems</span>
-                                    <p>UIX designer</p>
+                                    <span>날아라펭귄</span>
+                                    <p>MAIN팀 - 박수지</p>
                                 </div>
                             </div>
                         </div>
@@ -101,16 +101,111 @@
                         <!-- Testimonial Content -->
                         <div class="testimonial-caption ">
                             <div class="testimonial-top-cap">
-                                <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis por incididunt ut labore et dolore mas. </p>
+                                <p> 걱정만 가지고 시작했던 팀 프로젝트.. 완벽하게 만들진 못했지만 웹에 구동원리, 준비과정, 등등 많은걸 배웠습니다. 담당기능은 회원가입 기능을 담당하였습니다 </p>
                             </div>
                             <!-- founder -->
                             <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
                                 <div class="founder-img">
-                                    <img src="assets/img/testmonial/Homepage_testi.png" alt="">
+                                    <img src="assets/img/testmonial/eul1.png" alt="">
                                 </div>
                                 <div class="founder-text">
-                                    <span>Oliva jems</span>
-                                    <p>UIX designer</p>
+                                    <span>JUNG.T</span>
+                                    <p>LOGIN팀 - 정을영</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 	<!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <div class="testimonial-top-cap">
+                                <p> 나중에 업데이트 할게 </p>
+                            </div>
+                            <!-- founder -->
+                            <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
+                                <div class="founder-img">
+                                    <img src="assets/img/testmonial/kim1.png" alt="">
+                                </div>
+                                <div class="founder-text">
+                                    <span>김G맛</span>
+                                    <p>COMMUNITY팀 - 김병진</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <div class="testimonial-top-cap">
+                                <p> 나중에 업데이트 할게 </p>
+                            </div>
+                            <!-- founder -->
+                            <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
+                                <div class="founder-img">
+                                    <img src="assets/img/testmonial/suzi1.png" alt="">
+                                </div>
+                                <div class="founder-text">
+                                    <span>CHOI-SKY</span>
+                                    <p>LOGIN팀 - 최유진</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <div class="testimonial-top-cap">
+                                <p> 나중에 업데이트 할게 </p>
+                            </div>
+                            <!-- founder -->
+                            <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
+                                <div class="founder-img">
+                                    <img src="assets/img/testmonial/suzi1.png" alt="">
+                                </div>
+                                <div class="founder-text">
+                                    <span>전집중상중호흡</span> 
+                                    <p>MIRACLE7팀장 - 박영광</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Testimonial --> 
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <div class="testimonial-top-cap">
+                                <p> 나중에 업데이트 할게 </p>
+                            </div>
+                            <!-- founder -->
+                            <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
+                                <div class="founder-img">
+                                    <img src="assets/img/testmonial/moon1.png" alt="">
+                                </div>
+                                <div class="founder-text">
+                                    <span>찌니</span>
+                                    <p>COMMUNITY팀 - 문혜진</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <div class="testimonial-top-cap">
+                                <p> 나중에 업데이트 할게 </p>
+                            </div>
+                            <!-- founder -->
+                            <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
+                                <div class="founder-img">
+                                    <img src="assets/img/testmonial/suzi1.png" alt="">
+                                </div>
+                                <div class="founder-text">
+                                    <span>404</span>
+                                    <p>COMMUNITY팀 - 김성중</p>
                                 </div>
                             </div>
                         </div>

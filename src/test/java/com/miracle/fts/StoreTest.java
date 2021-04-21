@@ -39,7 +39,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
   "file:src/main/webapp/WEB-INF/spring/appServlet/security-context.xml"
   })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)  // JUnit 의 실행 순서를 메소드 이름 순으로 
-public class StoreMenuTest {
+public class StoreTest {
 
 	// 자동 주입 받을 PasswordEncoder 와 DataSource 객체
 	private PasswordEncoder pwencoder;
@@ -62,7 +62,7 @@ public class StoreMenuTest {
 	public void initialize() {
 		System.out.println("StoreTests 시작");
 		try {
-			conn = ds.getConnection();   // DataSource 에서 Connection 받아옴.
+			conn = ds.getConnection();  
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -103,9 +103,9 @@ public class StoreMenuTest {
 				}
 				
 				if(cnt > 0) {
-					System.out.println("INSERT_ADMIN 성공]" + s_name + ":" + s_biznum + ":" + s_addr + ":" + s_comt + ":" + s_opinfo + ":" + u_id);
+					System.out.println("INSERT_STORE 성공]" + s_name + ":" + s_biznum + ":" + s_addr + ":" + s_comt + ":" + s_opinfo + ":" + u_id);
 				} else {
-					System.out.println("INSERT_ADMIN 실패]" + s_name + ":" + s_biznum + ":" + s_addr + ":" + s_comt + ":" + s_opinfo + ":" + u_id);
+					System.out.println("INSERT_STORE 실패]" + s_name + ":" + s_biznum + ":" + s_addr + ":" + s_comt + ":" + s_opinfo + ":" + u_id);
 				}
 				
 			} // end for
@@ -124,63 +124,7 @@ public class StoreMenuTest {
     
   } // end testInsertStore()
 	
-	@Test
-	public void testA_InsertMenu() {
-		System.out.println("test_InsertMenu() 실행");
-		
-		if(conn == null) return;
-		
-		int cnt = 0;
-		
-		String s_name = "", s_biznum = "", s_addr = "", s_comt = "", s_opinfo = "", u_id = "";
 	
-		try {
-			pstmt = conn.prepareStatement(SQL_INSERT_MENU);
-			for(int i = 21; i <= 30; i++) {
-				s_name = "업체" + i;
-				s_biznum = "123-12-111" + i;
-				s_addr = "서울" + i;
-				s_comt = "안녕하세요~! 사장님" + i + " 입니다";
-				s_opinfo = "오전 8:00 ~ 오후 10:00";
-				u_id = "ceo" + i;
-
-
-				cnt = 0;
-				try {
-					pstmt.setString(1, s_name);
-					pstmt.setString(2, s_biznum);
-					pstmt.setString(3, s_addr);
-					pstmt.setString(4, s_comt);
-					pstmt.setString(5, s_opinfo);
-					pstmt.setString(6, u_id);
-					cnt = pstmt.executeUpdate();
-				} catch(Exception e) {
-					System.out.println(e.getMessage());
-				}
-				
-				if(cnt > 0) {
-					System.out.println("INSERT_ADMIN 성공]" + s_name + ":" + s_biznum + ":" + s_addr + ":" + s_comt + ":" + s_opinfo + ":" + u_id);
-				} else {
-					System.out.println("INSERT_ADMIN 실패]" + s_name + ":" + s_biznum + ":" + s_addr + ":" + s_comt + ":" + s_opinfo + ":" + u_id);
-				}
-				
-			} // end for
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(pstmt != null) {
-					pstmt.close();
-					pstmt = null;
-				}
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-    
-  } // end testInsertStore()
- 
-  
   @After  //org.junit.After;
   public void finalize() {
 	  System.out.println("StoreTest 종료");
