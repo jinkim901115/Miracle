@@ -91,7 +91,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-location mb-30">
                             <div class="location-img">
-                                <img src="assets/img/gallery/location1.png" alt="">
+                                <img src="assets/img/gallery/sik.png" alt="">
                             </div>
                             <div class="location-details">
                                 <a href="./listmain?search=sik" class="location-btn">식</a>
@@ -101,7 +101,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-location mb-30">
                             <div class="location-img">
-                                <img src="assets/img/gallery/location2.png" alt="">
+                                <img src="assets/img/gallery/do.png" alt="">
                             </div>
                             <div class="location-details">
                                 <a href="./listmain?search=do" class="location-btn">도</a>
@@ -111,7 +111,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-location mb-30">
                             <div class="location-img">
-                                <img src="assets/img/gallery/location3.png" alt="">
+                                <img src="assets/img/gallery/rak.png" alt="">
                             </div>
                             <div class="location-details">	
                                 <a href="./listmain?search=rak" class="location-btn">롹</a>

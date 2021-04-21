@@ -26,6 +26,26 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
 </head>
+<script>
+function chkSubmit(){
+	frm = document.forms['frm'];
+	
+	var name = frm['name'].value.trim();
+	var subject = frm['subject'].value.trim();
+	
+	if(name == ""){
+		alert("작성자명은 반드시 입력하셔야 합니다.");
+		frm['name'].focus();
+		return false;
+	}
+	if(subject == ""){
+		alert("제목은 반드시 작성하셔야 합니다.");
+		frm["subject"].focus();
+		return false;
+	}
+	return true;
+}
+</script>
 <body>
 <!-- Preloader Start -->
  <div id="preloader-active">
@@ -60,7 +80,19 @@
  <!--Hero End -->
 
 
-TODO MAIN 입니다
+<form name="frm" action="f_writeOk" method="post" onsubmit="return chkSubmit()">
+ID: 
+<input type="text" name="id"/><br>
+제목:
+<input type="text" name="subject"/><br>
+내용: <br>
+<textarea name="content"></textarea>
+<br><br>
+<input type="submit" value="등록"/>
+<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+</form>
+<br>
+<button type="button" onclick="location.href = 'f_list'">목록으로</button>
 
 
 

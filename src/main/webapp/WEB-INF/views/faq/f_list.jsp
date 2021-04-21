@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Login</title>
+<title>FAQ</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -27,6 +28,17 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
 </head>
+<style>
+table {width: 100%; text-align: center;}
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+.faqTable {
+width: 80%;
+margin: auto;
+}
+</style>
 <body>
 <!-- Preloader Start -->
  <div id="preloader-active">
@@ -39,9 +51,11 @@
          </div>
      </div>
  </div>
+<!-- Preloader Start -->
 <!-- header Start -->
 <%@include file="../nav/nav.jsp"  %>
 <!-- header End -->
+
 <main>
 
  <!-- Hero Start-->
@@ -50,7 +64,7 @@
          <div class="row">
              <div class="col-xl-12">
                  <div class="hero-cap text-center pt-50">
-                     <h2>Login</h2>
+                     <h2>FAQ 자주하는 질문</h2>
                  </div>
              </div>
          </div>
@@ -58,19 +72,38 @@
  </div>
  <!--Hero End -->
 
-<br><br><br><br><br>
-<div class="loginform" style="text-align: center">
-<h1>Login</h1>
 
-<form method="POST" action="${pageContext.request.contextPath }/login">
-	<input type="text" name="username"><br>
-	<input type="password" name="password"><br>
-	<input type="submit" value="로그인"><br>
-	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
-</form>
-	<button ></button>
+<div class="faqTable">
+	<table>
+		<tr>
+			<th>UID</th>
+			<th>ID</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>조회수</th>
+		</tr>
+		
+		<c:choose>
+		<c:when test="${empty list || fn:length(list) == 0 }">
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="dto" items="${list}">
+				<tr>
+					<td>${dto.uid }</td>	<%--dto.getUid() --%>
+					<td>${dto.id }</td>
+					<td><a href="f_view?uid=${dto.uid }">${dto.subject }</a></td>
+					<td>${dto.content }</td>	<%-- dto.getName() --%>
+					<td>${dto.viewcnt }</td>
+				</tr>
+			</c:forEach>
+		</c:otherwise>
+		</c:choose>
+		
+	</table>
+		<br>
+	<button onclick="location.href='f_write'">등록</button>
 </div>
-<br><br><br><br><br>
+
 
 
 </main>

@@ -76,7 +76,7 @@ public class NoticeDTO {
 //	regDate를 String으로 리턴하는 getter
 	public String getRegDateTime() {
 		if(this.regDate == null) return "";
-		return this.regDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 hh시 mm분 ss초"));
+		return this.regDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 	}
 	
 	@Override
