@@ -55,8 +55,8 @@ public class MemberTests {
 
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	final String SQL_INSERT_MEMBER = "INSERT INTO users (userid, userpw, username) VALUES (?,?,?)";
-	final String SQL_INSERT_AUTH = "INSERT INTO authorities (userid, auth) VALUES (?,?)";
+	final String SQL_INSERT_MEMBER = "INSERT INTO t_user (u_id, u_pw, u_name) VALUES (?,?,?)";
+	final String SQL_INSERT_AUTH = "INSERT INTO t_auth (u_id, au_auth) VALUES (?,?)";
  
 	@Before // org.junit.Before
 	public void initialize() {
@@ -76,40 +76,37 @@ if(conn == null) return;
 		
 		int cnt = 0;
 		
-		String userid = "", userpw = "", username = "";
+		String u_id = "", u_pw = "", u_name = "";
 	
 		try {
 			pstmt = conn.prepareStatement(SQL_INSERT_MEMBER);
 			// 100명의 테스트용 데이터 생성
-			for(int i = 0; i < 10; i++) {
-				userpw = "pw" + i;   // 패스워드 pw0, pw1, ... 생성
+			for(int i = 1; i <= 30; i++) {
+				u_pw = "pw" + i;   // 패스워드 pw0, pw1, ... 생성
 				
 				// 일반사용자: 운영자: 관리자  80:10:10 명 생성
-				if(i < 8) {
-					userid = "user" + i;
-					username = "일반사용자" + i;
-				} else if (i < 9) {
-					userid = "member" + i;
-					username = "회원" + i;
+				if(i <= 20) {
+					u_id = "member" + i;
+					u_name = "회원" + i;
 				} else {
-					userid = "admin" + i;
-					username = "관리자" + i;
+					u_id = "ceo" + i;
+					u_name = "사장님" + i;
 				}
 				
 				cnt = 0;
 				try {
-					pstmt.setString(1, userid);
-					pstmt.setString(2, pwencoder.encode(userpw));  // 패스워드 인코딩 
-					pstmt.setString(3, username);
+					pstmt.setString(1, u_id);
+					pstmt.setString(2, pwencoder.encode(u_pw));  // 패스워드 인코딩 
+					pstmt.setString(3, u_name);
 					cnt = pstmt.executeUpdate();
 				} catch(Exception e) {
 					System.out.println(e.getMessage());
 				}
 				
 				if(cnt > 0) {
-					System.out.println("INSERT_MEMBER 성공]" + userid + ":" + userpw + ":" + username);
+					System.out.println("INSERT_MEMBER 성공]" + u_id + ":" + u_pw + ":" + u_name);
 				} else {
-					System.out.println("INSERT_MEMBER 실패]" + userid + ":" + userpw + ":" + username);
+					System.out.println("INSERT_MEMBER 실패]" + u_id + ":" + u_pw + ":" + u_name);
 				}
 				
 			} // end for
@@ -135,48 +132,32 @@ if(conn == null) return;
     if(conn == null) return;
 	
 	int cnt = 0;
-	String userid = "", auth = "";
+	String u_id = "", au_auth = "";
 	
 	try {
 		pstmt = conn.prepareStatement(SQL_INSERT_AUTH);
 
-		for(int i = 0; i < 10; i++) {
-			if(i < 8) {
-				userid = "user" + i;
-				auth = "ROLE_USER";
-			} else if(i < 9) {
-				userid = "member" + i;
-				auth = "ROLE_MEMBER";
+		for(int i = 1; i <= 30; i++) {
+			if(i <= 20) {
+				u_id = "member" + i;
+				au_auth = "ROLE_MEMBER";
 			} else {
-				userid = "admin" + i;
-				auth = "ROLE_ADMIN";
+				u_id = "ceo" + i;
+				au_auth = "ROLE_CEO";
 			}
 			cnt = 0;
 			
 			try {
-				pstmt.setString(1, userid);
-				pstmt.setString(2, auth);
+				pstmt.setString(1, u_id);
+				pstmt.setString(2, au_auth);
 				cnt = pstmt.executeUpdate();	
 				
 				if(cnt > 0) {
-					System.out.println("INSERT_AUTH 성공] " + userid + ":" + auth);
+					System.out.println("INSERT_AUTH 성공] " + u_id + ":" + au_auth);
 				} else {
-					System.out.println("INSERT_AUTH 실패] " + userid + ":" + auth);
+					System.out.println("INSERT_AUTH 실패] " + u_id + ":" + au_auth);
 				}
 				
-				// admin 의 경우 ROLE_MEMBER 도 추가
-				if(userid.startsWith("admin")) {
-					auth = "ROLE_MEMBER"; 
-					pstmt.setString(1, userid);
-					pstmt.setString(2, auth);
-					cnt = pstmt.executeUpdate();
-					
-					if(cnt > 0) {
-						System.out.println("INSERT_AUTH 성공] " + userid + ":" + auth);
-					} else {
-						System.out.println("INSERT_AUTH 실패] " + userid + ":" + auth);
-					}
-				}
 				
 			} catch(Exception e) {
 				System.out.println(e.getMessage());

@@ -20,7 +20,7 @@ DROP SEQUENCE t_menu_seq;
 CREATE TABLE t_user (
 	u_id	varchar2(20)		NOT NULL,
 	u_pw	varchar2(200)		NULL,
-	u_name	varchar2(10)		NULL,
+	u_name	varchar2(100)		NULL,
 	u_pn	varchar2(13)		NULL,
 	u_pn2	varchar2(13)		NULL,
 	u_pn3	varchar2(13)		NULL,
@@ -28,6 +28,7 @@ CREATE TABLE t_user (
 	u_email2	varchar2(30)		NULL,
 	u_addr	varchar2(200)		NULL,
 	u_addr2	varchar2(100)		NULL,
+	u_addr3	varchar2(100)		NULL,
 	enabled char(1) DEFAULT '1',
 	u_regdate	DATE DEFAULT SYSDATE	NULL
 );
@@ -276,9 +277,10 @@ REFERENCES t_store (
 
 
 
-INSERT INTO t_qna (q_uid, u_id, q_subject, q_content, q_category) VALUES (t_qna_seq.nextval, 'admin1', '제목', '내용', '이용문의');
-INSERT INTO t_store (s_uid, s_name, s_biznum, s_addr, s_comt, s_opinfo, u_id) VALUES (t_store_seq.nextval, '업체1', '123-12-12345', '주소', '한마디', '내맘', 'admin7'); 
+INSERT INTO t_qna (q_uid, u_id, q_subject, q_content, q_category) VALUES (t_qna_seq.nextval, 'admin1', '제목', '내용', '이용문의'); 
 INSERT INTO t_menu (m_uid, s_uid, m_name) VALUES (t_menu_seq.nextval, 2, '떡볶이');
+INSERT INTO t_store (s_uid, s_name, s_biznum, s_addr, s_comt, s_opinfo, u_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+
 
 SELECT u.u_id, u.u_pw, u.u_name, au.au_auth  FROM t_user u, t_auth au WHERE u.u_id = au.u_id AND u.u_id LIKE '%t%' ORDER BY u.u_id ASC;
 SELECT *  FROM t_user u, t_auth au WHERE u.u_id = au.u_id ORDER BY u.u_id ASC;
@@ -289,7 +291,7 @@ SELECT * FROM T_STORE s, t_user u WHERE s.U_ID = u.U_ID ;
 SELECT * FROM t_store s, t_menu m, t_user u WHERE s.s_uid = m.s_uid AND s.u_id = u.u_id;
 
 
-
+DELETE FROM t_user WHERE u_id LIKE 'm%';
 
 
 
