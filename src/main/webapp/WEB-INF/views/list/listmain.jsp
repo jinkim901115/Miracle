@@ -32,7 +32,7 @@
 <script>
   $(function(){
     $('#searchBtn').click(function() {
-      self.location = "listmain" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() +
+      self.location = "listmain" + '${pageMaker.makeQuery(1)}' + "&searchType=c" +
       "&keyword=" + encodeURIComponent($('#keywordInput').val());
     });
   });   
@@ -67,13 +67,14 @@
                         <!--Hero form -->
                         <form role="form" method="get" action="./listmain" class="search-box search-box2">
                             <div class="input-form">
-                                <input type="text" name="search" placeholder="쟈기랑 함께라면 뭐든 좋아:)">
+                                <input type="text" id="keywordInput" name="search" value="${scri.keyword}" placeholder="쟈기 오늘은 뭐먹을까?:)">
                             </div>
-                            <!-- Search box -->
-                            <div class="search-form" value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>
+                            <!-- Search box 
+                            <div class="search-form" value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>-->
                    
-                                <input type="submit" value="가즈앗"/>
-                            </div>	
+                                <!-- <input type="submit" value="가즈앗"/> -->
+                                <button id="searchBtn" type="button" class="butn btn-default">가즈앗</button>
+                            <!-- </div> -->	
                         </form>	
                     </div>
                 </div>
@@ -131,8 +132,8 @@
                     </div>
                 </div>
        
-       
-          <div class="search row">
+       <!-- 
+         <div class="search row">
          <div class="col-xs-2 col-sm-2">
 		    <select name="searchType" class="form-control">
 		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>가게이름</option>
@@ -140,16 +141,18 @@
 		      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>가게+메뉴</option>
 		    </select>
 		</div>
-       
+        </div>
        
         <div class="col-xs-10 col-sm-10">
 		<div class="input-group">
-	    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
+	    <input type="text" name="keyword" id="keywordInputa" value="${scri.keyword}" class="form-control"/>
 		<span class="input-group-btn">
 	    <button id="searchBtn" type="button" class="btn btn-default">검색</button>
 		</span>
 		</div>
- 		    </div>
+		 -->
+ 		   
+ 		 
                 <!-- listing Details End -->
                 
                 <!--Pagination Start  -->

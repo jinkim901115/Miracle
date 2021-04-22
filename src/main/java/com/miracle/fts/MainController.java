@@ -27,8 +27,17 @@ public class MainController {
 		super();
 	}
 
-	@RequestMapping(value = "/index")
-	public String index(Model model) {
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		
+		model.addAttribute("list", listService.select(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(listService.selectCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+
 		return "index";
 	}
 	
