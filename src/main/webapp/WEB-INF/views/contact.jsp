@@ -107,18 +107,19 @@
      </div>
  </div>
  <!--Hero End -->
-
-
- 
-
-
-</main>
+<br><br><br><br><br>
 <form style="text-align: center;">
 <h4 style="color: blue; font-size: 30px;">서울 강남구 테헤란로26길 12</h4>
 <h2>↓↓↓</h2>
 </form>
 <div id="map_ma" class="map_1" >
 </div> 
+<br><br><br><br><br>
+ 
+
+
+</main>
+
 		
 <!-- footer Start -->
 <%@include file="./nav/footer.jsp" %>

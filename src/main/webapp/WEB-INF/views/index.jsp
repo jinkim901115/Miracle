@@ -71,7 +71,7 @@
  							<!--Hero form -->
                        		 <form role="form" method="get" action="./listmain" class="search-box search-box2">
                             <div class="input-form">
-                                <input type="text" id="keywordInput" name="search" value="${scri.keyword}" placeholder="쟈기랑 함께라면 뭐든 좋아:)">
+                                <input type="text" id="keywordInput" name="search" value="${scri.keyword}" placeholder="오늘은 무얼 먹을까?:)">
                             </div>
                             <!-- Search box 
                             <div class="search-form" value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>-->
@@ -106,7 +106,7 @@
                                 <img src="assets/img/gallery/sik.png" alt="">
                             </div>
                             <div class="location-details">
-                                <a href="./listmain?search=sik" class="location-btn">식</a>
+                                <a href="./listmain?searchType=c&keyword=메뉴1" class="location-btn">식</a>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                                 <img src="assets/img/gallery/do.png" alt="">
                             </div>
                             <div class="location-details">
-                                <a href="./listmain?search=do" class="location-btn">도</a>
+                                <a href="./listmain?searchType=c&keyword=메뉴2" class="location-btn">도</a>
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                                 <img src="assets/img/gallery/rak.png" alt="">
                             </div>
                             <div class="location-details">	
-                                <a href="./listmain?search=rak" class="location-btn">락</a>
+                                <a href="./listmain?searchType=c&keyword=메뉴3" class="location-btn">락</a>
                             </div>
                         </div>
                     </div>
