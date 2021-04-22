@@ -350,16 +350,16 @@ function execPostCode() {
 </script>
 
 <div class="signcontainer" style="width:40%; margin:auto;">
-<h2>GYM 가입란</h2>
+<h2>Miracle7 회원가입</h2>
 <form name="join" action="writeOk" method="post" id="regForm" onsubmit="return chkSubmit()" >
-가입구분: <br>
+가입구분: <br><br>
 <input type="radio" name="auth" value="ROLE_MEMBER" checked/>일반회원
 <input type="radio" name="auth" value="ROLE_CEO"/>상인회원
-<br><br><br><br>
+<br><br><br>
 아이디: <br>
-<input type="text" name="id" id="id" /> 영문 대소문자, 숫자만 사용가능! (4 ~ 12글자)<br>
+<input type="text" name="id" id="id" /> 영문 대소문자, 숫자만 사용가능! (4 ~ 12글자)
 
-<button name="idChk" class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+<button name="idChk" class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button><br><br>
 비밀번호: <br>
 <input type="password" name="pw" id="pw"/>아이디와 동일하면 안됩니다! (4 ~ 12 글자)<br>
 비밀번호 확인:<br>
@@ -397,17 +397,19 @@ function execPostCode() {
 	<td><input name="phone2" id="phone2" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/></td> 
 	<td>-</td>
 	<td><input name="phone3" id="phone3" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/> 숫자만 입력해주세요!!^^</td>
-</tr> <br>
+</tr> <br><br>
+<div class="enb_1">
 e-mail:<br>
-<input type="text" name="email" id="email">  @
-<input type="text" name="email2" id="email2" >
-<select  name="email2" id="email_sel" onchange="email_change()">
-	
+<input type="text" name="email" id="email">  @ <input type="text" name="email2" id="email2" >
+<div class="enb">
+<select  name="email2" id="email_sel" onchange="email_change()" >
 	<option value=''>직접입력</option>
     <option value='naver.com'>네이버</option>
     <option value='hanmail.net'>다음</option>
     <option value='gmail.com'>구글</option>
 </select>
+</div>
+</div>
 <!-- 
 e-mail:<br>
 <input type="text" name="email"/> @ 
@@ -427,7 +429,7 @@ e-mail:<br>
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 <input type="hidden" id="csrfName" name="csrfName" value="${_csrf.parameterName }"/>
 <input type="hidden" id="csrfValue" name="csrfValue" value="${_csrf.token }"/>
-<input type="submit" value="가입" />
+<input type="submit" value="가입하기" />
 </form>
 
 </div>

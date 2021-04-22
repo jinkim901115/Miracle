@@ -110,7 +110,7 @@
 <br><br><br><br><br>
 <form style="text-align: center;">
 <h2>주소</h2>
-<h4 style="color: blue; font-size: 30px;">서울 강남구 테헤란로26길 12</h4>
+<h4 style="color: #a05a11; font-size: 30px;">서울 강남구 테헤란로26길 12</h4>
 </form>
 <div id="map_ma" class="map_1" >
 </div>
