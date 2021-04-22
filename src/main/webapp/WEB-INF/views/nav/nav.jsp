@@ -29,7 +29,6 @@
                                             		<li><a href="./qna">질문과 답변</a></li>
                                             	</ul>
                                             </li>
-                                            <li class="add-list"><a href="./favorite"><i class="ti-plus"></i> 즐겨찾기</a></li>
                                             <li class="login">
                                             	<sec:authorize access="isAnonymous()">
 	                                            	<a href="./login"> Sign In </a>

@@ -11,8 +11,8 @@
 	</c:when>
 	<c:otherwise>
 		<script>
-			alert("등록 성공, 리스트 출력합니다");
-			location.href = "list.do";
+			alert("짝짝짝! 가입을 축하합니다!");
+			location.href = "./login";
 		</script>
 	</c:otherwise>
 </c:choose>

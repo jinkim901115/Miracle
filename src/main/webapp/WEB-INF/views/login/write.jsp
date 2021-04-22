@@ -1,14 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
-</head>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Login</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
+<!-- CSS here -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/slicknav.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/flaticon.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/magnific-popup.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/slick.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/login.css">
+
+</head>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="/resources/js/addressapi.js"></script>
 
@@ -182,8 +201,38 @@ function chkSubmit() {
 	//return true;
 }
 </script>
-  
 <body>
+<!-- Preloader Start -->
+ <div id="preloader-active">
+     <div class="preloader d-flex align-items-center justify-content-center">
+         <div class="preloader-inner position-relative">
+             <div class="preloader-circle"></div>
+             <div class="preloader-img pere-text">
+                 <img src="assets/img/logo/logoOne.jpg" alt="">
+             </div>
+         </div>
+     </div>
+ </div>
+<!-- header Start -->
+<%@include file="../nav/nav.jsp"  %>
+<!-- header End -->
+<main>
+
+ <!-- Hero Start-->
+ <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
+     <div class="container">
+         <div class="row">
+             <div class="col-xl-12">
+                 <div class="hero-cap text-center pt-50">
+                     <h2>Sign Up</h2>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!--Hero End -->
+
+<br><br><br><br><br>
 <script type="text/javascript">
 
 function email_change(){
@@ -300,9 +349,9 @@ function execPostCode() {
      }
 </script>
 
-
+<div class="signcontainer" style="width:40%; margin:auto;">
 <h2>GYM 가입란</h2>
-<form name="join" action="writeOk.do" method="post" id="regForm" onsubmit="return chkSubmit()" >
+<form name="join" action="writeOk" method="post" id="regForm" onsubmit="return chkSubmit()" >
 가입구분: <br>
 <input type="radio" name="auth" value="ROLE_MEMBER" checked/>일반회원
 <input type="radio" name="auth" value="ROLE_CEO"/>상인회원
@@ -312,9 +361,9 @@ function execPostCode() {
 
 <button name="idChk" class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
 비밀번호: <br>
-<input type="text" name="pw" id="pw"/>아이디와 동일하면 안됩니다! (4 ~ 12 글자)<br>
+<input type="password" name="pw" id="pw"/>아이디와 동일하면 안됩니다! (4 ~ 12 글자)<br>
 비밀번호 확인:<br>
-<input type="text" name="pw2" id="pw2"/><br>
+<input type="password" name="pw2" id="pw2"/><br>
 이름:<br>
 <input type="text" name="name" id="name"/>2글자 이상 입력주세요!<br>
 
@@ -343,9 +392,11 @@ function execPostCode() {
 		<option value="017">017</option>
 		<option value="018">018</option>
 		<option value="019">019</option>
-	</select> -
-	<input name="phone2" id="phone2" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/> -
-	<input name="phone3" id="phone3" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/> 숫자만 입력해주세요!!^^</td>
+	</select> 
+	<td>-</td>
+	<td><input name="phone2" id="phone2" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/></td> 
+	<td>-</td>
+	<td><input name="phone3" id="phone3" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/> 숫자만 입력해주세요!!^^</td>
 </tr> <br>
 e-mail:<br>
 <input type="text" name="email" id="email">  @
@@ -379,23 +430,53 @@ e-mail:<br>
 <input type="submit" value="가입" />
 </form>
 
-<br>
-<button type="button" onclick="location.href = 'list.do'">목록으로</button>
+</div>
+<br><br><br><br><br>
+
+
+</main>
+<!-- footer Start -->
+<%@include file="../nav/footer.jsp" %>
+<!-- footer End -->
+<!-- Scroll Up -->
+<div id="back-top" >
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+
+<!-- JS here -->
+<!-- All JS Custom Plugins Link Here here -->
+<script src="${pageContext.request.contextPath }/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
+<!-- Jquery, Popper, Bootstrap -->
+<script src="${pageContext.request.contextPath }/assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/bootstrap.min.js"></script>
+
+<!-- Jquery Mobile Menu -->
+<script src="${pageContext.request.contextPath }/assets/js/jquery.slicknav.min.js"></script>
+
+<!-- Jquery Slick , Owl-Carousel Plugins -->
+<script src="${pageContext.request.contextPath }/assets/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/slick.min.js"></script>
+
+<!-- One Page, Animated-HeadLin -->
+<script src="${pageContext.request.contextPath }/assets/js/wow.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/animated.headline.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.magnific-popup.js"></script>
+
+<!-- Nice-select, sticky -->
+<script src="${pageContext.request.contextPath }/assets/js/jquery.nice-select.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.sticky.js"></script>
+
+<!-- contact js -->
+<script src="${pageContext.request.contextPath }/assets/js/contact.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/mail-script.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.ajaxchimp.min.js"></script>
+
+<!-- Jquery Plugins, main Jquery -->	
+<script src="${pageContext.request.contextPath }/assets/js/plugins.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

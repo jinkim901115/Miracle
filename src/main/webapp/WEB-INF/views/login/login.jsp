@@ -25,6 +25,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/login.css">
 
 </head>
 <body>
@@ -59,16 +60,47 @@
  <!--Hero End -->
 
 <br><br><br><br><br>
-<div class="loginform" style="text-align: center">
-<h1>Login</h1>
+<div class="logincontainer">
+  <form method="POST" action="${pageContext.request.contextPath }/login">
+    <div class="rowl">
+      <h2 style="text-align:center">로그인</h2>
+      <div class="vll">
+        <span class="vll-innertext"></span>
+      </div>
 
-<form method="POST" action="${pageContext.request.contextPath }/login">
-	<input type="text" name="username"><br>
-	<input type="password" name="password"><br>
-	<input type="submit" value="로그인"><br>
-	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
-</form>
-	<button ></button>
+      <div class="coll">
+        <a href="#" class="hidden btnea">
+          <i class="fa fa-hidden fa-fw"></i>
+        </a>
+        <a href="#" class="naver btne">
+           NAVER
+        </a>
+        <a href="#" class="google btne">
+           GOOGLE
+        </a>
+      </div>
+
+      <div class="coll">
+        <div class="hide-md-lg">
+          <p>로그인 해주세요:</p>
+        </div>
+
+        <input type="text" class="input" name="username" placeholder="아이디" required>
+        <input type="password" class="input" name="password" placeholder="비빌번호" required>
+        <input type="hidden" class="input" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+        <input type="submit" class="input" value="로그인">
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<div class="bottom-container">
+  <div class="rowl">
+    <div class="colla">
+      <a href="./write" style="color:white" class="btne">회원가입</a>
+    </div>
+  </div>
 </div>
 <br><br><br><br><br>
 

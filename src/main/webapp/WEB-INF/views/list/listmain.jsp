@@ -106,7 +106,7 @@
                             <div class="col-lg-6 ">
                                 <div class="single-listing mb-30">
                                     <div class="list-img">
-                                        <img src="assets/img/gallery/list1.png" alt="">
+                                        <img src="assets/img/gallery/pocha1.png" alt="">
                                         <!-- <span>Open</span> -->
                                     </div>
                                     <div class="list-caption">
