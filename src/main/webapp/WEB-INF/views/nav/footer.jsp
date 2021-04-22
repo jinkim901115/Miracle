@@ -35,7 +35,7 @@
                                     <ul>
                                         <li><a href="#">이용약관</a></li>
                                         <li><a href="#">개인정보책임</a></li>
-                                        <li><a href="#">찾아오시는길</a></li> 
+                                        <li><a href="./contact">찾아오시는길</a></li> 
                                     </ul>
                                 </div>
                             </div>

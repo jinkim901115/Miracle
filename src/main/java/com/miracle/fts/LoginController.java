@@ -57,7 +57,7 @@ public class LoginController {
 			throw new RuntimeException();
 		}
 		
-		return "login/list";
+		return "login/login";
 	}
 	
 	@GetMapping("/view")

@@ -22,10 +22,10 @@
 			
 		
 		<!-- /sample/member 요청은 ROLE_MEMBER 라는 권한이 있는 사용자 만이 접근 가능 -->
-		<security:intercept-url pattern="/qna/**" access="hasRole('ROLE_MEMBER')"/>
+		<security:intercept-url pattern="/qna/**" access="hasAnyRole('ROLE_MEMBER, ROLE_CEO')"/>
 		
 		<!-- /sample/admin 요청은 ROLE_ADMIN 권한이 있는 사용자 만 접근 가능 -->
-		<security:intercept-url pattern="/favorite" access="hasRole('ROLE_ADMIN')"/>
+		<!-- <security:intercept-url pattern="/favorite" access="hasRole('ROLE_ADMIN')"/> -->
 		
 		<!-- <security:form-login/> --> <!-- 스프링 시큐리티에서 제공하는 기본 로그인 페이지 -->
 		<security:form-login login-page="/login"
