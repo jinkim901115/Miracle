@@ -70,7 +70,10 @@ public class MainController {
 		return "/login/login";
 	}
 
-
+	@RequestMapping("/contact")
+	public String contact(Model model) {
+		return "/contact";
+	}
 	
 	
 	
