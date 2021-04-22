@@ -60,11 +60,11 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	@GetMapping("/view")
-	public String view(String id, Model model) {
-		model.addAttribute("list", loginService.viewById(id));
-		return "login/view";
-	}
+//	@GetMapping("/view")
+//	public String view(String id, Model model) {
+//		model.addAttribute("list", loginService.viewById(id));
+//		return "login/view";
+//	}
 	
 	@RequestMapping("/update")
 	public String update(String id, Model model) {

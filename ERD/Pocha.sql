@@ -1,15 +1,15 @@
-﻿DROP TABLE t_user CASCADE CONSTRAINT;
-DROP TABLE t_store CASCADE CONSTRAINT;
-DROP TABLE t_comment CASCADE CONSTRAINT;
-DROP TABLE t_report CASCADE CONSTRAINT;
-DROP TABLE t_qna CASCADE CONSTRAINT;
-DROP TABLE t_answer CASCADE CONSTRAINT;
-DROP TABLE t_favorite CASCADE CONSTRAINT;
-DROP TABLE t_notice CASCADE CONSTRAINT;
-DROP TABLE t_auth CASCADE CONSTRAINT;
-DROP TABLE t_faq CASCADE CONSTRAINT;
-DROP TABLE t_menu CASCADE CONSTRAINT;
-DROP TABLE t_file CASCADE CONSTRAINT;
+DROP TABLE t_user CASCADE CONSTRAINTS;
+DROP TABLE t_store CASCADE CONSTRAINTS;
+DROP TABLE t_comment CASCADE CONSTRAINTS;
+DROP TABLE t_report CASCADE CONSTRAINTS;
+DROP TABLE t_qna CASCADE CONSTRAINTS;
+DROP TABLE t_answer CASCADE CONSTRAINTS;
+DROP TABLE t_favorite CASCADE CONSTRAINTS;
+DROP TABLE t_notice CASCADE CONSTRAINTS;
+DROP TABLE t_auth CASCADE CONSTRAINTS;
+DROP TABLE t_faq CASCADE CONSTRAINTS;
+DROP TABLE t_menu CASCADE CONSTRAINTS;
+DROP TABLE t_file CASCADE CONSTRAINTS;
 DROP SEQUENCE t_store_seq;
 DROP SEQUENCE t_comment_seq;
 DROP SEQUENCE t_qna_seq;
@@ -54,11 +54,7 @@ CREATE SEQUENCE t_store_seq;
 CREATE TABLE t_comment (
 	c_uid	number		NOT NULL,
 	c_content	clob		NULL,
-<<<<<<< HEAD
-	c_regdate	date	default	SYSDATE,
-=======
 	c_regdate	DATE 	DEFAULT Sysdate,
->>>>>>> branch 'master' of https://github.com/YoungKwang-Park/Miracle7.git
 	c_point	number		NULL,
 	u_id	varchar2(20)		NOT NULL,
 	s_uid	number		NOT NULL
@@ -328,7 +324,7 @@ SELECT * FROM t_file;
 
 
 
-SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid;
+SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid
 
 		SELECT
 			s.s_uid suid,
@@ -461,3 +457,71 @@ SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid;
 			ROW_NUMBER() OVER(PARTITION BY s.S_UID ORDER BY s.S_UID DESC) AS RNUM				
 		FROM t_store s, T_MENU m;
 
+
+		
+		
+		
+		
+SELECT * FROM t_user;
+SELECT * FROM t_store;
+SELECT * FROM t_user;
+SELECT * FROM t_file;
+SELECT * FROM t_menu;
+SELECT * FROM t_comment;
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+-- 데이터 넣느라 여기다 좀 썼어 -- 수지
+INSERT INTO T_user VALUES ('test1', '12393', '박수지', '01098826800', 'kkomau@naver.com', '광교', '');
+INSERT INTO T_user VALUES ('test2', '12393', '최유진', '01098826800', 'cyj920309@naver.com', '석촌', '');
+INSERT INTO T_user VALUES ('test3', '12393', '정을영', '01098826800', 'jyy6237@naver.com', '일원', '');
+INSERT INTO T_user VALUES ('test4', '12393', '박수지', '01098826800', 'kkomau@naver.com', '광교', '');
+INSERT INTO T_user VALUES ('test5', '12393', '박수지', '01098826800', 'kkomau@naver.com', '광교', '');
+INSERT INTO T_user VALUES ('test6', '12393', '박수지', '01098826800', 'kkomau@naver.com', '광교', '');
+INSERT INTO T_user VALUES ('test7', '12134', 'ㅅㅌㄷ', '01098826800', 'kkomau@naver.com', '광교', '');
+INSERT INTO T_user VALUES ('test8', '3134', '호흡ㄱ', '01098826800', 'kkomau@naver.com', '광교', '');
+
+SELECT * from t_store;
+
+INSERT INTO T_STORE VALUES (T_STORE_seq.nextval, '36.5', '123-12-34124', '광교 레이크파크', '오늘 하루도 열심히', '아하하', '35.123','130.123','123','123','ceo21');
+INSERT INTO T_STORE VALUES (T_STORE_seq.nextval, '집 앞 붕어빵', '111-11-11111', '호수공원', '매출 100만원', '?', '35.111','130.222','123','123','ceo21');
+INSERT INTO T_STORE VALUES (t_store_seq.nextval, '진라이', '123-12-31231', '상현역', '화이팅','??', '35.222', '130.111', '123','123','ceo21');
+INSERT INTO T_STORE VALUES (t_store_seq.nextval, '고래선상', '114-78-78945', '광교역','힝구','203','35.2','130.1','123','3213','ceo22');
+INSERT INTO T_STORE VALUES (t_store_seq.nextval, '막걸리', '123-12-45321', '광교 중앙역','살려줘','핫챠','35.12','130.12','12312','12312','ceo23');
+INSERT INTO T_STORE VALUES (t_store_seq.nextval, '마라탕', '285-28-98718', '광교 중앙역 2번 출구','이거넘나어렵다정말','실력을키웁시다엉엉','35.123','130.12','3213','12312','ceo24');
+INSERT INTO T_STORE VALUES (t_store_seq.nextval, '훠궈 짜샤이', '285-28-98718', '광교 중앙역 2번 출구','이거넘나어렵다정말','실력을키웁시다엉엉','35.123','130.12','파일','찌벌탱','ceo25');
+INSERT INTO T_STORE VALUES (t_store_seq.nextval, '참치 먹고싶다', '285-28-98718', '광교 중앙역 2번 출구','이거넘나어렵다정말','실력을키웁시다엉엉','35.123','130.12','업로드','찌뻘탱','ceo26');
+
+SELECT * FROM T_USER ;
+CREATE SEQUENCE T_COMMENT_seq;
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '쫄면탱면', sysdate, '5', '1', 'member1');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '이걸 음식이라고', sysdate, '1', '1', 'member2');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '조금 매워요', sysdate, '4', '1', 'member3');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '단골 가즈아', sysdate, '4', '1', 'member14');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '시장이 반찬이긴 하네', sysdate, '3', '1', 'member15');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '순대 간 잘 삶아줌', sysdate, '5', '1', 'member16');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '새벽 2시에 소주랑 한잔하면, 캬~!', sysdate, '5', '1', 'member17');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '위치가 애매해요', sysdate, '2', '2', 'member11');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '시판 소스보다 맛남', sysdate, '4', '1', 'member12');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '사장님, 저랑 결혼해주세요', sysdate, '5', '1', 'member13');
+
+
+
+
+		
