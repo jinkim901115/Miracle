@@ -7,9 +7,6 @@ import com.miracle.fts.DTO.LoginDTO;
 public interface LoginDAO {
 	// 전체 SELECT
 		List<LoginDTO> select();
-		
-		
-		
 		// 새글작성 <-- DTO
 		int insert(LoginDTO dto);
 //		int insert(String id, String pw,  String pw2, String name, String addr, String phone, String email);

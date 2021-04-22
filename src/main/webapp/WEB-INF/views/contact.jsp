@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>QnA</title>
+<title>About Miracle 7</title>
+<!--  구글 지도 API -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDCWiZsFceFXVQPtwtNU7pu7uEet1-FUGY" ></script>
+
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- CSS here -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/bootstrap.min.css">
@@ -28,41 +28,52 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/qnaCss.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/map.css">
 
 </head>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		var formObj = $("form[name='writeForm']");
-		$(".write_btn").on("click", function(){
-			if(fn_valiChk()){
-				return false;
-			}
-			alert ("등록완료!");
-			formObj.attr("action", "q_write");
-			formObj.attr("method", "post");
-			formObj.submit();
-		});
-	})
-	function fn_valiChk(){
-		var regForm = $("form[name='writeForm'] .chk").length;
-		for(var i = 0; i<regForm; i++){
-			if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-				alert($(".chk").eq(i).attr("title"));
-				return true;
-			}
-			var checked_radio = $('input:radio[name=q_category]:checked').val(); // 선택된 radio의 value 가져오기
-			if(checked_radio === undefined) // 선택을 하지 않았을 경우
-			{
-			    alert("카테고리를 선택하세요.");
-			    return true;
-			}	
-		}
-	}
-</script>
 
-<body>
+	
+		<script type="text/javascript"> 
+		$(document).ready(function() {
+			var myLatlng = new google.maps.LatLng(37.49943040584343, 127.03587871044718); // 위치값 위도 경도
+			var Y_point = 37.49943040584343;// Y 좌표
+			var X_point = 127.03587871044718; // X 좌표
+			var zoomLevel = 14; // 지도의 확대 레벨 : 숫자가 클수록 확대정도가 큼
+			var markerTitle = "여기를 찾으시나요?"; // 현재 위치 마커에 마우스를 오버을때 나타나는 정보 
+			//var markerMaxWidth = 300; // 마커를 클릭했을때 나타나는 말풍선의 최대 크기 
+			// 말풍선 내용
+			var contentString = '';
+			var myLatlng = new google.maps.LatLng(Y_point, X_point);
+			var mapOptions = {
+					zoom: zoomLevel,
+					center: myLatlng,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+					}
+			var map = new google.maps.Map(document.getElementById('map_ma'), mapOptions);
+			var marker = new google.maps.Marker({
+				position: myLatlng, 
+				map: map, 
+				title: markerTitle 
+				}); 
+			var infowindow = new google.maps.InfoWindow( 
+					{
+						content: contentString,
+						maxWizzzdth: markerMaxWidth 
+						} 
+					);
+			google.maps.event.addListener(marker, 'click', function() { 
+				infowindow.open(map, marker);
+				}); 
+			}); 
+			google.maps.addListener("bounds_changed", function() {
+				if (map.getBounds().contains(marker.getPosition()))
+					marker.setAnimation(google.maps.Animation.BOUNCE);
+			});
+		
+		</script>
+
+<body style="background: mediumpurple">
 <!-- Preloader Start -->
  <div id="preloader-active">
      <div class="preloader d-flex align-items-center justify-content-center">
@@ -75,11 +86,12 @@
      </div>
  </div>
 <!-- Preloader Start -->
+
 <!-- header Start -->
-<%@include file="../nav/nav.jsp"  %>
+<%@include file="./nav/nav.jsp"  %>
 <!-- header End -->
-    
-<!-- main Start -->
+
+
 <main>
 
  <!-- Hero Start-->
@@ -88,64 +100,29 @@
          <div class="row">
              <div class="col-xl-12">
                  <div class="hero-cap text-center pt-50">
-                     <h2>QnA 질문과 답변</h2>
+                     <h2>찾아오시는 길</h2>
                  </div>
              </div>
          </div>
      </div>
  </div>
  <!--Hero End -->
-
-
-<br><br>
-
-<div class="container">
-	<div>
-		<%@include file="nav.jsp" %>
-	</div>
-	<hr class="hr1"/>
-	
-	<section id="container">
-		<form name="writeForm" method="post" action="q_write">
-			    <div class="form-group">
-					<label for="q_category" class="col-sm-2 control-label">카테고리</label>
-					  <div class="radio">
-							<input type="radio" id="q_category" name="q_category" class="chk form-control" value="이용문의" >이용문의
-							<input type="radio" id="q_category" name="q_category" class="chk form-control" value="기타문의" >기타문의
-							<input type="radio" id="q_category" name="q_category" class="chk form-control" value="파트너문의">파트너문의
-							<input type="radio" id="q_category" name="q_category" class="chk form-control" value="업체신고" >업체신고
-					  </div>	
-				</div>
-						
-				<div class="form-group">
-				
-					<label for="q_subject" class="col-sm-2 control-label">제목</label>
-					<input type="text" id="q_subject" name="q_subject" class="chk form-control" title="제목을 입력하세요" />
-				</div>
-				<div class="form-group">	
-					<label for="q_content" class="col-sm-2 control-label">내용</label>
-					<textarea id="q_content" name="q_content" class="chk form-control" title="내용을 입력하세요" ></textarea>
-				</div>
-				<div class="form-group"> 
-					<label for="u_id" class="col-sm-2 control-label">작성자</label>
-					<input type="text" id="u_id" name="u_id" class="chk form-control" value="<sec:authentication property="principal.username"/>" readonly="readonly"/>
-				</div>						
-				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
-				<button id="btn0"class="write_btn btn btn-success" type="button">작성</button>
-		</form>
-	</section>
-	<hr />
-</div>
-
-<br><br>
-
+<br><br><br><br><br>
+<form style="text-align: center;">
+<h4 style="color: blue; font-size: 30px;">서울 강남구 테헤란로26길 12</h4>
+<h2>↓↓↓</h2>
+</form>
+<div id="map_ma" class="map_1" >
+</div> 
+<br><br><br><br><br>
+ 
 
 
 </main>
-<!-- end main -->
 
+		
 <!-- footer Start -->
-<%@include file="../nav/footer.jsp" %>
+<%@include file="./nav/footer.jsp" %>
 <!-- footer End -->
 <!-- Scroll Up -->
 <div id="back-top" >

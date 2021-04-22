@@ -31,6 +31,14 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
 </head>
+<script>
+  $(function(){
+    $('#searchBtn').click(function() {
+      self.location = "listmain" + '${pageMaker.makeQuery(1)}' + "&searchType=c" +
+      "&keyword=" + encodeURIComponent($('#keywordInput').val());
+    });
+  });   
+</script>
 <body>
 
 <!-- Preloader Start -->
@@ -60,14 +68,18 @@
                                 <h1>Discover Pocha</h1>
                             </div>
                             <!--Hero form -->
-                            <form action="./listmain" class="search-box">
-                                <div class="input-form">
-                                    <input type="text" name="search" placeholder="오늘은 무얼 먹을까?" value="${keyword!=null?keyword:''}"/>
-                                </div>
-                                <div class="search-form">
-                                    <input type="submit" value="찾기"/>
-                                </div>	
-                            </form>	
+ 							<!--Hero form -->
+                       		 <form role="form" method="get" action="./listmain" class="search-box search-box2">
+                            <div class="input-form">
+                                <input type="text" id="keywordInput" name="search" value="${scri.keyword}" placeholder="오늘은 무얼 먹을까?:)">
+                            </div>
+                            <!-- Search box 
+                            <div class="search-form" value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>-->
+                   
+                                <!-- <input type="submit" value="가즈앗"/> -->
+                                <button id="searchBtn" type="button" class="butn btn-default">가즈앗</button>
+                            <!-- </div> -->	
+                        </form>	
                         </div>
                     </div>
                 </div>
@@ -94,7 +106,7 @@
                                 <img src="assets/img/gallery/sik.png" alt="">
                             </div>
                             <div class="location-details">
-                                <a href="./listmain?search=sik" class="location-btn">식</a>
+                                <a href="./listmain?searchType=c&keyword=메뉴1" class="location-btn">식</a>
                             </div>
                         </div>
                     </div>
@@ -104,7 +116,7 @@
                                 <img src="assets/img/gallery/do.png" alt="">
                             </div>
                             <div class="location-details">
-                                <a href="./listmain?search=do" class="location-btn">도</a>
+                                <a href="./listmain?searchType=c&keyword=메뉴2" class="location-btn">도</a>
                             </div>
                         </div>
                     </div>
@@ -114,7 +126,7 @@
                                 <img src="assets/img/gallery/rak.png" alt="">
                             </div>
                             <div class="location-details">	
-                                <a href="./listmain?search=rak" class="location-btn">락</a>
+                                <a href="./listmain?searchType=c&keyword=메뉴3" class="location-btn">락</a>
                             </div>
                         </div>
                     </div>

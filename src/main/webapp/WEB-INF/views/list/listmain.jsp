@@ -12,6 +12,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- CSS here -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/bootstrap.min.css">
@@ -28,6 +29,14 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
 </head>
+<script>
+  $(function(){
+    $('#searchBtn').click(function() {
+      self.location = "listmain" + '${pageMaker.makeQuery(1)}' + "&searchType=c" +
+      "&keyword=" + encodeURIComponent($('#keywordInput').val());
+    });
+  });   
+</script>
 <body>
 <!-- Preloader Start -->
  <div id="preloader-active">
@@ -56,14 +65,16 @@
                             <h2>쟈기야 오늘은 뭐먹어?</h2>
                         </div>
                         <!--Hero form -->
-                        <form action="./listmain" class="search-box search-box2">
+                        <form role="form" method="get" action="./listmain" class="search-box search-box2">
                             <div class="input-form">
-                                <input type="text" name="search" placeholder="쟈기랑 함께라면 뭐든 좋아:)">
+                                <input type="text" id="keywordInput" name="search" value="${scri.keyword}" placeholder="쟈기 오늘은 뭐먹을까?:)">
                             </div>
-                            <!-- Search box -->
-                            <div class="search-form">
-                                <input type="submit" value="가즈앗"/>
-                            </div>	
+                            <!-- Search box 
+                            <div class="search-form" value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>-->
+                   
+                                <!-- <input type="submit" value="가즈앗"/> -->
+                                <button id="searchBtn" type="button" class="butn btn-default">가즈앗</button>
+                            <!-- </div> -->	
                         </form>	
                     </div>
                 </div>
@@ -79,7 +90,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="count mb-35">
-                            <span>${result[0].cnt } 개의 리스트가 있어요!</span>
+                            <span>${pageMaker.totalCount } 개의 리스트가 있어요!</span>
                         </div>
                     </div>
                 </div>
@@ -101,14 +112,14 @@
                                     </div>
                                     <div class="list-caption">
                                         <span>영업중</span>
-                                        <h3><a href="./storeView?suid=${dto.suid }">${dto.sname }</a></h3>
-                                        <p>${dto.saddr }</p>
+                                        <h3><a href="#">${dto.s_name }</a></h3>
+                                        <p>${dto.s_addr }</p>
                                         <div class="list-footer">
 										<ul>
-											<li>${dto.scomt }</li>
+											<li>${dto.s_comt }</li>
 										</ul>
 										<ul>
-                                        	<li>영업시간 : ${dto.sopinfo }</li>
+                                        	<li>영업시간 : ${dto.s_opinfo }</li>
                                         </ul> 
                                         </div>
                                     </div>
@@ -120,32 +131,55 @@
                         </div>
                     </div>
                 </div>
-                
+       
+       <!-- 
+         <div class="search row">
+         <div class="col-xs-2 col-sm-2">
+		    <select name="searchType" class="form-control">
+		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>가게이름</option>
+		      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>메뉴이름</option>
+		      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>가게+메뉴</option>
+		    </select>
+		</div>
+        </div>
+       
+        <div class="col-xs-10 col-sm-10">
+		<div class="input-group">
+	    <input type="text" name="keyword" id="keywordInputa" value="${scri.keyword}" class="form-control"/>
+		<span class="input-group-btn">
+	    <button id="searchBtn" type="button" class="btn btn-default">검색</button>
+		</span>
+		</div>
+		 -->
+ 		   
+ 		 
                 <!-- listing Details End -->
                 
                 <!--Pagination Start  -->
-                <div class="pagination-area pt-70 text-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="single-wrap d-flex justify-content-center">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-start">
-                                            <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                        <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Pagination End  -->
+                 <div  class="col-md-offset-3">
+                      <ul class="pagination">
+                        <c:if test="${pageMaker.prev }">
+                        <li>
+                            <a href='<c:url value="list${pageMaker.makeSearch(pageMaker.startPage-1) }"/>'>이전</a>
+                        </li>
+                        </c:if>
+                        
+                        <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+                        <li>
+                            <a href='<c:url value="list${pageMaker.makeSearch(idx) }"/>'>${idx }</a>
+                        </li>
+                        </c:forEach>
+                        
+                        <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+                        <li <c:out value="${pageMaker.cri.page == pageNum ? 'class=info' : ''}" />>
+                            <a href='<c:url value="list${pageMaker.makeSearch(pageMaker.endPage+1) }"/>'>다음</a>
+                        </li>
+                       </c:if>
+                      </ul>
+                    </div> 
+                </form>
+          
         </div>
-    </div>
-</div>
 <!-- listing-area Area End -->
 
 </main>
