@@ -139,12 +139,12 @@
                         <!-- Testimonial Content -->
                         <div class="testimonial-caption ">
                             <div class="testimonial-top-cap">
-                                <p> 나중에 업데이트 할게 </p>
+                                <p> 프로젝트에 임하면서 쉽지는않았지만 함께 하는 것 뿐만 아니라 많은걸 배우게 된 시간이었습니다. 오픈 로그인API를 활용하여 Social Login 구현 및 연동 기능을 담당하였습니다. </p>
                             </div>
                             <!-- founder -->
                             <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
                                 <div class="founder-img">
-                                    <img src="assets/img/testmonial/suzi1.png" alt="">
+                                    <img src="assets/img/testmonial/sky1.png" alt="">
                                 </div>
                                 <div class="founder-text">
                                     <span>CHOI-SKY</span>
@@ -163,7 +163,7 @@
                             <!-- founder -->
                             <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
                                 <div class="founder-img">
-                                    <img src="assets/img/testmonial/suzi1.png" alt="">
+                                    <img src="assets/img/testmonial/kwang1.png" alt="">
                                 </div>
                                 <div class="founder-text">
                                     <span>전집중상중호흡</span> 
@@ -177,7 +177,7 @@
                         <!-- Testimonial Content -->
                         <div class="testimonial-caption ">
                             <div class="testimonial-top-cap">
-                                <p> 나중에 업데이트 할게 </p>
+                                <p> 걱정과 달리 열심히 빨판을 날리며 코딩하느라 정신없는 한달을 보냈습니다 문엇! 전반적인 CSS와 QnA를 담당했습니다. </p>
                             </div>
                             <!-- founder -->
                             <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
@@ -196,15 +196,15 @@
                         <!-- Testimonial Content -->
                         <div class="testimonial-caption ">
                             <div class="testimonial-top-cap">
-                                <p> 나중에 업데이트 할게 </p>
+                                <p> 팀원들에 비해 지식이 부족해서 잘 할 수 있을까 걱정이 가장 먼저 앞섰는데, 팀원들의 도움으로 맡은 파트를 잘 완수 할 수 있었습니다. 공지사항과 FAQ를 맡았습니다. </p>
                             </div>
                             <!-- founder -->
                             <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
                                 <div class="founder-img">
-                                    <img src="assets/img/testmonial/suzi1.png" alt="">
+                                    <img src="assets/img/testmonial/jung1.png" alt="">
                                 </div>
                                 <div class="founder-text">
-                                    <span>404</span>
+                                    <span>열심히일하는꿀벌</span>
                                     <p>COMMUNITY팀 - 김성중</p>
                                 </div>
                             </div>
