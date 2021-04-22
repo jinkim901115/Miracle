@@ -6,7 +6,7 @@
 
 .enb {
 	height: 25px;
-    border: solid 1px #d0bebe00;
+    border: solid 1px rgb(0, 255, 128);
     float: right;
     width: 127px;
     margin-right: 33px;
@@ -28,7 +28,7 @@
 
 .mgr8 {
 	font-size: 16px;
-	height: 32px;
+	height: 30px;
 	border: solid 1px black;
 }
 

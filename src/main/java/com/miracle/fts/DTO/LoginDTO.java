@@ -7,11 +7,11 @@ public class LoginDTO {
 	private String addr; // m_addr
 	private String addr2; // m_addr
 	private String addr3; // u_addr3
-	private String phone; // m_phone
 	private String email; // m_email
 	private String email2; // m_email
-	private String phone2;
-	private String phone3;
+	private String pn; // m_pn
+	private String pn2;
+	private String pn3;
 	private String auth;
 	
 	// 생성자
@@ -20,8 +20,8 @@ public class LoginDTO {
 //		System.out.println("WriteDTO() 객체 생성");
 	}
 	
-	public LoginDTO(String id, String pw, String name, String addr, String addr2, String phone, String email,
-			String email2, String phone2, String phone3, String auth) {
+	public LoginDTO(String id, String pw, String name, String addr, String addr2, String addr3, String pn, String email,
+			String email2, String pn2, String pn3, String auth) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -29,11 +29,11 @@ public class LoginDTO {
 		this.addr = addr;
 		this.addr2 = addr2;
 		this.addr3 = addr3;
-		this.phone = phone;
 		this.email = email;
 		this.email2 = email2;
-		this.phone2 = phone2;
-		this.phone3 = phone3;
+		this.pn = pn;
+		this.pn2 = pn2;
+		this.pn3 = pn3;
 		this.auth = auth;
 	}
 
@@ -82,12 +82,12 @@ public class LoginDTO {
 		this.addr = addr;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getPn() {
+		return pn;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPn(String pn) {
+		this.pn = pn;
 	}
 
 	public String getEmail() {
@@ -100,20 +100,20 @@ public class LoginDTO {
 
 	
 	
-	public String getPhone2() {
-		return phone2;
+	public String getPn2() {
+		return pn2;
 	}
 
-	public void setPhone2(String phone2) {
-		this.phone2 = phone2;
+	public void setPn2(String pn2) {
+		this.pn2 = pn2;
 	}
 
-	public String getPhone3() {
-		return phone3;
+	public String getPn3() {
+		return pn3;
 	}
 
-	public void setPhone3(String phone3) {
-		this.phone3 = phone3;
+	public void setPn3(String pn3) {
+		this.pn3 = pn3;
 	}
 
 	public String getAddr2() {
@@ -142,7 +142,7 @@ public class LoginDTO {
 
 	@Override
 	public String toString() {
-		return String.format("LoginDTO] %s : %s : %s : %s : %s : %s : %s : %s", 
-				id, pw, name, addr, phone, email, phone2, phone3);
+		return String.format("LoginDTO] %s : %s : %s : %s : %s : %s : %s : %s : %s : %s : %s", 
+				id, pw, name, addr, addr2, addr3, email, email2, pn, pn2, pn3);
 	}
 }

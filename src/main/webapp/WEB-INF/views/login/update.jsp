@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>수정-${list[0].id}</title>
+<title>회원정보수정-${list[0].id}</title>
 </head>
 <!-- 도로명 주소 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -74,19 +74,19 @@ function chkSubmit() {
 	}
 	 
 	 
-	//if(phone == ''){
+	//if(pn == ''){
 		//alert("핸드폰 번호를 확인해주세요");
-		//join['phone'].focus();
+		//join['pn'].focus();
 		//return false;
 	//}
-	if(document.join.phone2.value.length < 3){
+	if(document.join.pn2.value.length < 3){
 		alert("앞자리 번호를 3자리 이상 입력해주세요");
-		document.join.phone2.focus();
+		document.join.pn2.focus();
 		return false;
 	}
-	if(document.join.phone3.value.length < 3){
+	if(document.join.pn3.value.length < 3){
 		alert("뒤자리 번호를 3자리 이상 입력해주세요");
-		document.join.phone3.focus();
+		document.join.pn3.focus();
 		return false;
 	}
 	if(document.join.email.value == ''){
@@ -205,7 +205,7 @@ ID : ${list[0].id }<br> <%-- 작성자 이름은 변경 불가 --%>
 <tr>
 	<th><em class="point">휴대폰번호:</em></th> <br>
 	<td colspan="3">
-	<select name="phone" id="phone" style="width:60px" class="mgr8">
+	<select name="pn" id="pn" style="width:60px" class="mgr8">
 		<option value="010">010</option>
 		<option value="011">011</option>
 		<option value="016">016</option>
@@ -213,8 +213,8 @@ ID : ${list[0].id }<br> <%-- 작성자 이름은 변경 불가 --%>
 		<option value="018">018</option>
 		<option value="019">019</option>
 	</select> -
-	<input name="phone2" id="phone2" value="${list[0].phone2 }" pattern="[0-9]+" maxlength="4" type="text" style="width:45px"/> -
-	<input name="phone3" id="phone3" value="${list[0].phone3 }" pattern="[0-9]+" maxlength="4" type="text" style="width:45px"/>숫자만 입력해주세요^^</td>
+	<input name="pn2" id="pn2" value="${list[0].pn2 }" pattern="[0-9]+" maxlength="4" type="text" style="width:45px"/> -
+	<input name="pn3" id="pn3" value="${list[0].pn3 }" pattern="[0-9]+" maxlength="4" type="text" style="width:45px"/>숫자만 입력해주세요^^</td>
 </tr> <br>
 e-mail : <br>
 <input type="text" name="email" id="email" value="${list[0].email }"/> @
