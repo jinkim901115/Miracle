@@ -60,4 +60,6 @@
     <context:component-scan base-package="kr.co.communityDTO"/>
 	<context:component-scan base-package="kr.co.communityController" />
 	
+	
+	
 </beans:beans>
