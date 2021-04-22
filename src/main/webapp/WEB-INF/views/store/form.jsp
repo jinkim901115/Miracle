@@ -37,7 +37,7 @@
          </div>
      </div>
  </div>
-<!-- Preloader Start -->
+<!-- Preloader End -->
 
 <!-- header Start -->
 <%@include file="../nav/nav.jsp"  %>
@@ -69,8 +69,6 @@
 
 
 <!-- Main End -->
-
-
 
 </main>
 <!-- footer Start -->

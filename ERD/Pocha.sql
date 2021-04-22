@@ -54,11 +54,7 @@ CREATE SEQUENCE t_store_seq;
 CREATE TABLE t_comment (
 	c_uid	number		NOT NULL,
 	c_content	clob		NULL,
-<<<<<<< HEAD
-	c_regdate	date	default	SYSDATE,
-=======
 	c_regdate	DATE 	DEFAULT Sysdate,
->>>>>>> branch 'master' of https://github.com/YoungKwang-Park/Miracle7.git
 	c_point	number		NULL,
 	u_id	varchar2(20)		NOT NULL,
 	s_uid	number		NOT NULL
@@ -501,6 +497,7 @@ INSERT INTO T_user VALUES ('test6', '12393', '박수지', '01098826800', 'kkomau
 INSERT INTO T_user VALUES ('test7', '12134', 'ㅅㅌㄷ', '01098826800', 'kkomau@naver.com', '광교', '');
 INSERT INTO T_user VALUES ('test8', '3134', '호흡ㄱ', '01098826800', 'kkomau@naver.com', '광교', '');
 
+SELECT * from t_store;
 
 INSERT INTO T_STORE VALUES (T_STORE_seq.nextval, '36.5', '123-12-34124', '광교 레이크파크', '오늘 하루도 열심히', '아하하', '35.123','130.123','123','123','ceo21');
 INSERT INTO T_STORE VALUES (T_STORE_seq.nextval, '집 앞 붕어빵', '111-11-11111', '호수공원', '매출 100만원', '?', '35.111','130.222','123','123','ceo21');
