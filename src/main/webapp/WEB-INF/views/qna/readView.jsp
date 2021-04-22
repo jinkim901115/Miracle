@@ -93,15 +93,17 @@ $(document).ready(function(){
 	
 	    	});
 		})
+		
 		function fn_valiChk(){
-				var regForm = $("form[name='answerForm'] .chk").length;
-				for(var i = 0; i<regForm; i++){
-					if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-						alert($(".chk").eq(i).attr("title"));
-						return true;
-					}
-				}	
-		    }	
+		var regForm = $("form[name='answerForm'] .chk").length;
+		for(var i = 0; i<regForm; i++){
+			if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
+				alert($(".chk").eq(i).attr("title"));
+				return true;
+			}
+		}	
+    }
+
 	 	 //댓글 수정 View
 		$(".answerUpdateBtn").on("click", function(){
 			location.href = "q_answerUpdateView?q_uid=${read.q_uid}"
@@ -255,7 +257,7 @@ $(document).ready(function(){
 				<tr>
 						<th class="read_th">작성자 </th>
 						<td class="read_td_1"> <input type="hidden" id="u_id" name="u_id" value="${read.u_id}"  readonly="readonly"/>${read.u_id} </td>
-						<th class="read_th">작성날짜 </th>
+						<th class="read_th">작성일 </th>
 						<td class="read_td"><fmt:formatDate value="${read.q_regdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>	
 					
 				</tr>	
@@ -264,32 +266,38 @@ $(document).ready(function(){
 		</div>
 			<hr class="hr2">
 			<div class="form-group">
-				<label for="q_content" class="col-sm-2 control-label">내용</label>
+				<label for="q_content" class="col-sm-2 control-label">질문</label>
 				<textarea id="q_content" name="q_content" class="form-control-2" readonly="readonly"><c:out value="${read.q_content}" /></textarea>
 			</div>
 		
 							
 			<div class="read_btn">
-				<button type="button" class="update_btn btn btn-warning">수정</button>
+				<button id="btn0" type="button" class="update_btn btn btn-warning">수정</button>
 				
-				<button type="button" class="delete_btn btn btn-danger">삭제</button>
+				<button id="btn0" type="button" class="delete_btn btn btn-danger">삭제</button>
 			</div>
 			
 			<!-- 댓글 -->
 			<div id="answer">
+			<hr class="hr3"/>
 				<ol class="answerList">
+				
+					<p style="font-size : 14px; font-weight : 600 ">답변</p>
 					<c:forEach items="${answerList}" var="answerList">
 						<li>
-							<p>
-							작성자 : ${answerList.u_id}<br />
-							작성 날짜 :  <fmt:formatDate value="${answerList.a_regdate}" pattern="yyyy-MM-dd hh:mm:ss" />
+						<div class="answer_c">
+							<p style="font-size : 17px; font-weight : 600" >
+							 ${answerList.u_id}<br />
 							</p>
 							  
 							<p>${answerList.a_content}</p>
+							<p id="answer_p">작성일 :  <fmt:formatDate value="${answerList.a_regdate}" pattern="yyyy-MM-dd hh:mm:ss"/></p>
 							<div>
-								<button type="button" class="answerUpdateBtn btn btn-warning" data-a_uid="${answerList.a_uid}">수정</button>
-								<button type="submit" class="answerDeleteBtn btn btn-danger" data-a_uid="${answerList.a_uid}">삭제</button>
-							</div>
+								<button id="btn0" type="button" class="answerUpdateBtn btn btn-warning" data-a_uid="${answerList.a_uid}">수정</button>
+								<button id="btn0" type="submit" class="answerDeleteBtn btn btn-danger" data-a_uid="${answerList.a_uid}">삭제</button>
+								<hr class="hr4"/>
+							</div>		
+						</div>
 						</li>
 					</c:forEach>   
 				</ol>
@@ -305,23 +313,21 @@ $(document).ready(function(){
 			
 		
 				<div class="form-group">
-					<label for="u_id" class="col-sm-2 control-label">답변 작성자</label>
-					<div class="col-sm-10">
-						<input type="text" id="u_id" name="u_id" class="chk form-control" title="작성자를 입력하세요" />
+				
+					<div class="answer_box_1">
+					<label for="u_id"></label>
+						<div class="answer_box"><input  class="answer_writer" type="text" id="u_id" name="u_id" value="<sec:authentication property="principal.username"/>" readonly="readonly"/>
+					
+						<textarea id="a_content" name="a_content" class="chk answer_box_2" title="내용을 입력하세요" placeholder="자갸 . . 예쁜말만 부탁해 . .ㅎ"></textarea>
+						</div>
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label for="a_content" class="col-sm-2 control-label">답변 내용</label>
-					<div class="col-sm-10">
-						<input type="text" id="a_content" name="a_content" class="chk form-control" title="내용을 입력하세요"/>
+					<div class="col-sm-offset-2_col-sm-10">
+						<button id="btn01" type="button" class="answerWriteBtn btn btn-success">작성</button>
 					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="button" class="answerWriteBtn btn btn-success">작성</button>
-					</div>
+					<hr/>
 				</div>
 			</form>
 			
@@ -338,7 +344,7 @@ $(document).ready(function(){
 		</section>
 		
 	
-		<hr />
+		
 	</div>	
 
 <br><br>

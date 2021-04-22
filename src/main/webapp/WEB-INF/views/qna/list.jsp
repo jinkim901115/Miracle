@@ -139,7 +139,7 @@
 	<div>
 	    <%@include file="nav.jsp" %>
 	</div>
-            <hr />
+    <hr style="margin-top:10px;"/>
     <section id="container">
         <form role="form" method="get">
             <table class="table table-hover">
@@ -164,7 +164,10 @@
                 </c:forEach>
               </table>
      <div class="search row" id="srow">
-         <div class="col-xs-2 col-sm-2">
+		
+		
+		<div class="input-group">
+			<div class="input-group_1">
 		    <select name="searchType" class="form-control">
 		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 		      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -172,16 +175,15 @@
 		      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
 		      <option value="g"<c:out value="${scri.searchType eq 'g' ? 'selected' : ''}"/>>카테고리</option>
 		    </select>
-		</div>
-		
-		<div class="col-xs-10 col-sm-10">
-			<div class="input-group">
+		    </div>
+		    
 		    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
+		    
 			<span class="input-group-btn">
 		    <button id="searchBtn" type="button" class="btn btn-default">검색</button>
 			</span>
-			</div>
- 		</div>
+		</div>
+ 		
   	</div>
   	<!-- 페이징 with 검색 --> 
                     <div  class="col-md-offset-3" id=paging>
