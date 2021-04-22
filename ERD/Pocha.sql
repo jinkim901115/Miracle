@@ -1,4 +1,4 @@
-﻿﻿DROP TABLE t_user CASCADE CONSTRAINT;
+﻿DROP TABLE t_user CASCADE CONSTRAINT;
 DROP TABLE t_store CASCADE CONSTRAINT;
 DROP TABLE t_comment CASCADE CONSTRAINT;
 DROP TABLE t_report CASCADE CONSTRAINT;
@@ -54,7 +54,11 @@ CREATE SEQUENCE t_store_seq;
 CREATE TABLE t_comment (
 	c_uid	number		NOT NULL,
 	c_content	clob		NULL,
+<<<<<<< HEAD
 	c_regdate	date	default	SYSDATE,
+=======
+	c_regdate	DATE 	DEFAULT Sysdate,
+>>>>>>> branch 'master' of https://github.com/YoungKwang-Park/Miracle7.git
 	c_point	number		NULL,
 	u_id	varchar2(20)		NOT NULL,
 	s_uid	number		NOT NULL
@@ -324,7 +328,7 @@ SELECT * FROM t_file;
 
 
 
-SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid
+SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid;
 
 		SELECT
 			s.s_uid suid,
@@ -339,4 +343,121 @@ SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid
 			t_store s, t_menu m
 		WHERE
 			s.s_uid = m.s_uid;
+		
+		
+		
+		SELECT a,b,c,d 
+		FROM 
+			(
+				SELECT 
+					a,b,c,d,
+					ROW_NUMBER() OVER (PARTITION BY a ORDER BY d desc) rn
+				FROM eeeee		
+			)
+		WHERE rn <= 3
+		ORDER BY a,d DESC, c;
+	
+		SELECT  Q_UID,  
+				Q_CATEGORY,
+		        Q_SUBJECT, 
+		        Q_CONTENT,
+		        U_ID,
+		        Q_VIEWCNT, 
+		        Q_REGDATE
+		 FROM ( 
+		        SELECT Q_UID,
+		               Q_CATEGORY, 
+		               Q_SUBJECT, 
+		               Q_CONTENT, 
+		               U_ID, 
+		               Q_VIEWCNT,
+		               Q_REGDATE, 
+		               ROW_NUMBER() OVER(PARTITION BY Q_UID ORDER BY Q_UID DESC) AS RNUM
+		         FROM T_QNA 
+		         WHERE 1=1 
+		       ) 
+		WHERE RNUM BETWEEN 1 AND 3
+		ORDER BY Q_UID DESC;
+	
+	
+	SELECT
+			s_uid, 
+			s_name, 
+			s_biznum, 
+			s_addr, 
+			s_comt, 
+			s_opinfo, 
+			m_uid, 
+			m_name 
+	FROM (
+		SELECT	
+			s.s_uid, 
+			s_name, 
+			s_biznum, 
+			s_addr, 
+			s_comt, 
+			s_opinfo, 
+			m_uid, 
+			m_name,
+			ROW_NUMBER() OVER(PARTITION BY s.S_UID ORDER BY s.S_UID DESC) AS RNUM				
+		FROM t_store s, T_MENU m	
+		WHERE 1=1
+		) 
+	WHERE RNUM BETWEEN 1 AND 3
+	ORDER BY s_uid DESC;
+		
+	
+		SELECT
+			s.s_uid, 
+			s.s_name, 
+			s.s_biznum, 
+			s.s_addr,
+			s.s_comt,
+			s.s_opinfo,
+			m.m_uid,
+			m.m_name,
+		ROW_NUMBER() over(ORDER BY s.S_UID ) AS RNUM	
+		FROM
+			t_store s, t_menu m
+		WHERE s.s_uid = m.s_uid;
+		
+		
+	
+
+
+		SELECT	s_uid, 
+				s_name, 
+				s_biznum, 
+				s_addr, 
+				s_comt, 
+				s_opinfo, 
+				m_uid, 
+				m_name,
+			ROW_NUMBER() OVER(ORDER BY s_UID DESC) AS RNUM				
+		FROM t_store s, t_menu m
+		WHERE s.s_uid = m.s_uid;
+
+		
+	
+		        SELECT Q_UID,
+		               Q_CATEGORY, 
+		               Q_SUBJECT, 
+		               Q_CONTENT, 
+		               U_ID, 
+		               Q_VIEWCNT,
+		               Q_REGDATE, 
+		               ROW_NUMBER() OVER(ORDER BY Q_UID DESC) AS RNUM
+		         FROM T_QNA;    
+		        
+		       SELECT	
+			s.s_uid, 
+			s_name, 
+			s_biznum, 
+			s_addr, 
+			s_comt, 
+			s_opinfo, 
+			m_uid, 
+			m_name,
+			ROW_NUMBER() OVER(PARTITION BY s.S_UID ORDER BY s.S_UID DESC) AS RNUM				
+		FROM t_store s, T_MENU m;
 

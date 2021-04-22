@@ -8,31 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.miracle.fts.DAO.ListDAO;
 import com.miracle.fts.DTO.ListDTO;
+import com.miracle.fts.DTO.SearchCriteria;
 
-@Service
-public class ListService {
 
-	ListDAO dao;
+public interface ListService {
 	
-	private SqlSession sqlSession;
-	
-	@Autowired
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-
-	public ListService() {
-		super();
-	}
-	
-	public List<ListDTO> list(){
-		dao = sqlSession.getMapper(ListDAO.class);
-		return dao.select();
-	}
-	
-	public List<ListDTO> listCnt() {
-		dao = sqlSession.getMapper(ListDAO.class);
-		return dao.selectCnt();
-	}
+	 public List<ListDTO> select(SearchCriteria scri) throws Exception ;
+		
+	 public int selectCount(SearchCriteria scri) throws Exception ;
 	
 }

@@ -21,7 +21,7 @@
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="./index">Home</a></li>
                                             <li><a href="./about">About</a></li>
-                                            <li><a href="./listmain?search=">List</a></li>
+                                            <li><a href="./listmain">List</a></li>
                                             <li><a href="./n_list">Community</a>
                                             	<ul class="submenu">
                                             		<li><a href="./n_list">공지사항</a></li>
@@ -29,7 +29,6 @@
                                             		<li><a href="./qna">질문과 답변</a></li>
                                             	</ul>
                                             </li>
-                                            <li class="add-list"><a href="./favorite"><i class="ti-plus"></i> 즐겨찾기</a></li>
                                             <li class="login">
                                             	<sec:authorize access="isAnonymous()">
 	                                            	<a href="./login"> Sign In </a>

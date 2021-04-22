@@ -259,7 +259,60 @@
 		    <version>3.1.1.RELEASE</version>
 		</dependency>
 		<!-- 트랜젝션 END -->
-		
+	    <!-- local date time (2.12.1에서 LocalDateTime등의 java.time.* 객체 변환용) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.12.1</version>
+        </dependency>
+        
+      <!-- /javax.activation-api -->
+      <dependency>
+          <groupId>javax.activation</groupId>
+          <artifactId>javax.activation-api</artifactId>
+          <version>1.2.0</version>
+      </dependency>
+      
+      <dependency>
+          <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
+          <version>2.0.1.Final</version>
+      </dependency>
+      
+      <dependency>
+          <groupId>org.hibernate.validator</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>6.0.1.Final</version>
+      </dependency>
+      
+      <dependency>
+          <groupId>com.servlets</groupId>
+          <artifactId>cos</artifactId>
+          <version>05Nov2002</version>
+      </dependency>
+
+       <!-- 첨부파일 START-->
+       <!-- MultipartHttpServletRequset -->
+      <dependency>
+         <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>2.0.1</version>
+      </dependency>
+   
+       <dependency>
+         <groupId>commons-fileupload</groupId>
+         <artifactId>commons-fileupload</artifactId>
+         <version>1.2.2</version>
+      </dependency>
+         
+      <!-- 이미지 크기 변환 라이브러리 -->
+      <dependency>
+          <groupId>org.imgscalr</groupId>
+          <artifactId>imgscalr-lib</artifactId>
+          <version>4.2</version>
+      </dependency>
+
+       	
 		
 	</dependencies>
     <build>
