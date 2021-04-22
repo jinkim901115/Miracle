@@ -28,6 +28,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/qnaCss.css">
 
 
 
@@ -164,7 +165,7 @@
 	<div>
 		<%@include file="nav.jsp" %>
 	</div>
-	<hr />
+	<hr class="hr1"/>
 	
 	<section id="container">
 		<form name="updateForm" role="form" method="post" action="q_update">
@@ -189,7 +190,7 @@
 			</div>
 			<div class="form-group">
 				<label for="u_id" class="col-sm-2 control-label">작성자</label>
-				<input type="text" id="u_id" name="u_id form-control" value="${update.u_id}" readonly="readonly"/>
+				<input type="text" id="u_id" name="u_id" class="chk form-control"value="${update.u_id}" readonly="readonly"/>
                   </div>
                
                   <div class="form-group">     
@@ -197,9 +198,9 @@
 				<fmt:formatDate value="${update.q_regdate}" pattern="yyyy-MM-dd"/>					
 			</div>
 			<div>
-				<button type="button" class="update_btn btn btn-success">저장</button>
+				<button id="btn0" type="button" class="update_btn btn btn-success">저장</button>
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
-				<button type="button" class="cancel_btn btn btn-danger">취소</button>
+				<button id="btn0" type="button" class="cancel_btn btn btn-danger">취소</button>
 			</div>
 		</form>		
 	</section>

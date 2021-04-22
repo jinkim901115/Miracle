@@ -28,6 +28,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/qnaCss.css">
 
 </head>
 
@@ -153,25 +154,25 @@
 <br><br>
 
 <div class="container">
-	<hr />
-	 
 	<div>
 		<%@include file="nav.jsp" %>
 	</div>
-	<hr />
+	<hr class="hr1"/>
 	
 	<section id="container">
 		<form name="writeForm" method="post" action="q_write">
 			    <div class="form-group">
 					<label for="q_category" class="col-sm-2 control-label">카테고리</label>
-					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="이용문의" >이용문의
-					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="기타문의" >기타문의
-					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="파트너문의" >파트너문의
-					<input type="radio" id="q_category" name="q_category" class="chk form-control" value="업체신고" >업체신고
-
+					  <div class="radio">
+							<input type="radio" id="q_category" name="q_category" class="chk form-control" value="이용문의" >이용문의
+							<input type="radio" id="q_category" name="q_category" class="chk form-control" value="기타문의" >기타문의
+							<input type="radio" id="q_category" name="q_category" class="chk form-control" value="파트너문의">파트너문의
+							<input type="radio" id="q_category" name="q_category" class="chk form-control" value="업체신고" >업체신고
+					  </div>	
 				</div>
-					
+						
 				<div class="form-group">
+				
 					<label for="q_subject" class="col-sm-2 control-label">제목</label>
 					<input type="text" id="q_subject" name="q_subject" class="chk form-control" title="제목을 입력하세요" />
 				</div>
@@ -181,10 +182,10 @@
 				</div>
 				<div class="form-group"> 
 					<label for="u_id" class="col-sm-2 control-label">작성자</label>
-					<input type="text" id="u_id" name="u_id" class="chk form-control" title="작성자를 입력하세요"/>
+					<input type="text" id="u_id" name="u_id" class="chk form-control" value="<sec:authentication property="principal.username"/>" readonly="readonly"/>
 				</div>						
 				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
-				<button class="write_btn btn btn-success" type="button">작성</button>
+				<button id="btn0"class="write_btn btn btn-success" type="button">작성</button>
 		</form>
 	</section>
 	<hr />
