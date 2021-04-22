@@ -112,8 +112,8 @@
                                     </div>
                                     <div class="list-caption">
                                         <span>영업중</span>
-                                        <h3><a href="./storeView?suid=${dto.suid }">${dto.sname }</a></h3>
-                                        <p>${dto.saddr }</p>
+                                        <h3><a href="./storeView?suid=${dto.s_uid }">${dto.s_name }</a></h3>
+                                        <p>${dto.s_addr }</p>
                                         <div class="list-footer">
 										<ul>
 											<li>${dto.s_comt }</li>

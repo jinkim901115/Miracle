@@ -21,9 +21,9 @@
                                 <div class="footer-tittle">
                                     <h4>Quick Link</h4>
                                     <ul>
-                                        <li><a href="./index">Home</a></li>
-                                        <li><a href="./listmain">리스트</a></li>
-                                        <li><a href="./favorite">즐겨찾기</a></li>
+                                        <li style="display:block;float:none;"><a href="./index">Home</a></li>
+                                        <li style="display:block;float:none;"><a href="./listmain">리스트</a></li>
+                                        <li style="display:block;float:none;"><a href="./favorite">즐겨찾기</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -33,9 +33,9 @@
                                 <div class="footer-tittle">
                                     <h4>이용관련</h4>
                                     <ul>
-                                        <li><a href="#">이용약관</a></li>
-                                        <li><a href="#">개인정보책임</a></li>
-                                        <li><a href="./contact">찾아오시는길</a></li> 
+                                        <li style="display:block;float:none;"><a href="#">이용약관</a></li>
+                                        <li style="display:block;float:none;"><a href="#">개인정보책임</a></li>
+                                        <li style="display:block;float:none;"><a href="./contact">찾아오시는길</a></li> 
                                     </ul>
                                 </div>
                             </div>
