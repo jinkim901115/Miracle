@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Store List</title>
+<title>Owned Store Lists</title>
+<%-- <title>${dto.uid }님의 소유 포차 목록</title> --%>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -27,7 +28,29 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
+
+
+
+
+<style>
+table {
+	width: 80%;
+	text-align: center;
+}
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+a {text-decoration: none;}
+th {background-color: tomato;}
+
+</style>
+
+
+
 </head>
+
+
 <body>
 <!-- Preloader Start -->
  <div id="preloader-active">
@@ -40,115 +63,62 @@
          </div>
      </div>
  </div>
-<!-- Preloader Start -->
+<!-- Preloader Ends -->
+
 <!-- header Start -->
 <%@include file="../nav/nav.jsp"  %>
 <!-- header End -->
 
-<main>
 
- <!-- Hero Start-->
+
+<main>
+ 		<!-- Hero Start-->
         <div class="hero-area3 hero-overly2 d-flex align-items-center ">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-8 col-lg-9">
                         <div class="hero-cap text-center pt-50 pb-20">
-                            <h2>쟈기야 오늘은 뭐먹어?</h2>
+                            <h2>소유 포차 목록</h2>
                         </div>
-                        <!--Hero form -->
-                        <form action="./listmain" class="search-box search-box2">
-                            <div class="input-form">
-                                <input type="text" name="search" placeholder="쟈기랑 함께라면 뭐든 좋아:)">
-                            </div>
-                            <!-- Search box -->
-                            <div class="search-form">
-                                <input type="submit" value="가즈앗"/>
-                            </div>	
-                        </form>	
                     </div>
                 </div>
             </div>
         </div>
         <!--Hero End -->
 
-<!-- listing Area Start -->
-<div class="listing-area pt-120 pb-120">
-    <div class="container">
-            <!-- Right content -->
-            <div class="col-xl-8 col-lg-8 col-md-6">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="count mb-35">
-                            <span>${result[0].cnt } 개의 리스트가 있어요!</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- listing Details Stat-->
-                <div class="listing-details-area">
-                    <div class="container">
-                        <div class="row">
-           	                <c:choose>
-			                <c:when test="${empty list || fn:length(list) == 0 }">
-			                </c:when>
-			                <c:otherwise>
-			                <c:forEach var="dto" items="${list }">
-                            <div class="col-lg-6 ">
-                                <div class="single-listing mb-30">
-                                    <div class="list-img">
-                                        <img src="assets/img/gallery/pocha1.png" alt="">
-                                        <!-- <span>Open</span> -->
-                                    </div>
-                                    <div class="list-caption">
-                                        <span>영업중</span>
-                                        <h3><a href="./storeView?suid=${dto.suid }">${dto.sname }</a></h3>
-                                        <p>${dto.saddr }</p>
-                                        <div class="list-footer">
-										<ul>
-											<li>${dto.scomt }</li>
-										</ul>
-										<ul>
-                                        	<li>영업시간 : ${dto.sopinfo }</li>
-                                        </ul> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </c:forEach>
-			                </c:otherwise>
-			                </c:choose>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- listing Details End -->
-                
-                <!--Pagination Start  -->
-                <div class="pagination-area pt-70 text-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="single-wrap d-flex justify-content-center">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-start">
-                                            <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                        <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Pagination End  -->
-        </div>
-    </div>
-</div>
-<!-- listing-area Area End -->
+
+	<table>
+		<tr>
+			<th style="width: 5%">#</th>
+			<th style="width: 15%">썸네일</th>
+			<th style="width: 20%">포차 이름</th>
+			<th style="width: 40%">포차 주소</th>
+		</tr>
+
+		<c:choose>
+			<c:when test="${empty list || fn:length(list) == 0 }"></c:when>
+		<c:otherwise>
+			<c:forEach var="dto" items="${list }">
+				<tr>
+					<td>${dto.suid }</td> 
+					<td>${dto.sthn }</td> 
+					<td><a href="./view?suid=${dto.suid }">${dto.sname } (${dto.sccnt })</a></td> 
+					<td style="text-align: left; padding: 0px 0px 0px 10px;">${dto.saddr }</td>					
+				</tr>			
+			</c:forEach>
+		</c:otherwise>
+		</c:choose>
+	</table>
+	<br>
+	<button onclick="location.href='./write'" class="btn addBtn"><i class="fa fa-pencil"></i>포차 추가</button><br> 
+	<button onclick="location.href='../list/listMain'" class="btn mainBtn"><i class="fa fa-list"></i>메인 페이지</button><br> <!-- 메인 url로 정정 필요 -->
+	<hr>
+	
+	
+	
 
 </main>
+
 <!-- footer Start -->
 <%@include file="../nav/footer.jsp" %>
 <!-- footer End -->
@@ -194,3 +164,5 @@
 <script src="${pageContext.request.contextPath }/assets/js/main.js"></script>
 </body>
 </html>
+
+

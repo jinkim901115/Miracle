@@ -54,11 +54,11 @@
 		<beans:property name="transactionManager" ref="transactionManager"/>
 	</beans:bean>
 	
-    <!-- scan -->
+    <!-- scan
     <context:component-scan base-package="kr.co.communityService"/>
     <context:component-scan base-package="kr.co.communityDAO"/>
     <context:component-scan base-package="kr.co.communityDTO"/>
-	<context:component-scan base-package="kr.co.communityController" />
+	<context:component-scan base-package="kr.co.communityController" /> -->
 	
 	<beans:bean name="multipartResolver" id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760"/>		
