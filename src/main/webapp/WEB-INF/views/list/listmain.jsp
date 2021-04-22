@@ -121,6 +121,9 @@
 										<ul>
                                         	<li>영업시간 : ${dto.s_opinfo }</li>
                                         </ul> 
+                                        <ul>
+                                        	<li>대표메뉴 : ${dto.m_name }</li>
+                                        </ul> 
                                         </div>
                                     </div>
                                 </div>
@@ -159,20 +162,20 @@
                  <div  class="col-md-offset-3">
                       <ul class="pagination">
                         <c:if test="${pageMaker.prev }">
-                        <li>
-                            <a href='<c:url value="list${pageMaker.makeSearch(pageMaker.startPage-1) }"/>'>이전</a>
+                        <li style="color=black;">
+                            <a href='<c:url value="listmain${pageMaker.makeSearch(pageMaker.startPage-1) }"/>'>이전</a>
                         </li>
                         </c:if>
                         
                         <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
                         <li>
-                            <a href='<c:url value="list${pageMaker.makeSearch(idx) }"/>'>${idx }</a>
+                            <a href='<c:url value="listmain${pageMaker.makeSearch(idx) }"/>'>${idx }</a>
                         </li>
                         </c:forEach>
                         
                         <c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
                         <li <c:out value="${pageMaker.cri.page == pageNum ? 'class=info' : ''}" />>
-                            <a href='<c:url value="list${pageMaker.makeSearch(pageMaker.endPage+1) }"/>'>다음</a>
+                            <a href='<c:url value="listmain${pageMaker.makeSearch(pageMaker.endPage+1) }"/>'>다음</a>
                         </li>
                        </c:if>
                       </ul>
