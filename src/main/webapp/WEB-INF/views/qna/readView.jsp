@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
@@ -218,10 +218,13 @@ $(document).ready(function(){
 		
 							
 			<div class="read_btn">
+		
 				<button id="btn0" type="button" class="update_btn btn btn-warning">수정</button>
 				
 				<button id="btn0" type="button" class="delete_btn btn btn-danger">삭제</button>
 			</div>
+			
+			
 			
 			<!-- 댓글 -->
 			<div id="answer">
@@ -230,7 +233,7 @@ $(document).ready(function(){
 				
 					<p style="font-size : 14px; font-weight : 600 ">답변</p>
 					<c:forEach items="${answerList}" var="answerList">
-						<li>
+						
 						<div class="answer_c">
 							<p style="font-size : 17px; font-weight : 600" >
 							 ${answerList.u_id}<br />
@@ -244,7 +247,7 @@ $(document).ready(function(){
 								<hr class="hr4"/>
 							</div>		
 						</div>
-						</li>
+					
 					</c:forEach>   
 				</ol>
 			</div>

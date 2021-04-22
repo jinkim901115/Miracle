@@ -112,14 +112,17 @@
                                     </div>
                                     <div class="list-caption">
                                         <span>영업중</span>
-                                        <h3><a href="./storeView?suid=${dto.suid }">${dto.sname }</a></h3>
-                                        <p>${dto.saddr }</p>
+                                        <h3><a href="./storeView?suid=${dto.s_uid }">${dto.s_name }</a></h3>
+                                        <p>${dto.s_addr }</p>
                                         <div class="list-footer">
 										<ul>
 											<li>${dto.s_comt }</li>
 										</ul>
 										<ul>
                                         	<li>영업시간 : ${dto.s_opinfo }</li>
+                                        </ul> 
+                                        <ul>
+                                        	<li>대표메뉴 : ${dto.m_name }</li>
                                         </ul> 
                                         </div>
                                     </div>
@@ -159,7 +162,7 @@
                  <div  class="col-md-offset-3">
                       <ul class="pagination">
                         <c:if test="${pageMaker.prev }">
-                        <li>
+                        <li style="color=black;">
                             <a href='<c:url value="listmain${pageMaker.makeSearch(pageMaker.startPage-1) }"/>'>이전</a>
                         </li>
                         </c:if>

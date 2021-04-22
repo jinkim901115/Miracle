@@ -3,6 +3,7 @@
 a, button {
 	color : black;
 }
+
 a:hover{
 	color : lightgrey;
 }
@@ -48,6 +49,7 @@ button#searchBtn {
     height: 32px;
     width: 180px;
     flex : none;	
+    font-size: 14px;
 }
  .input-group>.form-control:not(:last-child	) {
     border-radius: 4px;
@@ -232,12 +234,13 @@ padding: 15px 20px;
     border-bottom: 2px solid #bfc4d3;
 }
 .hr4{
-	margin: 1px 0 20px 0;
+	margin: 0 ;
     border-bottom: 1px solid #d9dbe2;
 }
 .answer_c{
 	background-color :#96bde52b;
 	padding-left :6px;
+	width:82.5%;
 }
 
 .form-group input[type="radio"] {
@@ -260,9 +263,8 @@ button#btn0{
 	font-size: 13px;
     color: white;
     background-color: #6787c07d;
-    margin: 0;
+    margin: 4px;
     width: 65px;	
-    margin-top: 4px;
 }
 button#btn0::before{
 
@@ -287,3 +289,4 @@ input#u_id{
 p#answer_p{
 	font-size : 12px; margin-bottom:0px; float : right; margin-right: 4px;
 }
+
