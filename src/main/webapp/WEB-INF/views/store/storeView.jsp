@@ -165,9 +165,9 @@
 		<div id="box body-store">		
 			<div id="box body-head"> <!-- //TODO  -->
 				<div><h3> ${list[0].sname }</h3></div>  <div>(${list[0].av}점, ${list[0].sccnt}개의 후기)</div>
-				<i class="fas fa-map-marker-alt">${list[0].saddr }</i>  
+				<i class="fas fa-map-marker-alt"> ${list[0].saddr }</i>  
 				<div class="box pull-right">
-					즐겨찾기: <img src="assets/img/store/store_fav0.jpg" alt="imgFav" width="15" height="15">
+					즐겨찾기: <img src="assets/img/store/store_fav0.jpg" alt="imgFav" width="15" height="15" onclick="">
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -183,7 +183,7 @@
 			<div> 
 				<c:forEach var="th" items="${thList}">
 					<!-- //TODO write/update할 때 메뉴 옆에 체크박스 넣어서 value 값 1/0이냐에 따라 왕관 이미지 출력/히든 처리 -->
-					<div><img src="asstes/img/store_menu_best.png" alt="bestMenu" width="15" height="15"/></div>
+					<div><img src="assets/img/store_menu_best.png" alt="bestMenu" width="15" height="15"/></div>
 					<div><img src="<c:url value='/store/file/display/img?fuid=${th.f_uid}' />" style="width: 150px;height: 150px;"/> </div>
 			<!-- //TODO t_menu 테이블의 메뉴 이름 가져오기		<p>${m.m_name }</p> -->
 				</c:forEach>
@@ -224,23 +224,16 @@
 		</div>
 		
 		<div id="box body-reply">	
-			<div class="box box-store">
-				
-				</div>				
-			
-				<div class="box-footer">
-			    	<form role="form" method="post">
-						<input type="hidden" name="suid" value="${dto.suid}">
-			        </form>
+			<div class="box box-footer">
+			    <form role="form" method="post">
+					<input type="hidden" name="suid" value="${dto.suid}">
+			    </form>
 			        
-			        <button onclick="location.href='storeList'" class="btn btn-primary listBtn"><i class="fa fa-list"></i> 목록</button>
-			        <!-- <c:if test="${t_user.u_id == dto.u_id}"> -->
-						<!-- login.userID 가 t_user.u_id 로 변형...  -->
-			          	<div class="pull-right">
-			               	<button onclick="location.href='storeUpdate?suid=${list[0].suid }'" class="btn btn-warning modBtn"><i class="fa fa-edit"></i> 정보 수정</button>
-			                <button onclick="chkDelete(${list[0].suid })" class="btn btn-danger delBtn"><i class="fa fa-trash"></i> 포차 삭제</button>  
-			           	</div>
-			       	<!--</c:if>-->
+			    <div><button onclick="location.href='storeList'" class="btn-sm btn-primary listBtn"><i class="fa fa-list"></i> 목록</button></div>
+			    	<div class="pull-right">
+			        	<button onclick="location.href='storeUpdate?suid=${list[0].suid }'" class="btn-sm btn-warning modBtn"><i class="fa fa-edit"></i> 정보 수정</button>
+			        	<button onclick="chkDelete(${list[0].suid })" class="btn-sm btn-danger delBtn"><i class="fa fa-trash"></i> 포차 삭제</button>  
+			    	</div>
 				</div>			
 			</div>
 			
