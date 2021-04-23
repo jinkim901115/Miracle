@@ -467,8 +467,9 @@ SELECT count(s.s_uid) cnt FROM t_store s, t_menu m WHERE s.s_uid = m.s_uid
 SELECT * FROM t_user;
 SELECT * FROM t_store;
 SELECT * FROM t_user;
-SELECT * FROM t_file;
+SELECT * FROM t_file ORDER BY f_uid desc;
 SELECT * FROM t_menu;
+
 SELECT * FROM t_comment;
 	
 		
@@ -510,20 +511,45 @@ INSERT INTO T_STORE VALUES (t_store_seq.nextval, '마라탕', '285-28-98718', '�
 INSERT INTO T_STORE VALUES (t_store_seq.nextval, '훠궈 짜샤이', '285-28-98718', '광교 중앙역 2번 출구','이거넘나어렵다정말','실력을키웁시다엉엉','35.123','130.12','파일','찌벌탱','ceo25');
 INSERT INTO T_STORE VALUES (t_store_seq.nextval, '참치 먹고싶다', '285-28-98718', '광교 중앙역 2번 출구','이거넘나어렵다정말','실력을키웁시다엉엉','35.123','130.12','업로드','찌뻘탱','ceo26');
 
-SELECT * FROM T_USER ;
+SELECT * FROM T_COMMENT;
+
 CREATE SEQUENCE T_COMMENT_seq;
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '쫄면탱면', sysdate, '5', '1', 'member1');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '이걸 음식이라고', sysdate, '1', '1', 'member2');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '조금 매워요', sysdate, '4', '1', 'member3');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '단골 가즈아', sysdate, '4', '1', 'member14');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '시장이 반찬이긴 하네', sysdate, '3', '1', 'member15');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '순대 간 잘 삶아줌', sysdate, '5', '1', 'member16');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '새벽 2시에 소주랑 한잔하면, 캬~!', sysdate, '5', '1', 'member17');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '위치가 애매해요', sysdate, '2', '2', 'member11');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '시판 소스보다 맛남', sysdate, '4', '1', 'member12');
-INSERT INTO t_comment VALUES (T_comment_seq.nextval, '사장님, 저랑 결혼해주세요', sysdate, '5', '1', 'member13');
+
+SELECT * FROM T_USER ;
+
+
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '쫄면탱면', sysdate, '5', 'memeber1', '61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '이걸 음식이라고', sysdate, '1',  'member2', '61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '조금 매워요', sysdate, '4', 'member3', '61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '단골 가즈아', sysdate, '4', 'member14','61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '시장이 반찬이긴 하네', sysdate, '3',  'member15','61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '순대 간 잘 삶아줌', sysdate, '5', 'member16','61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '새벽 2시에 소주랑 한잔하면, 캬~!', sysdate, '5', 'member17','61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '위치가 애매해요', sysdate, '2', 'member11','61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '시판 소스보다 맛남', sysdate, '4', 'member12','61');
+INSERT INTO t_comment VALUES (T_comment_seq.nextval, '사장님, 저랑 결혼해주세요', sysdate, '5',  'member13','61');
+
+
+SELECT * FROM T_STORE ORDER BY 1 DESC;
+
+INSERT INTO t_store values(t_);
+
+SELECT * FROM T_FILE 
 
 
 
-
+	SELECT 
+			s_uid "suid",
+			s_name sname,
+			s_biznum sbiznum,
+			s_addr saddr,
+			s_comt scomt,
+			s_opinfo sopinfo,
+			s_lat slat,
+			s_lng slng,
+			s_pic spic,
+			s_thn sthn,
+			(select count(*) FROM T_COMMENT WHERE S_UID = s.S_UID) sccnt,
+			(select SUM(C_POINT)/count(*) FROM T_COMMENT WHERE S_UID = s.S_UID) av
+		FROM t_store s
 		

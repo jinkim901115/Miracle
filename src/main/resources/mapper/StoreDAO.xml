@@ -16,7 +16,8 @@
              s.s_lng slng,
              s.s_pic spic,
              s.s_thn sthn,
-             s.u_id "uid"
+             s.u_id "uid",
+             (select count(*) FROM T_COMMENT WHERE S_UID = s.S_UID) sccnt
 		FROM t_store s, t_user u 
 		WHERE s.u_id = u.u_id
 		ORDER BY s.s_uid DESC
@@ -45,7 +46,7 @@
 
 
 	<select id="selectBySuid" resultType="com.miracle.fts.DTO.StoreDTO">
-		SELECT 
+SELECT 
 			s_uid "suid",
 			s_name sname,
 			s_biznum sbiznum,
@@ -55,9 +56,11 @@
 			s_lat slat,
 			s_lng slng,
 			s_pic spic,
-			s_thn sthn
-		FROM t_store 
-		WHERE 
+			s_thn sthn,
+			(select count(*) FROM T_COMMENT WHERE S_UID = s.S_UID) sccnt,
+			(select SUM(C_POINT)/count(*) FROM T_COMMENT WHERE S_UID = s.S_UID) av
+		FROM t_store s
+		where 
 			s_uid = #{suid}	
 	</select>
 
@@ -90,13 +93,6 @@
 	</delete>	
 	
 	 
-	 
-	 
-	 
-	 
-	 
-	 
-
 
     <select id="listAll" resultType="com.miracle.fts.DTO.StoreDTO">
         <![CDATA[

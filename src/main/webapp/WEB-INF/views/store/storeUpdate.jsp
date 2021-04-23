@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
   
 <c:choose>
 	<c:when test="${empty list || fn:length(list) == 0 }">
@@ -15,57 +14,66 @@
 	    
 <!DOCTYPE html>
 <html lang="ko">
-	<head>
-		<meta charset="UTF-8">
-		<title>정보 수정: ${list[0].sname }</title> 					
-		<style>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>정보 수정: ${list[0].sname }</title> 	
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+		
+<!-- CSS here -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/slicknav.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/flaticon.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/magnific-popup.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/slick.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
+		
+			
+	<%-- 테스트 용으로 넣어둔 것  --%>
+	<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
+	<!-- iCheck -->
+	<link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
+	<%--lightbox--%>
+	<link rel="stylesheet" href="/bower_components/lightbox/css/lightbox.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
+	<!-- AdminLTE Skins -->
+	<link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
+	<%--fileupload--%>
+	<link rel="stylesheet" media="screen" href="/bower_components/fileupload/css/jasny-bootstrap.min.css">
+    
+    
+				
+	<style>
 		th {background-color: tomato; font-size: 12px; text-align: left; width:20%;}
 		#c_type {color: tomato; font-size: 12px; text-align: left;}
 		table {width:80%;}
 		#td {width:20%;}
 		#td1 {width:40%;}
-		
-		
-		.fileDrop {
-		    width: 100%;
-		    height: 200px;
-		    border: 2px dotted #0b58a2;
-		}
-					
-		
-		</style>
+	</style>
 			
-				
-							
-				<%-- 테스트 용으로 넣어둔 것  --%>
-				
-				<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-			    
-			    <!-- Font Awesome -->
-			    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
-			    
-			    <!-- Ionicons -->
-			    <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
-			    
-			    <!-- iCheck -->
-			    <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
-			    
-			    <%--lightbox--%>
-			    <link rel="stylesheet" href="/bower_components/lightbox/css/lightbox.css">
-			    
-			    <!-- Theme style -->
-			    <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
-			    
-			    <!-- AdminLTE Skins -->
-			    <link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
-			    
-			    <%--fileupload--%>
-			    <link rel="stylesheet" media="screen" href="/bower_components/fileupload/css/jasny-bootstrap.min.css">
-    
-    
+			
 				
 				
 	</head>
+			
+			
+			
+			
 			
 	<script>
 		function chkSubmit(){
@@ -131,9 +139,55 @@
 	</script>
 			
 			
+			
+			
+			
+			
 	<body>
+	
+	<!-- Preloader Start -->
+	<div id="preloader-active">
+	    <div class="preloader d-flex align-items-center justify-content-center">
+	        <div class="preloader-inner position-relative">
+	            <div class="preloader-circle"></div>
+	            <div class="preloader-img pere-text">
+	                <img src="assets/img/logo/logoOne.jpg" alt="">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- Preloader End -->
+
+<!-- header Start -->
+<%@include file="../nav/nav.jsp"  %>
+<!-- header End -->
+
+
+<main>
+
+ <!-- Hero Start-->
+ <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
+     <div class="container">
+         <div class="row">
+             <div class="col-xl-12">
+                 <div class="hero-cap text-center pt-50">
+                     <h2>About Miracle7</h2>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!--Hero End -->
+
+<!-- Main Start -->
+
+	
+	
+	
+	
+	
 		<h2>포차 정보 수정</h2>
-		<form id="modifyForm" name="frm" action="updateOk" method="post" onsubmit="return chkSubmit()">
+		<form id="modifyForm" name="frm" action="storeUpdateOk" method="post" onsubmit="return chkSubmit()">
 			<input type="hidden" name="suid" value="${list[0].suid }"/>
 			<table>
 				<tr>
@@ -199,13 +253,10 @@
 		<hr>
 		
 		<button onclick="history.go(-1);" class="btn btn-warning cancelBtn"><i class="fa fa-trash"></i> 취소</button>
-		<button onclick="location.href='list'" class="btn btn-success listBtn"><i class="fa fa-list"></i>소유 포차 목록</button>
+		<button onclick="location.href='storeList'" class="btn btn-success listBtn"><i class="fa fa-list"></i>소유 포차 목록</button>
 		<br>
 		
-	
-<jsp:include page="/pluginn"/>
-		
-		
+			
 		
 		
 <script id="fileTemplate" type="text/x-handlebars-template">
@@ -279,9 +330,59 @@
 		
 		
 		
-		
-	</body>
+
+
+
+<!-- Main End -->
+
+</main>
+<!-- footer Start -->
+<%@include file="../nav/footer.jsp" %>
+<!-- footer End -->
+<!-- Scroll Up -->
+<div id="back-top" >
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+
+<!-- JS here -->
+<!-- All JS Custom Plugins Link Here here -->
+<script src="${pageContext.request.contextPath }/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
+<!-- Jquery, Popper, Bootstrap -->
+<script src="${pageContext.request.contextPath }/assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/bootstrap.min.js"></script>
+
+<!-- Jquery Mobile Menu -->
+<script src="${pageContext.request.contextPath }/assets/js/jquery.slicknav.min.js"></script>
+
+<!-- Jquery Slick , Owl-Carousel Plugins -->
+<script src="${pageContext.request.contextPath }/assets/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/slick.min.js"></script>
+
+<!-- One Page, Animated-HeadLin -->
+<script src="${pageContext.request.contextPath }/assets/js/wow.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/animated.headline.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.magnific-popup.js"></script>
+
+<!-- Nice-select, sticky -->
+<script src="${pageContext.request.contextPath }/assets/js/jquery.nice-select.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.sticky.js"></script>
+
+<!-- contact js -->
+<script src="${pageContext.request.contextPath }/assets/js/contact.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.form.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/mail-script.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery.ajaxchimp.min.js"></script>
+
+<!-- Jquery Plugins, main Jquery -->	
+<script src="${pageContext.request.contextPath }/assets/js/plugins.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/main.js"></script>
+</body>
 </html>
+
+
 </c:otherwise>
 </c:choose>
 

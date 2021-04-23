@@ -54,27 +54,28 @@ public class UploadFileUtils {
     }
 
 	
-
-    // 파일 업로드 처리
-    public static String uploadUserImg(MultipartFile file, HttpServletRequest request) throws Exception {
- 
-        String originalFileName = file.getOriginalFilename(); // 파일명
-        byte[] fileData = file.getBytes();  // 파일 데이터
-
-        // 1. 파일명 중복 방지 처리
-        String uuidFileName = getUuidFileName(originalFileName);
-
-        // 2. 파일 업로드 경로 설정
-        String rootPath = request.getSession().getServletContext().getRealPath("/resources/upload/");
-        String datePath = getDatePath(rootPath); // 날짜 경로 추출, 날짜 폴더 생성
-
-        // 3. 서버에 파일 저장
-        File target = new File(rootPath + datePath, uuidFileName); // 파일 객체 생성
-        FileCopyUtils.copy(fileData, target); // 파일 객체에 파일 데이터 복사
-
-        // 5. 파일 저장 경로 치환
-        return replaceSavedFilePath(datePath, uuidFileName);
-    }
+//
+//    // 파일 업로드 처리
+//    public static String uploadUserImg(MultipartFile file, HttpServletRequest request) throws Exception {
+// 
+//        String originalFileName = file.getOriginalFilename(); // 파일명
+//        byte[] fileData = file.getBytes();  // 파일 데이터
+//
+//        // 1. 파일명 중복 방지 처리
+//        String uuidFileName = getUuidFileName(originalFileName);
+//
+//        // 2. 파일 업로드 경로 설정
+//        //String rootPath = request.getSession().getServletContext().getRealPath("/resources/upload/");
+//        String rootPath = "D:\\DevRoot\\Dropbox\\App10\\PJT_FTSeoul_imageUpload";
+//        String datePath = getDatePath(rootPath); // 날짜 경로 추출, 날짜 폴더 생성
+//
+//        // 3. 서버에 파일 저장
+//        File target = new File(rootPath + datePath, uuidFileName); // 파일 객체 생성
+//        FileCopyUtils.copy(fileData, target); // 파일 객체에 파일 데이터 복사
+//
+//        // 5. 파일 저장 경로 치환
+//        return replaceSavedFilePath(datePath, uuidFileName);
+//    }
 
     
     
@@ -126,7 +127,8 @@ public class UploadFileUtils {
         if (mediaType != null)
             return request.getSession().getServletContext().getRealPath(rootPath + "/images"); // 이미지 파일 경로
 
-        return request.getSession().getServletContext().getRealPath(rootPath + "/files"); // 일반파일 경로
+        //return request.getSession().getServletContext().getRealPath(rootPath + "/files"); // 일반파일 경로
+        return "d:/DevRoot\\Dropbox\\App10\\PJT_FTSeoul_imageUpload"; 	// 절대결로로 치환... 여기에 저장해서 여기서 불러옴. 
     }
 
     
