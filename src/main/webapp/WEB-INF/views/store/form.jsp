@@ -25,6 +25,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
 
 </head>
+
+
 <body>
 <!-- Preloader Start -->
  <div id="preloader-active">

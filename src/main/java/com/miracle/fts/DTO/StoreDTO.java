@@ -19,6 +19,7 @@ public class StoreDTO {
 	private String sthn;
 	private String uid;
 	private Integer sccnt;	// 댓글 갯수
+	private String av;
 	
 	private String[] files;		// 첨부파일 이름 저장용
 	private Integer fileCnt;	// 첨부파일 갯수

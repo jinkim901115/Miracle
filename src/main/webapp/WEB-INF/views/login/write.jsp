@@ -127,39 +127,15 @@ function chkSubmit() {
 	}
 	  
 	  
-     /*
-	if(addr == ''){
-		alert("주소는 반드시 입력해주세요");
-		join['addr'].focus();
-		return false;
-	}
-	if(addr2 == ''){
-		alert("상세주소를 입력시켜주세요");
-		join['addr2'].focus();
-		return false;
-	}
-	*/
-	//if(phone == ''){
-		//alert("핸드폰 번호를 확인해주세요");
-		//join['phone'].focus();
-		//return false;
-	//}
-	/*
-	var phone2 = /^[0-9]*$/
-	v = $(this).val();
-	if( !phone2.test(v) ) {
-		alert("숫자만 입력하세요");
-	$(this).val(v.replace(phone2,''));
-	}
-	*/
-	if(document.join.phone2.value.length < 3){
+ 
+	if(document.join.pn2.value.length < 3){
 		alert("앞자리 번호를 3자리 이상 입력해주세요");
-		document.join.phone2.focus();
+		document.join.pn2.focus();
 		return false;
 	}
-	if(document.join.phone3.value.length < 3){
+	if(document.join.pn3.value.length < 3){
 		alert("뒤자리 번호를 3자리 이상 입력해주세요");
-		document.join.phone3.focus();
+		document.join.pn3.focus();
 		return false;
 	}
 	if(document.join.email.value == ''){
@@ -350,22 +326,22 @@ function execPostCode() {
 </script>
 
 <div class="signcontainer" style="width:40%; margin:auto;">
-<h2>GYM 가입란</h2>
+<h2>Miracle7 회원가입</h2>
 <form name="join" action="writeOk" method="post" id="regForm" onsubmit="return chkSubmit()" >
-가입구분: <br>
+가입구분: <br><br>
 <input type="radio" name="auth" value="ROLE_MEMBER" checked/>일반회원
 <input type="radio" name="auth" value="ROLE_CEO"/>상인회원
-<br><br><br><br>
+<br><br><br>
 아이디: <br>
-<input type="text" name="id" id="id" /> 영문 대소문자, 숫자만 사용가능! (4 ~ 12글자)<br>
+<input type="text" name="id" id="id" /> 영문 대소문자, 숫자만 사용가능! (4 ~ 12글자)
 
-<button name="idChk" class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+<button name="idChk" class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button><br><br>
 비밀번호: <br>
-<input type="password" name="pw" id="pw"/>아이디와 동일하면 안됩니다! (4 ~ 12 글자)<br>
+<input type="password" name="pw" id="pw"/>아이디와 동일하면 안됩니다! (4 ~ 12 글자)<br><br>
 비밀번호 확인:<br>
-<input type="password" name="pw2" id="pw2"/><br>
+<input type="password" name="pw2" id="pw2"/><br><br>
 이름:<br>
-<input type="text" name="name" id="name"/>2글자 이상 입력주세요!<br>
+<input type="text" name="name" id="name"/>2글자 이상 입력주세요!<br><br>
 
 주소:<br>
 <input class="form-control" style="width: 10%; display: inline;" placeholder="우편번호" name="addr" id="addr" type="text" readonly="readonly" />
@@ -374,60 +350,36 @@ function execPostCode() {
 <input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
 <br>
 
-
-<!--
-주소:<br>
-<input type="text" name="addr" id="addr"/><br>
-상세주소:<br>
-<input type="text" name="addr2" id="addr2"/><br>  
- -->
- 
- 
-<tr>
-	<th><em class="point">휴대폰번호:</em></th> <br>
-	<select name="phone" id="phone" style="width:60px" class="mgr8">
+휴대폰번호:<br>
+<select name="pn" id="pn" style="width:60px" class="mgr8">
 		<option value="010">010</option>
 		<option value="011">011</option>
 		<option value="016">016</option>
 		<option value="017">017</option>
 		<option value="018">018</option>
 		<option value="019">019</option>
-	</select> 
-	<td>-</td>
-	<td><input name="phone2" id="phone2" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/></td> 
-	<td>-</td>
-	<td><input name="phone3" id="phone3" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/> 숫자만 입력해주세요!!^^</td>
-</tr> <br>
+</select> -
+	<input name="pn2" id="pn2" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/> -
+	<input name="pn3" id="pn3" maxlength="4" type="text" pattern="[0-9]+" style="width:45px"/> 숫자만 입력해주세요!!^^
+<br><br>
+
 e-mail:<br>
-<input type="text" name="email" id="email">  @
-<input type="text" name="email2" id="email2" >
-<select  name="email2" id="email_sel" onchange="email_change()">
-	
+<input type="text" name="email" id="email">  @  <input type="text" name="email2" id="email2" >
+
+<select  name="email2" id="email_sel" onchange="email_change()" class="enb" >
 	<option value=''>직접입력</option>
     <option value='naver.com'>네이버</option>
     <option value='hanmail.net'>다음</option>
     <option value='gmail.com'>구글</option>
 </select>
-<!-- 
-e-mail:<br>
-<input type="text" name="email"/> @ 
-	<input type="text" name="email2"/>
-<select type="text" name="email2" style="width60px">
-	<option>naver.com</option>
-	<option>daum.net</option>
-	<option>google.com</option>
-	<option>직접입력</option>
-	<!-- 
-	<option value="naver.com">naver.com</option>
-	<option value="naver.com">naver.com</option>
-	 
-</select> <br>
- --> 
+
+
+
 <br><br>
 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
 <input type="hidden" id="csrfName" name="csrfName" value="${_csrf.parameterName }"/>
 <input type="hidden" id="csrfValue" name="csrfValue" value="${_csrf.token }"/>
-<input type="submit" value="가입" />
+<input type="submit" value="가입하기" />
 </form>
 
 </div>
