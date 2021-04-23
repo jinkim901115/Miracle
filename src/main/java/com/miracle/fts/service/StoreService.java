@@ -18,6 +18,7 @@ import com.miracle.fts.DTO.MenuDTO;
 import com.miracle.fts.DTO.StoreDTO;
 import com.miracle.fts.DTO.StoreFileDTO;
 import com.miracle.fts.DTO.UploadFileUtils;
+import com.miracle.fts.util.SessionScopeUtil;
 
 @Service
 public class StoreService {
@@ -68,7 +69,9 @@ public class StoreService {
 		Double slng = Double.parseDouble(mprequest.getParameter("slng"));
 		String spic;
 		String sthn;
-		String uid = mprequest.getParameter("uid");
+//		String uid = mprequest.getParameter("uid");
+		
+		String uid = SessionScopeUtil.getUserId();
 		// dto에 값 넣기
 		dto.setSname(sname);
 		dto.setSbiznum(sbiznum);
@@ -79,6 +82,7 @@ public class StoreService {
 		dto.setSlng(slng);
 		dto.setUid(uid);
 		
+		System.out.println("uid: " + uid);
 		// Store의 일부 정보만 저장 
 		int result = dao.insert(dto);
 		// Store를 저장하면서 만들어진 seq 값을 가져옴
@@ -194,7 +198,8 @@ public class StoreService {
 	
     @Transactional
     public int deleteBySuid(Integer suid) {
-        storeFileDAO.deleteFiles(suid);
+        //storeFileDAO.deleteFiles(suid);
+    	dao = sqlSession.getMapper(StoreDAO.class); 
         return dao.deleteBySuid(suid);        
         
     }

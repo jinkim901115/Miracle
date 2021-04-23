@@ -27,8 +27,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/nice-select.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/alter.css">
-
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/css/store.css">
 
 
 
@@ -36,12 +35,15 @@
 table {
 	width: 80%;
 	text-align: center;
+	border-top: 1px solid #444444;
+    border-collapse: collapse;
 }
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
+th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
 }
-a {text-decoration: none;}
+a {text-decoration: none; color: black;}
 th {background-color: tomato;}
 
 </style>
@@ -72,6 +74,8 @@ th {background-color: tomato;}
 
 
 <main>
+
+
  		<!-- Hero Start-->
         <div class="hero-area3 hero-overly2 d-flex align-items-center ">
             <div class="container">
@@ -86,12 +90,13 @@ th {background-color: tomato;}
         </div>
         <!--Hero End -->
 
+<div id="wrap">
 
-	<table>
+	<table id="tableList" style="margin-left: auto; margin-right: auto;">
 		<tr>
 			<th style="width: 5%">#</th>
-			<th style="width: 15%">썸네일</th>
-			<th style="width: 20%">포차 이름</th>
+			<th style="width: 20%">사업자 번호</th>
+			<th style="width: 30%">포차 이름</th>
 			<th style="width: 40%">포차 주소</th>
 		</tr>
 
@@ -101,8 +106,8 @@ th {background-color: tomato;}
 			<c:forEach var="dto" items="${list }">
 				<tr>
 					<td>${dto.suid }</td> 
-					<td>${dto.sthn }</td> 
-					<td><a href="./view?suid=${dto.suid }">${dto.sname } (${dto.sccnt })</a></td> 
+					<td>${dto.sbiznum }</td> 
+					<td id="black"><a href="./storeView?suid=${dto.suid }">${dto.sname } (${list[0].sccnt })</a></td> 
 					<td style="text-align: left; padding: 0px 0px 0px 10px;">${dto.saddr }</td>					
 				</tr>			
 			</c:forEach>
@@ -110,12 +115,12 @@ th {background-color: tomato;}
 		</c:choose>
 	</table>
 	<br>
-	<button onclick="location.href='./write'" class="btn addBtn"><i class="fa fa-pencil"></i>포차 추가</button><br> 
+	<button onclick="location.href='./storeWrite'" class="btn addBtn"><i class="fa fa-pencil"></i>포차 추가</button><br> 
 	<button onclick="location.href='../list/listMain'" class="btn mainBtn"><i class="fa fa-list"></i>메인 페이지</button><br> <!-- 메인 url로 정정 필요 -->
 	<hr>
 	
 	
-	
+	</div>
 
 </main>
 
