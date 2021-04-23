@@ -158,7 +158,7 @@
                         <!-- Testimonial Content -->
                         <div class="testimonial-caption ">
                             <div class="testimonial-top-cap">
-                                <p> 비전공자 7명이 기적을 바라며 시작한 첫 프로젝트! <br> 저희 팀은 커뮤니케이션과 협업을 중시하여 최고의 결과 보다 최선을 결과를 만들어 내었다고 생각합니다. <br> Miracle 7 에서 꼰대와 채찍을 맡았습니다. </p>
+                                <p> 비전공자 7명이 기적을 바라며 시작한 첫 프로젝트! <br> 저희 팀은 커뮤니케이션과 협업을 중시하여 최고의 결과 보다 최선을 결과를 만들어 내었다고 생각합니다. <br> 팀에서 꼰대와 채찍을 맡았습니다. </p>
                             </div>
                             <!-- founder -->
                             <div class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
