@@ -35,6 +35,8 @@ CREATE TABLE t_user (
 	u_regdate	DATE DEFAULT SYSDATE	NULL
 );
 
+SELECT * FROM T_USER ;
+
 CREATE TABLE t_store (
 	s_uid	number		NOT NULL,
 	s_name	varchar2(30)		NULL,

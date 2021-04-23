@@ -40,10 +40,13 @@
 			var Y_point = 37.49943040584343;// Y 좌표
 			var X_point = 127.03587871044718; // X 좌표
 			var zoomLevel = 14; // 지도의 확대 레벨 : 숫자가 클수록 확대정도가 큼
-			var markerTitle = "여기를 찾으시나요?"; // 현재 위치 마커에 마우스를 오버을때 나타나는 정보 
-			//var markerMaxWidth = 300; // 마커를 클릭했을때 나타나는 말풍선의 최대 크기 
+			var markerTitle = "서울 강남구 테헤란로26길 12"; // 현재 위치 마커에 마우스를 오버을때 나타나는 정보 
+			var markerMaxWidth = 300; // 마커를 클릭했을때 나타나는 말풍선의 최대 크기 
 			// 말풍선 내용
-			var contentString = '';
+			var contentString = '<div>' +
+			'<h2>Miracle7</h2>'+
+			'<p>안녕하세요. Miracle7입니다.</p>' + '<p>서울 강남구 테헤란로26길 12</p>'
+			'</div>';
 			var myLatlng = new google.maps.LatLng(Y_point, X_point);
 			var mapOptions = {
 					zoom: zoomLevel,
@@ -66,14 +69,11 @@
 				infowindow.open(map, marker);
 				}); 
 			}); 
-			google.maps.addListener("bounds_changed", function() {
-				if (map.getBounds().contains(marker.getPosition()))
-					marker.setAnimation(google.maps.Animation.BOUNCE);
-			});
+		
 		
 		</script>
 
-<body style="background: mediumpurple">
+<body style="background: linen;">
 <!-- Preloader Start -->
  <div id="preloader-active">
      <div class="preloader d-flex align-items-center justify-content-center">
@@ -100,7 +100,7 @@
          <div class="row">
              <div class="col-xl-12">
                  <div class="hero-cap text-center pt-50">
-                     <h2>찾아오시는 길</h2>
+                 <h2 class="굴림" style="color: linen;">찾아오시는 길</h2>
                  </div>
              </div>
          </div>
@@ -109,6 +109,19 @@
  <!--Hero End -->
 <br><br><br><br><br>
 <form style="text-align: center;">
+<<<<<<< HEAD
+<h2>주소</h2>
+<h4 style="color: #a05a11; font-size: 30px;">서울 강남구 테헤란로26길 12</h4>
+</form>
+<div id="map_ma" class="map_1" >
+</div>
+<form style="text-align: center;"> 
+<h3>location</h3>
+<h3>역삼역 3번출구 에서 도보 3분</h3>
+<h3>tel. 010-7889-8745 fax.02-338-4609</h3>
+</form>
+ <br><br><br><br><br>
+=======
 <h4 style="color: blue; font-size: 30px;">서울 강남구 테헤란로26길 12</h4>
 <h2>↓↓↓</h2>
 </form>
@@ -116,6 +129,7 @@
 </div> 
 <br><br><br><br><br>
  
+>>>>>>> branch 'master' of https://github.com/YoungKwang-Park/Miracle7.git
 
 
 </main>

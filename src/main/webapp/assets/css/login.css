@@ -1,5 +1,42 @@
 * {box-sizing: border-box}
 
+.point{
+	font-style: normal;
+}
+
+.enb {
+	height: 25px;
+    border: solid 1px rgb(0, 255, 128);
+    float: right;
+    width: 127px;
+    margin-right: 33px;
+	
+}
+.enb_1{
+	width: 540px;
+}
+.nice-select{
+	height: 35px;
+    margin-top: -3px;
+    line-height: 38px;
+    
+}
+
+.idChk {
+	color: black;
+}
+
+.mgr8 {
+	font-size: 16px;
+	height: 30px;
+	border: solid 1px black;
+}
+
+
+.btn btn-default {
+	padding: 12px 43px;
+}
+
 /* style the container */
 .logincontainer {
   width: 60%;
